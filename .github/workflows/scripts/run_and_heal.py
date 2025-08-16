@@ -71,7 +71,55 @@ def apply_patch(stage, patch):
     subprocess.run(["git", "checkout", "-b", branch_name])
     subprocess.run(["git", "apply", patch_file])
     subprocess.run(["git", "commit", "-am", f"Auto-heal patch for {stage}"])
-    subprocess.run(["gh", "pr", "create", "--fill"])
+    
+    # Verifica se SSH está disponível (via SSH_PRIVATE_KEY)
+    ssh_available = os.getenv("SSH_PRIVATE_KEY", "") != ""
+    
+    if ssh_available:
+        # Usa SSH para push e criação de PR
+        subprocess.run(["git", "push", "-u", "origin", branch_name])
+        subprocess.run(["gh", "pr", "create", "--fill"])
+    else:
+        # Fallback HTTPS usando GITHUB_TOKEN
+        print("SSH não disponível, usando fallback HTTPS...")
+        
+        # Configura git para HTTPS
+        github_actor = os.getenv("GITHUB_ACTOR", "github-actions")
+        github_token = os.getenv("GITHUB_TOKEN")
+        github_repository = os.getenv("GITHUB_REPOSITORY")
+        
+        if github_token and github_repository:
+            # Configura remote para HTTPS
+            subprocess.run([
+                "git", "remote", "set-url", "origin", 
+                f"https://x-access-token:{github_token}@github.com/{github_repository}.git"
+            ])
+            
+            # Configura usuário
+            subprocess.run(["git", "config", "user.name", github_actor])
+            subprocess.run(["git", "config", "user.email", f"{github_actor}@users.noreply.github.com"])
+            
+            # Push usando HTTPS
+            subprocess.run(["git", "push", "-u", "origin", branch_name])
+            
+            # Cria PR usando gh CLI com GITHUB_TOKEN
+            env = os.environ.copy()
+            env["GITHUB_TOKEN"] = github_token
+            
+            try:
+                subprocess.run(["gh", "pr", "create", "--fill"], env=env, check=True)
+                print("PR criado com sucesso via HTTPS")
+            except subprocess.CalledProcessError as e:
+                print(f"Erro ao criar PR: {e}")
+                print("PR pode já existir ou haver problema de permissão")
+        else:
+            print("GITHUB_TOKEN não disponível, pulando criação de PR")
+            # Ainda faz o push se possível
+            try:
+                subprocess.run(["git", "push", "-u", "origin", branch_name])
+                print("Branch enviada com sucesso")
+            except subprocess.CalledProcessError as e:
+                print(f"Erro ao enviar branch: {e}")
 
 def main():
     parser = argparse.ArgumentParser()

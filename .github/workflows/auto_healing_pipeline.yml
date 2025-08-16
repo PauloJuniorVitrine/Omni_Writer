@@ -89,10 +89,19 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: 🔑 Setup SSH for Auto-PRs
+      - name: 🔑 Setup SSH for Auto-PRs (only if secret present)
+        if: ${{ secrets.SSH_PRIVATE_KEY != '' }}
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Configure git for HTTPS with GITHUB_TOKEN
+        if: ${{ secrets.SSH_PRIVATE_KEY == '' }}
+        shell: bash
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
       
       - name: 🐍 Setup Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -209,10 +218,19 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: 🔑 Setup SSH for Auto-PRs
+      - name: 🔑 Setup SSH for Auto-PRs (only if secret present)
+        if: ${{ secrets.SSH_PRIVATE_KEY != '' }}
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Configure git for HTTPS with GITHUB_TOKEN
+        if: ${{ secrets.SSH_PRIVATE_KEY == '' }}
+        shell: bash
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
       
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
@@ -304,10 +322,19 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: 🔑 Setup SSH for Auto-PRs
+      - name: 🔑 Setup SSH for Auto-PRs (only if secret present)
+        if: ${{ secrets.SSH_PRIVATE_KEY != '' }}
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Configure git for HTTPS with GITHUB_TOKEN
+        if: ${{ secrets.SSH_PRIVATE_KEY == '' }}
+        shell: bash
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
       
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
@@ -399,10 +426,19 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: 🔑 Setup SSH for Auto-PRs
+      - name: 🔑 Setup SSH for Auto-PRs (only if secret present)
+        if: ${{ secrets.SSH_PRIVATE_KEY != '' }}
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Configure git for HTTPS with GITHUB_TOKEN
+        if: ${{ secrets.SSH_PRIVATE_KEY == '' }}
+        shell: bash
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
       
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
