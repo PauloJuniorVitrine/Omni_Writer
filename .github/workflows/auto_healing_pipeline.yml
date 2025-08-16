@@ -149,7 +149,7 @@ jobs:
           postgresql password: 'test_password'
       
       - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.4.6
+        uses: supercharge/redis-github-action@v1.8.0
         with:
           redis-version: '7-alpine'
       
@@ -224,7 +224,7 @@ jobs:
           postgresql password: 'test_password'
       
       - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.4.6
+        uses: supercharge/redis-github-action@v1.8.0
         with:
           redis-version: '7-alpine'
       
@@ -312,7 +312,7 @@ jobs:
           postgresql password: 'test_password'
       
       - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.4.6
+        uses: supercharge/redis-github-action@v1.8.0
         with:
           redis-version: '7-alpine'
       
@@ -400,7 +400,7 @@ jobs:
           postgresql password: 'test_password'
       
       - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.4.6
+        uses: supercharge/redis-github-action@v1.8.0
         with:
           redis-version: '7-alpine'
       
