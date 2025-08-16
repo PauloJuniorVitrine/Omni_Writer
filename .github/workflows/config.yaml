@@ -117,6 +117,31 @@ jobs:
       cache_key: ${{ steps.cache_key.outputs.value }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
         with:
@@ -173,6 +198,31 @@ jobs:
       healing_config: ${{ steps.config.outputs.healing_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -233,6 +283,31 @@ jobs:
       prompts_config: ${{ steps.config.outputs.prompts_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -283,6 +358,31 @@ jobs:
       wordpress_config: ${{ steps.config.outputs.wordpress_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -348,6 +448,31 @@ jobs:
       discord_config: ${{ steps.config.outputs.discord_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -399,6 +524,31 @@ jobs:
       audit_config: ${{ steps.config.outputs.audit_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -454,6 +604,31 @@ jobs:
       dashboards_config: ${{ steps.config.outputs.dashboards_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -554,6 +729,31 @@ jobs:
       redis_config: ${{ steps.config.outputs.redis_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -607,6 +807,31 @@ jobs:
       artifacts_config: ${{ steps.config.outputs.artifacts_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -666,6 +891,31 @@ jobs:
       post_execution_config: ${{ steps.config.outputs.post_execution_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -734,6 +984,31 @@ jobs:
       backup_config: ${{ steps.config.outputs.backup_config }}
     
     steps:
+      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+        id: ensure_summary
+        run: |
+          mkdir -p .ci/config
+          cat > .ci/config/summary.json << 'EOF'
+          {
+            "version": "3.0.0",
+            "environment": "production",
+            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "sha": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "jobs_completed": {},
+            "totals": {
+              "healing_attempts": 0,
+              "patches_created": 0,
+              "tests_passed": 0,
+              "tests_failed": 0
+            },
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+      
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
       
@@ -840,6 +1115,14 @@ jobs:
         with:
           name: configuration-artifacts
           path: .ci/config/
+      
+      - name: 📦 Upload Summary as Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: summary-json
+          path: .ci/config/summary.json
+          retention-days: 90
       
       - name: 📋 Generate Final Summary
         run: |
