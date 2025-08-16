@@ -58,8 +58,18 @@ jobs:
   build:
     name: 🏗️ Build Environment
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     outputs:
       build-status: ${{ job.status }}
       cache-key: ${{ steps.cache-key.outputs.value }}
@@ -140,11 +150,6 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
-      
       - name: 🔑 Generate Cache Key
         id: cache-key
         run: |
@@ -168,8 +173,18 @@ jobs:
   unit_tests:
     name: 🧪 Unit Tests + Auto-Healing
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     needs: build
     if: needs.build.result == 'success'
     outputs:
@@ -215,11 +230,6 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
-      
       - name: 🧪 Run Unit Tests with Auto-Healing
         id: healing
         run: |
@@ -256,8 +266,18 @@ jobs:
   integration_tests:
     name: 🔗 Integration Tests + Auto-Healing
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     needs: unit_tests
     if: needs.unit_tests.result == 'success'
     outputs:
@@ -303,11 +323,6 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
-      
       - name: 🧪 Run Integration Tests with Auto-Healing
         id: healing
         run: |
@@ -344,8 +359,18 @@ jobs:
   e2e_tests:
     name: 🌐 E2E Tests + Auto-Healing
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     needs: integration_tests
     if: needs.integration_tests.result == 'success'
     outputs:
@@ -390,11 +415,6 @@ jobs:
           postgresql db: 'omni_keywords_test'
           postgresql user: 'test_user'
           postgresql password: 'test_password'
-      
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
       
       - name: 🧪 Run E2E Tests with Auto-Healing
         id: healing

@@ -66,8 +66,18 @@ jobs:
     name: 🏗️ Build Environment
     runs-on: ubuntu-latest
     if: github.event.inputs.stage == 'all' || github.event.inputs.stage == null
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     outputs:
       build_status: ${{ job.status }}
       cache_key: ${{ steps.cache_key.outputs.value }}
@@ -148,10 +158,7 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
+
       
       - name: 🔑 Generate Cache Key
         id: cache_key
@@ -177,8 +184,18 @@ jobs:
     name: 🧪 Unit Tests + Auto-Healing
     runs-on: ubuntu-latest
     if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'unit_tests' || github.event.inputs.stage == null) && needs.build.result == 'success'
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     needs: build
     outputs:
       unit_status: ${{ job.status }}
@@ -223,10 +240,7 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
+
       
       - name: 🧪 Run Unit Tests with Auto-Healing
         id: healing
@@ -265,8 +279,18 @@ jobs:
     name: 🔗 Integration Tests + Auto-Healing
     runs-on: ubuntu-latest
     if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'integration_tests' || github.event.inputs.stage == null) && needs.unit_tests.result == 'success'
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     needs: unit_tests
     outputs:
       integration_status: ${{ job.status }}
@@ -311,10 +335,7 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
+
       
       - name: 🧪 Run Integration Tests with Auto-Healing
         id: healing
@@ -353,8 +374,18 @@ jobs:
     name: 🌐 E2E Tests + Auto-Healing
     runs-on: ubuntu-latest
     if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'e2e_tests' || github.event.inputs.stage == null) && needs.integration_tests.result == 'success'
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: [ "6379:6379" ]
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s --health-timeout=5s --health-retries=5
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379
     needs: integration_tests
     outputs:
       e2e_status: ${{ job.status }}
@@ -399,10 +430,7 @@ jobs:
           postgresql user: 'test_user'
           postgresql password: 'test_password'
       
-      - name: 🔴 Setup Redis
-        uses: supercharge/redis-github-action@v1.8.0
-        with:
-          redis-version: '7-alpine'
+
       
       - name: 🧪 Run E2E Tests with Auto-Healing
         id: healing
