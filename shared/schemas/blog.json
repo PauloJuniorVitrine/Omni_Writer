@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Blog",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "nome": { "type": "string" },
+    "desc": { "type": "string" },
+    "categorias": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Categoria" }
+    }
+  },
+  "required": ["id", "nome"],
+  "definitions": {
+    "Categoria": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "nome": { "type": "string" }
+      },
+      "required": ["id", "nome"]
+    }
+  }
+} 

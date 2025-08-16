@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 11 items
+
+tests\unit\test_token_repository.py::test_is_blocked_false PASSED        [  9%]
+tests\unit\test_token_repository.py::test_is_blocked_true_and_expired PASSED [ 18%]
+tests\unit\test_token_repository.py::test_register_failed_attempt_blocks PASSED [ 27%]
+tests\unit\test_token_repository.py::test_log_auth_attempt_success_and_fail PASSED [ 36%]
+tests\unit\test_token_repository.py::test_init_db PASSED                 [ 45%]
+tests\unit\test_token_repository.py::test_create_token_and_validate PASSED [ 54%]
+tests\unit\test_token_repository.py::test_validate_token_blocked PASSED  [ 63%]
+tests\unit\test_token_repository.py::test_validate_token_valid PASSED    [ 72%]
+tests\unit\test_token_repository.py::test_validate_token_invalid PASSED  [ 81%]
+tests\unit\test_token_repository.py::test_rotate_token PASSED            [ 90%]
+tests\unit\test_token_repository.py::test_revoke_token PASSED            [100%]
+
+======================== 11 passed, 1 warning in 2.21s ========================

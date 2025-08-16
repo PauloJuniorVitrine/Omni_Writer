@@ -1,0 +1,121 @@
+# =============================================================================
+# OMNI WRITER - REQUIREMENTS ML ATUALIZADO
+# =============================================================================
+# Data: 2025-01-27
+# Tracing ID: REQ_ML_UPDATE_20250127_001
+# Análise: Baseada em análise completa do sistema ML
+# =============================================================================
+
+# =============================================================================
+# CORE ML LIBRARIES
+# =============================================================================
+# Scikit-learn e dependências
+scikit-learn==1.6.1
+numpy==2.2.5
+pandas==2.2.3
+scipy==1.15.2
+joblib==1.4.2
+
+# =============================================================================
+# NLP E PROCESSAMENTO DE TEXTO
+# =============================================================================
+# Sentence Transformers para embeddings
+sentence-transformers>=2.2.2
+
+# NLTK para processamento de linguagem natural
+nltk>=3.8.1
+
+# TF-IDF e vetorização
+scikit-learn[text]>=1.6.1
+
+# =============================================================================
+# VISUALIZAÇÃO E ANÁLISE
+# =============================================================================
+# Matplotlib para gráficos
+matplotlib==3.10.1
+pillow==11.2.1
+
+# Seaborn para visualizações estatísticas (opcional)
+seaborn>=0.12.0
+
+# Plotly para gráficos interativos (opcional)
+plotly>=5.0.0
+
+# =============================================================================
+# DEEP LEARNING (OPCIONAL)
+# =============================================================================
+# PyTorch para deep learning (descomente se tiver GPU)
+# torch>=2.0.0
+# torchvision>=0.15.0
+# torchaudio>=2.0.0
+
+# Transformers para modelos pré-treinados (opcional)
+# transformers>=4.30.0
+# tokenizers>=0.13.0
+
+# =============================================================================
+# PROCESSAMENTO AVANÇADO DE TEXTO
+# =============================================================================
+# SpaCy para NLP avançado (opcional)
+# spacy>=3.6.0
+
+# Gensim para modelagem de tópicos (opcional)
+# gensim>=4.3.0
+
+# =============================================================================
+# OTIMIZAÇÃO DE PERFORMANCE
+# =============================================================================
+# Numba para aceleração JIT (opcional)
+# numba>=0.57.0
+
+# Cython para extensões C (opcional)
+# cython>=3.0.0
+
+# =============================================================================
+# UTILITÁRIOS ML
+# =============================================================================
+# TQDM para barras de progresso
+tqdm==4.67.1
+
+# Scikit-image para processamento de imagem (opcional)
+# scikit-image>=0.19.0
+
+# =============================================================================
+# TESTES PARA ML
+# =============================================================================
+# Pytest para testes
+pytest==7.4.0
+pytest-cov==4.1.0
+
+# Testes de performance para ML
+pytest-benchmark>=4.0.0
+
+# =============================================================================
+# NOTAS DE INSTALAÇÃO
+# =============================================================================
+# Para instalação básica:
+# pip install -r requirements_ml.txt
+
+# Para instalação com GPU (descomente as dependências PyTorch primeiro):
+# pip install -r requirements_ml.txt
+
+# Para instalação completa com todas as dependências opcionais:
+# pip install -r requirements_ml.txt
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# pip install transformers tokenizers spacy gensim numba cython scikit-image
+
+# =============================================================================
+# CONFIGURAÇÃO DO NLTK
+# =============================================================================
+# Após instalação, execute no Python:
+# import nltk
+# nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+# nltk.download('averaged_perceptron_tagger')
+
+# =============================================================================
+# VERIFICAÇÃO DE INSTALAÇÃO
+# =============================================================================
+# Execute para verificar se tudo está funcionando:
+# python -c "import sklearn, numpy, pandas, sentence_transformers, nltk; print('✅ ML dependencies OK')" 

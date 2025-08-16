@@ -1,0 +1,48 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... [status_repository] Banco de status NÃO inicializado (ENABLE_STATUS_DB != 1).
+collected 45 items / 3 errors
+
+=================================== ERRORS ====================================
+_ ERROR collecting omni_writer/tests/integration/test_celery_worker_integration.py _
+ImportError while importing test module 'D:\PROJETOS\SISTEMAS\omni_writer\tests\integration\test_celery_worker_integration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Program Files\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\integration\test_celery_worker_integration.py:12: in <module>
+    from app.celery_worker import gerar_artigos_task
+app\celery_worker.py:8: in <module>
+    from domain.models import GenerationConfig, PromptInput
+E   ModuleNotFoundError: No module named 'domain.models'
+_ ERROR collecting omni_writer/tests/integration/test_deepseek_gateway_integration.py _
+ImportError while importing test module 'D:\PROJETOS\SISTEMAS\omni_writer\tests\integration\test_deepseek_gateway_integration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Program Files\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\integration\test_deepseek_gateway_integration.py:19: in <module>
+    from domain.models import GenerationConfig, PromptInput
+E   ModuleNotFoundError: No module named 'domain.models'
+_ ERROR collecting omni_writer/tests/integration/test_gateway_falha_integration.py _
+ImportError while importing test module 'D:\PROJETOS\SISTEMAS\omni_writer\tests\integration\test_gateway_falha_integration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Program Files\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\integration\test_gateway_falha_integration.py:3: in <module>
+    from app.celery_worker import gerar_artigos_task
+app\celery_worker.py:8: in <module>
+    from domain.models import GenerationConfig, PromptInput
+E   ModuleNotFoundError: No module named 'domain.models'
+=========================== short test summary info ===========================
+ERROR tests\integration\test_celery_worker_integration.py
+ERROR tests\integration\test_deepseek_gateway_integration.py
+ERROR tests\integration\test_gateway_falha_integration.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 3 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+======================= 6 warnings, 3 errors in 14.63s ========================

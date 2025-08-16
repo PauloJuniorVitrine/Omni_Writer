@@ -1,0 +1,51 @@
+{
+  "max_age_days": 7,
+  "hash_algorithm": "sha256",
+  "risk_thresholds": {
+    "low": 0,
+    "medium": 1,
+    "high": 3,
+    "critical": 5
+  },
+  "vulnerability_patterns": [
+    "deprecated",
+    "security",
+    "vulnerability",
+    "outdated",
+    "unsafe",
+    "eval(",
+    "innerHTML",
+    "document.write",
+    "setTimeout(",
+    "setInterval("
+  ],
+  "excluded_files": [
+    "node_modules",
+    ".git",
+    "*.log",
+    "*.tmp",
+    "*.cache",
+    "dist",
+    "build"
+  ],
+  "ci_cd": {
+    "auto_fix": false,
+    "create_issue": true,
+    "notify_slack": false,
+    "block_deploy": true,
+    "threshold": "high"
+  },
+  "notifications": {
+    "slack_webhook": "",
+    "email_recipients": [],
+    "critical_only": true
+  },
+  "auto_fix": {
+    "enabled": false,
+    "strategies": [
+      "regenerate_sdk",
+      "update_dependencies",
+      "security_patches"
+    ]
+  }
+} 

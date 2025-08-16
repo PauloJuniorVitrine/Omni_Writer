@@ -1,0 +1,55 @@
+[
+  {
+    "modulo_id": "sidebar_blogs",
+    "acoes": [
+      { "tipo": "criar", "permite": ["user"], "ref": "endpoint:/api/blogs" },
+      { "tipo": "excluir", "permite": ["user"], "ref": "endpoint:/api/blogs/{id}", "confirmacao": true }
+    ],
+    "ui": [
+      { "tipo": "botao", "nome": "Novo Blog", "coCot": { "comprovacao": "api/blogs", "causalidade": "ação primária", "contexto": "sidebar", "tendencia": "UI SaaS atual" }, "prototipo": { "posicao": "sidebar", "layer": 2, "anima": "fade-in" } }
+    ]
+  },
+  {
+    "modulo_id": "prompts",
+    "acoes": [
+      { "tipo": "adicionar", "permite": ["user"], "ref": "endpoint:/api/blogs/{id}/prompts" },
+      { "tipo": "excluir", "permite": ["user"], "ref": "endpoint:/api/blogs/{id}/prompts/{id}", "confirmacao": true },
+      { "tipo": "upload", "permite": ["user"], "ref": "endpoint:/api/blogs/{id}/prompts/upload" }
+    ],
+    "ui": [
+      { "tipo": "input", "nome": "Prompt manual", "coCot": { "comprovacao": "api/blogs/{id}/prompts", "causalidade": "entrada de dados", "contexto": "card prompts", "tendencia": "UI SaaS atual" }, "prototipo": { "posicao": "card", "layer": 1 } },
+      { "tipo": "upload", "nome": "Upload .txt", "coCot": { "comprovacao": "api/blogs/{id}/prompts/upload", "causalidade": "entrada em massa", "contexto": "card prompts", "tendencia": "Notion/Supabase" }, "prototipo": { "posicao": "card", "layer": 1 } }
+    ]
+  },
+  {
+    "modulo_id": "api_key_modelo",
+    "acoes": [
+      { "tipo": "selecionar_modelo", "permite": ["user"], "ref": "endpoint:/api/modelos" },
+      { "tipo": "submeter_api_key", "permite": ["user"], "ref": "endpoint:/api_key" }
+    ],
+    "ui": [
+      { "tipo": "input", "nome": "Chave API", "coCot": { "comprovacao": "api_key", "causalidade": "autenticação", "contexto": "card api", "tendencia": "SaaS seguro" }, "prototipo": { "posicao": "card", "layer": 1 } },
+      { "tipo": "select", "nome": "Modelo", "coCot": { "comprovacao": "api/modelos", "causalidade": "seleção de modelo", "contexto": "card api", "tendencia": "UI SaaS" }, "prototipo": { "posicao": "card", "layer": 1 } }
+    ]
+  },
+  {
+    "modulo_id": "acoes_geracao",
+    "acoes": [
+      { "tipo": "gerar", "permite": ["user"], "ref": "endpoint:/generate" },
+      { "tipo": "gerar_lote", "permite": ["user"], "ref": "endpoint:/generate_lote" }
+    ],
+    "ui": [
+      { "tipo": "botao", "nome": "Gerar artigos", "coCot": { "comprovacao": "generate", "causalidade": "ação primária", "contexto": "card ações", "tendencia": "UI SaaS" }, "prototipo": { "posicao": "card", "layer": 2, "anima": "fade-in" } },
+      { "tipo": "loader", "nome": "Loader geração", "coCot": { "comprovacao": "feedback visual", "causalidade": "espera de processamento", "contexto": "card ações", "tendencia": "Stripe/Supabase" }, "prototipo": { "posicao": "card", "layer": 3 } }
+    ]
+  },
+  {
+    "modulo_id": "resumo",
+    "acoes": [
+      { "tipo": "confirmar_envio", "permite": ["user"], "ref": "endpoint:/confirmar_envio" }
+    ],
+    "ui": [
+      { "tipo": "card", "nome": "Resumo dos dados", "coCot": { "comprovacao": "resumo_content", "causalidade": "confirmação final", "contexto": "card resumo", "tendencia": "UI SaaS" }, "prototipo": { "posicao": "card", "layer": 1 } }
+    ]
+  }
+] 

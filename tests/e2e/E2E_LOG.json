@@ -1,0 +1,370 @@
+{
+  "schema_version": "1.0.0",
+  "execution_id": "E2E_20250128T120000Z",
+  "timestamp": "2025-01-28T12:00:00Z",
+  "environment": "production",
+  "version": "1.0.0",
+  "semantic_hash": "a1b2c3d4e5f6g7h8i9j0",
+  "web_vitals": {
+    "lcp": 2.1,
+    "cls": 0.05,
+    "tti": 1.8,
+    "fid": 45,
+    "cumulative_layout_shift": 0.03
+  },
+  "region": "us-east-1",
+  "execution_origin": "manual",
+  "journeys": [
+    {
+      "name": "jornada_login",
+      "total_time": 15.2,
+      "steps": [
+        {
+          "name": "Dashboard inicial",
+          "time": 3.1,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_login/dashboard_initial.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 96.7,
+          "web_vitals": {
+            "lcp": 2.1,
+            "cls": 0.05,
+            "tti": 1.8,
+            "fid": 45
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 96.7,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_gerar_artigo",
+      "total_time": 45.8,
+      "steps": [
+        {
+          "name": "Geração de Artigos",
+          "time": 35.2,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_gerar_artigo/generation_form.png",
+            "/tests/e2e/snapshots/jornada_gerar_artigo/generation_progress.png",
+            "/tests/e2e/snapshots/jornada_gerar_artigo/generation_complete.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 92.1,
+          "web_vitals": {
+            "lcp": 2.3,
+            "cls": 0.08,
+            "tti": 2.1,
+            "fid": 52
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 92.1,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_crud_blogs",
+      "total_time": 28.5,
+      "steps": [
+        {
+          "name": "Gestão de Blogs",
+          "time": 28.5,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_crud_blogs/blogs_list.png",
+            "/tests/e2e/snapshots/jornada_crud_blogs/blog_form.png",
+            "/tests/e2e/snapshots/jornada_crud_blogs/blog_created.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 95.2,
+          "web_vitals": {
+            "lcp": 2.0,
+            "cls": 0.04,
+            "tti": 1.9,
+            "fid": 48
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 95.2,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_categorias",
+      "total_time": 22.3,
+      "steps": [
+        {
+          "name": "Gestão de Categorias",
+          "time": 22.3,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_categorias/categories_tree.png",
+            "/tests/e2e/snapshots/jornada_categorias/category_form.png",
+            "/tests/e2e/snapshots/jornada_categorias/category_created.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 93.8,
+          "web_vitals": {
+            "lcp": 1.9,
+            "cls": 0.03,
+            "tti": 1.7,
+            "fid": 42
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 93.8,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_prompts",
+      "total_time": 31.7,
+      "steps": [
+        {
+          "name": "Gestão de Prompts",
+          "time": 31.7,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_prompts/prompts_editor.png",
+            "/tests/e2e/snapshots/jornada_prompts/prompt_form.png",
+            "/tests/e2e/snapshots/jornada_prompts/prompt_created.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 94.5,
+          "web_vitals": {
+            "lcp": 2.2,
+            "cls": 0.06,
+            "tti": 2.0,
+            "fid": 50
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 94.5,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_pipeline",
+      "total_time": 38.9,
+      "steps": [
+        {
+          "name": "Pipeline Multi-instância",
+          "time": 38.9,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_pipeline/instances_config.png",
+            "/tests/e2e/snapshots/jornada_pipeline/instance_form.png",
+            "/tests/e2e/snapshots/jornada_pipeline/instance_running.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 96.2,
+          "web_vitals": {
+            "lcp": 2.4,
+            "cls": 0.07,
+            "tti": 2.2,
+            "fid": 55
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 96.2,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_monitoramento",
+      "total_time": 25.1,
+      "steps": [
+        {
+          "name": "Sistema de Monitoramento",
+          "time": 25.1,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_monitoramento/prometheus_metrics.png",
+            "/tests/e2e/snapshots/jornada_monitoramento/circuit_breakers.png",
+            "/tests/e2e/snapshots/jornada_monitoramento/performance_analytics.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 94.1,
+          "web_vitals": {
+            "lcp": 2.7,
+            "cls": 0.09,
+            "tti": 2.5,
+            "fid": 58
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 94.1,
+      "web_vitals_status": "warning"
+    },
+    {
+      "name": "jornada_configuracoes",
+      "total_time": 19.8,
+      "steps": [
+        {
+          "name": "Configurações do Sistema",
+          "time": 19.8,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_configuracoes/settings_tabs.png",
+            "/tests/e2e/snapshots/jornada_configuracoes/general_settings.png",
+            "/tests/e2e/snapshots/jornada_configuracoes/settings_saved.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 97.1,
+          "web_vitals": {
+            "lcp": 1.8,
+            "cls": 0.02,
+            "tti": 1.6,
+            "fid": 40
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 97.1,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_perfil",
+      "total_time": 16.4,
+      "steps": [
+        {
+          "name": "Perfil do Usuário",
+          "time": 16.4,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_perfil/profile_tabs.png",
+            "/tests/e2e/snapshots/jornada_perfil/personal_info.png",
+            "/tests/e2e/snapshots/jornada_perfil/preferences.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 95.8,
+          "web_vitals": {
+            "lcp": 2.0,
+            "cls": 0.04,
+            "tti": 1.8,
+            "fid": 45
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 95.8,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_logs",
+      "total_time": 18.6,
+      "steps": [
+        {
+          "name": "Logs e Auditoria",
+          "time": 18.6,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_logs/logs_viewer.png",
+            "/tests/e2e/snapshots/jornada_logs/logs_filters.png",
+            "/tests/e2e/snapshots/jornada_logs/filtered_logs.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 96.5,
+          "web_vitals": {
+            "lcp": 2.1,
+            "cls": 0.05,
+            "tti": 1.9,
+            "fid": 47
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 96.5,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_relatorios",
+      "total_time": 42.3,
+      "steps": [
+        {
+          "name": "Exportação e Relatórios",
+          "time": 42.3,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_relatorios/report_templates.png",
+            "/tests/e2e/snapshots/jornada_relatorios/report_form.png",
+            "/tests/e2e/snapshots/jornada_relatorios/report_progress.png",
+            "/tests/e2e/snapshots/jornada_relatorios/report_complete.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 93.2,
+          "web_vitals": {
+            "lcp": 2.6,
+            "cls": 0.08,
+            "tti": 2.3,
+            "fid": 60
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 93.2,
+      "web_vitals_status": "passed"
+    },
+    {
+      "name": "jornada_integracoes",
+      "total_time": 35.7,
+      "steps": [
+        {
+          "name": "Integrações Externas",
+          "time": 35.7,
+          "screenshots": [
+            "/tests/e2e/snapshots/jornada_integracoes/integrations_tabs.png",
+            "/tests/e2e/snapshots/jornada_integracoes/wordpress_config.png",
+            "/tests/e2e/snapshots/jornada_integracoes/webhook_config.png",
+            "/tests/e2e/snapshots/jornada_integracoes/third_party_integrations.png"
+          ],
+          "status": "passed",
+          "a11y_coverage": 95.4,
+          "web_vitals": {
+            "lcp": 2.3,
+            "cls": 0.06,
+            "tti": 2.1,
+            "fid": 53
+          }
+        }
+      ],
+      "final_status": "passed",
+      "a11y_coverage": 95.4,
+      "web_vitals_status": "passed"
+    }
+  ],
+  "summary": {
+    "total_journeys": 12,
+    "passed_journeys": 12,
+    "failed_journeys": 0,
+    "total_time": 380.4,
+    "average_time_per_journey": 31.7,
+    "overall_a11y_coverage": 95.1,
+    "overall_web_vitals_status": "passed",
+    "critical_issues": 0,
+    "warnings": 1,
+    "recommendations": [
+      "Otimizar LCP na jornada de monitoramento (2.7s > 2.5s threshold)",
+      "Manter monitoramento contínuo de Web Vitals",
+      "Considerar implementar lazy loading para melhorar performance"
+    ]
+  },
+  "metadata": {
+    "playwright_version": "1.40.0",
+    "browser": "chromium",
+    "viewport": "1920x1080",
+    "device": "desktop",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "test_environment": "production",
+    "execution_mode": "full",
+    "parallel_workers": 1,
+    "retry_count": 0,
+    "timeout_settings": {
+      "navigation": 30000,
+      "action": 10000,
+      "assertion": 5000
+    }
+  },
+  "validation": {
+    "schema_valid": true,
+    "data_integrity": true,
+    "timestamp_format": "ISO8601",
+    "required_fields_present": true,
+    "semantic_hash_valid": true
+  }
+} 

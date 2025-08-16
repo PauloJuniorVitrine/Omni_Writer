@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "D:\PROJETOS\SISTEMAS\omni_writer\scripts\migrate_feedback_json_to_postgres.py", line 5, in <module>
+    from feedback.storage import Feedback, Base
+ModuleNotFoundError: No module named 'feedback'

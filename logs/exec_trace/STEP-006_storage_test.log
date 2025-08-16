@@ -1,0 +1,24 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 13 items
+
+tests\unit\test_storage.py::test_pytest_minimal PASSED                   [  7%]
+tests\unit\test_storage.py::test_get_content_hash PASSED                 [ 15%]
+tests\unit\test_storage.py::test_load_and_save_hash PASSED               [ 23%]
+tests\unit\test_storage.py::test_save_article_unique PASSED              [ 30%]
+tests\unit\test_storage.py::test_save_article_duplicate PASSED           [ 38%]
+tests\unit\test_storage.py::test_save_article_ioerror PASSED             [ 46%]
+tests\unit\test_storage.py::test_make_zip PASSED                         [ 53%]
+tests\unit\test_storage.py::test_make_zip_empty PASSED                   [ 61%]
+tests\unit\test_storage.py::test_make_zip_multi PASSED                   [ 69%]
+tests\unit\test_storage.py::test_make_zip_multi_empty PASSED             [ 76%]
+tests\unit\test_storage.py::test_limpar_arquivos_antigos PASSED          [ 84%]
+tests\unit\test_storage.py::test_limpar_arquivos_antigos_novos PASSED    [ 92%]
+tests\unit\test_storage.py::test_make_zip_exception PASSED               [100%]
+
+======================= 13 passed, 2 warnings in 1.64s ========================

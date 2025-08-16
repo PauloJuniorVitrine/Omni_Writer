@@ -1,0 +1,241 @@
+version: '3.8'
+
+services:
+  # API Gateway / Load Balancer
+  nginx:
+    image: nginx:alpine
+    container_name: omniwriter-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - article-service
+      - user-service
+      - notification-service
+    restart: unless-stopped
+    networks:
+      - omni-network
+
+  # Article Service
+  article-service:
+    build:
+      context: .
+      dockerfile: services/article_service/Dockerfile
+    container_name: omniwriter-article-service
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_SECRET_KEY=article-service-secret
+      - SERVICE_TOKEN=service-token-123
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - OUTPUT_BASE_DIR=/app/output
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://omniwriter:omniwriter@postgres:5432/omniwriter
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ./output:/app/output
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - omni-network
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+
+  # User Service
+  user-service:
+    build:
+      context: .
+      dockerfile: services/user_service/Dockerfile
+    container_name: omniwriter-user-service
+    ports:
+      - "5002:5002"
+    environment:
+      - FLASK_SECRET_KEY=user-service-secret
+      - SERVICE_TOKEN=service-token-123
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://omniwriter:omniwriter@postgres:5432/omniwriter
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - omni-network
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+        reservations:
+          memory: 256M
+          cpus: '0.1'
+
+  # Notification Service
+  notification-service:
+    build:
+      context: .
+      dockerfile: services/notification_service/Dockerfile
+    container_name: omniwriter-notification-service
+    ports:
+      - "5003:5003"
+    environment:
+      - FLASK_SECRET_KEY=notification-service-secret
+      - SERVICE_TOKEN=service-token-123
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://omniwriter:omniwriter@postgres:5432/omniwriter
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - omni-network
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+        reservations:
+          memory: 256M
+          cpus: '0.1'
+
+  # Redis como broker e cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: omniwriter-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - omni-network
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru
+
+  # PostgreSQL como banco principal
+  postgres:
+    image: postgres:15-alpine
+    container_name: omniwriter-postgres
+    environment:
+      - POSTGRES_DB=omniwriter
+      - POSTGRES_USER=omniwriter
+      - POSTGRES_PASSWORD=omniwriter
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - omni-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+
+  # Prometheus para métricas
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: omniwriter-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - omni-network
+
+  # Grafana para visualização
+  grafana:
+    image: grafana/grafana:latest
+    container_name: omniwriter-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    restart: unless-stopped
+    networks:
+      - omni-network
+    depends_on:
+      - prometheus
+
+  # Jaeger para tracing distribuído
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: omniwriter-jaeger
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    restart: unless-stopped
+    networks:
+      - omni-network
+
+  # Service Discovery (Consul)
+  consul:
+    image: consul:latest
+    container_name: omniwriter-consul
+    ports:
+      - "8500:8500"
+    command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0
+    restart: unless-stopped
+    networks:
+      - omni-network
+
+  # Health Check Service
+  health-check:
+    image: nginx:alpine
+    container_name: omniwriter-health-check
+    ports:
+      - "8080:80"
+    volumes:
+      - ./health-check/nginx.conf:/etc/nginx/nginx.conf
+      - ./health-check/html:/usr/share/nginx/html
+    restart: unless-stopped
+    networks:
+      - omni-network
+
+volumes:
+  redis_data:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  omni-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 

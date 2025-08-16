@@ -1,0 +1,138 @@
+2025-05-03 20:35:33,130 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:35:33,131 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:35:33,131 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:35:33,141 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:35:33,141 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:35:33,174 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:35:33,241 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:35:33,241 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:35:33,241 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:35:33,263 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:38:42,184 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:38:42,184 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:38:42,199 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:38:42,199 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:38:42,221 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:38:42,237 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:38:42,253 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:38:42,253 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:38:42,284 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:38:42,299 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:43:59,082 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:43:59,082 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:43:59,082 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:43:59,082 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:43:59,098 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:43:59,113 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:43:59,129 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:43:59,141 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:43:59,141 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:43:59,157 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:48:00,068 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:48:00,068 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:48:00,068 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:48:00,068 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:48:00,068 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:48:00,085 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:48:00,092 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:48:00,108 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:48:00,124 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:48:00,147 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:49:32,285 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:49:32,285 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:49:32,295 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:49:32,295 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:49:32,295 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:49:32,311 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:49:32,326 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:49:32,381 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:49:32,386 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:49:32,395 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:50:36,782 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:50:36,782 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:50:36,782 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:50:36,782 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:50:36,798 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:50:36,814 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:50:36,826 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:50:36,895 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:50:36,911 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:50:36,927 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:54:24,652 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:54:24,652 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:54:24,652 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:54:24,652 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:54:24,652 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:54:24,677 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:54:24,702 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:54:24,917 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:54:24,933 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:54:24,973 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:58:22,543 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:58:22,543 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:58:22,543 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:58:22,543 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:58:22,564 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:58:22,571 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:58:22,574 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:58:22,597 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-03 20:58:22,622 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-03 20:58:22,622 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:05:04,051 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:05:04,051 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:05:04,051 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:05:04,051 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:05:04,066 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:05:04,081 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:05:04,128 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:05:04,143 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:05:04,166 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:05:04,181 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:07:30,143 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:07:30,143 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:07:30,143 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:07:30,143 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:07:30,143 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:07:30,159 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:07:30,176 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:07:30,207 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:07:30,223 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:07:30,239 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:10:42,433 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:10:42,433 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:10:42,449 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:10:42,478 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:10:42,496 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:10:42,496 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:10:42,499 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:10:42,515 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:10:42,530 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:10:42,546 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:14:09,954 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:14:09,954 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:14:09,969 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:14:09,969 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:14:09,969 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:14:09,985 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:14:10,019 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:14:10,025 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:14:10,025 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:14:10,041 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:18:09,408 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:18:09,409 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:18:09,410 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:18:09,411 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:18:09,412 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:18:09,427 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:18:09,459 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:18:09,474 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:18:09,505 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:18:09,526 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:21:27,589 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:21:27,589 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:21:27,589 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:21:27,589 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:21:27,589 INFO [DIAG] Iniciando pipeline multi | TESTING=None
+2025-05-04 00:21:27,615 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:21:27,620 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0
+2025-05-04 00:21:27,684 INFO [DIAG] Chamando generate_article | prompt=prompt 1 | var=0

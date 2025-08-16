@@ -1,0 +1,46 @@
+﻿{
+    "PipelineConfig":  {
+                           "CoverageThreshold":  85,
+                           "NotificationEnabled":  true,
+                           "AutoFixEnabled":  false,
+                           "FlowDetectionEnabled":  true,
+                           "RiskThreshold":  100,
+                           "ReportGeneration":  true
+                       },
+    "Status":  "PASSED",
+    "ValidationResults":  {
+                              "RiskPassed":  true,
+                              "CoveragePassed":  true
+                          },
+    "CICDInfo":  {
+                     "Environment":  "LOCAL",
+                     "Timestamp":  "2025-07-12T21:07:51Z",
+                     "Description":  "CI/CD Integration - Framework de Detecao de Fluxos",
+                     "TracingId":  "CI_CD_FLOW_INTEGRATION_20250127_001"
+                 },
+    "FlowAnalysis":  {
+                         "Patterns":  [
+                                          {
+                                              "Frequency":  68,
+                                              "RiskScore":  150,
+                                              "Name":  "Fluxo de Geracao de Artigos",
+                                              "IsTested":  true
+                                          },
+                                          {
+                                              "Frequency":  70,
+                                              "RiskScore":  80,
+                                              "Name":  "Fluxo de Monitoramento",
+                                              "IsTested":  true
+                                          },
+                                          {
+                                              "Frequency":  8,
+                                              "RiskScore":  90,
+                                              "Name":  "Fluxo de Decisoes de Teste",
+                                              "IsTested":  true
+                                          }
+                                      ],
+                         "Status":  "COMPLETED",
+                         "RiskScore":  null,
+                         "Coverage":  100
+                     }
+}

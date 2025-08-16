@@ -1,0 +1,1025 @@
+openapi: 3.1.0
+info:
+  title: Omni Writer API
+  description: API para geração de artigos com IA
+  version: 2.0.0
+  contact:
+    name: Omni Writer Team
+    email: support@omniwriter.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:5000
+    description: Development server
+  - url: https://api.omniwriter.com
+    description: Production server
+
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      description: Verifica o status da API
+      tags:
+        - System
+      responses:
+        '200':
+          description: API funcionando
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/versions:
+    get:
+      summary: Informações de versões
+      description: Retorna informações sobre versões disponíveis da API
+      tags:
+        - System
+      responses:
+        '200':
+          description: Informações de versões
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersionsResponse'
+
+  /api/v1/health:
+    get:
+      summary: Health check v1
+      description: Health check para versão v1
+      tags:
+        - System
+      responses:
+        '200':
+          description: API v1 funcionando
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /api/v2/health:
+    get:
+      summary: Health check v2
+      description: Health check para versão v2
+      tags:
+        - System
+      responses:
+        '200':
+          description: API v2 funcionando
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /api/blogs:
+    get:
+      summary: Listar blogs
+      description: Retorna lista de blogs disponíveis
+      tags:
+        - Blogs
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Lista de blogs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blog'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Criar blog
+      description: Cria um novo blog
+      tags:
+        - Blogs
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogCreate'
+      responses:
+        '201':
+          description: Blog criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/blogs/{blog_id}:
+    delete:
+      summary: Deletar blog
+      description: Remove um blog específico
+      tags:
+        - Blogs
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do blog a ser deletado
+      responses:
+        '200':
+          description: Blog deletado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Blog deletado com sucesso"
+        '404':
+          description: Blog não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/blogs/{blog_id}/prompts:
+    get:
+      summary: Listar prompts do blog
+      description: Retorna lista de prompts de um blog específico
+      tags:
+        - Prompts
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do blog
+      responses:
+        '200':
+          description: Lista de prompts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prompt'
+        '404':
+          description: Blog não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Criar prompt
+      description: Cria um novo prompt para um blog
+      tags:
+        - Prompts
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do blog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptCreate'
+      responses:
+        '201':
+          description: Prompt criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Blog não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/blogs/{blog_id}/prompts/{prompt_id}:
+    delete:
+      summary: Deletar prompt
+      description: Remove um prompt específico de um blog
+      tags:
+        - Prompts
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do blog
+        - name: prompt_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do prompt
+      responses:
+        '200':
+          description: Prompt deletado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Prompt deletado com sucesso"
+        '404':
+          description: Blog ou prompt não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /generate:
+    post:
+      summary: Gerar artigo
+      description: Gera um artigo baseado no prompt fornecido
+      tags:
+        - Generation
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerationRequest'
+      responses:
+        '200':
+          description: Artigo gerado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerationResponse'
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit excedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /download:
+    get:
+      summary: Download de artigo
+      description: Faz download de um artigo gerado
+      tags:
+        - Download
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: trace_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID de rastreamento da geração
+      responses:
+        '200':
+          description: Arquivo para download
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Arquivo não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /download_multi:
+    get:
+      summary: Download múltiplo de artigos
+      description: Faz download de múltiplos artigos gerados
+      tags:
+        - Download
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: trace_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID de rastreamento da geração múltipla
+      responses:
+        '200':
+          description: Arquivo ZIP com múltiplos artigos
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Arquivos não encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /export_prompts:
+    get:
+      summary: Exportar prompts
+      description: Exporta prompts em formato CSV
+      tags:
+        - Export
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: blog_id
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: ID do blog para filtrar prompts
+      responses:
+        '200':
+          description: Arquivo CSV com prompts
+          content:
+            text/csv:
+              schema:
+                type: string
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /export_artigos_csv:
+    get:
+      summary: Exportar artigos CSV
+      description: Exporta artigos gerados em formato CSV
+      tags:
+        - Export
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Data inicial para filtrar artigos
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Data final para filtrar artigos
+      responses:
+        '200':
+          description: Arquivo CSV com artigos
+          content:
+            text/csv:
+              schema:
+                type: string
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /status/{trace_id}:
+    get:
+      summary: Status da geração
+      description: Verifica o status de uma geração em andamento
+      tags:
+        - Generation
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: trace_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de rastreamento da geração
+      responses:
+        '200':
+          description: Status da geração
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerationStatus'
+        '404':
+          description: Geração não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /events/{trace_id}:
+    get:
+      summary: Eventos SSE
+      description: Stream de eventos Server-Sent Events para acompanhar geração
+      tags:
+        - Generation
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: trace_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de rastreamento da geração
+      responses:
+        '200':
+          description: Stream de eventos
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        '404':
+          description: Geração não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /webhook:
+    post:
+      summary: Webhook
+      description: Endpoint para receber notificações webhook
+      tags:
+        - Webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPayload'
+      responses:
+        '200':
+          description: Webhook processado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Webhook processado"
+        '400':
+          description: Payload inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/feature-flags:
+    get:
+      summary: Feature flags
+      description: Retorna feature flags disponíveis para o usuário
+      tags:
+        - System
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Feature flags disponíveis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagsResponse'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT para autenticação
+
+  schemas:
+    Blog:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID único do blog
+          example: 1
+        nome:
+          type: string
+          maxLength: 40
+          description: Nome do blog
+          example: "Tech Blog"
+        desc:
+          type: string
+          maxLength: 80
+          nullable: true
+          description: Descrição do blog
+          example: "Blog sobre tecnologia e inovação"
+      required:
+        - id
+        - nome
+
+    BlogCreate:
+      type: object
+      properties:
+        nome:
+          type: string
+          maxLength: 40
+          description: Nome do blog
+          example: "Tech Blog"
+        desc:
+          type: string
+          maxLength: 80
+          nullable: true
+          description: Descrição do blog
+          example: "Blog sobre tecnologia e inovação"
+      required:
+        - nome
+
+    Prompt:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID único do prompt
+          example: 1
+        blog_id:
+          type: integer
+          description: ID do blog associado
+          example: 1
+        titulo:
+          type: string
+          maxLength: 100
+          description: Título do prompt
+          example: "Como implementar IA"
+        conteudo:
+          type: string
+          maxLength: 2000
+          description: Conteúdo do prompt
+          example: "Escreva um artigo sobre implementação de IA..."
+        ativo:
+          type: boolean
+          description: Status do prompt
+          example: true
+      required:
+        - id
+        - blog_id
+        - titulo
+        - conteudo
+        - ativo
+
+    PromptCreate:
+      type: object
+      properties:
+        titulo:
+          type: string
+          maxLength: 100
+          description: Título do prompt
+          example: "Como implementar IA"
+        conteudo:
+          type: string
+          maxLength: 2000
+          description: Conteúdo do prompt
+          example: "Escreva um artigo sobre implementação de IA..."
+        ativo:
+          type: boolean
+          default: true
+          description: Status do prompt
+          example: true
+      required:
+        - titulo
+        - conteudo
+
+    GenerationRequest:
+      type: object
+      properties:
+        blog_id:
+          type: integer
+          description: ID do blog
+          example: 1
+        prompt_id:
+          type: integer
+          description: ID do prompt
+          example: 1
+        parametros:
+          type: object
+          properties:
+            max_tokens:
+              type: integer
+              minimum: 100
+              maximum: 4000
+              description: Número máximo de tokens
+              example: 2000
+            temperatura:
+              type: number
+              minimum: 0.0
+              maximum: 2.0
+              description: Temperatura da geração
+              example: 0.7
+            formato:
+              type: string
+              enum: [markdown, html, plain]
+              description: Formato de saída
+              example: "markdown"
+          description: Parâmetros de geração
+      required:
+        - blog_id
+        - prompt_id
+
+    GenerationResponse:
+      type: object
+      properties:
+        trace_id:
+          type: string
+          description: ID de rastreamento da geração
+          example: "gen_20250127_001"
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+          description: Status da geração
+          example: "pending"
+        message:
+          type: string
+          description: Mensagem de status
+          example: "Geração iniciada com sucesso"
+        estimated_time:
+          type: integer
+          nullable: true
+          description: Tempo estimado em segundos
+          example: 120
+      required:
+        - trace_id
+        - status
+        - message
+
+    StatusResponse:
+      type: object
+      properties:
+        trace_id:
+          type: string
+          description: ID de rastreamento
+          example: "gen_20250127_001"
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+          description: Status atual
+          example: "processing"
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Progresso em porcentagem
+          example: 75
+        message:
+          type: string
+          description: Mensagem de status
+          example: "Gerando conteúdo..."
+        created_at:
+          type: string
+          format: date-time
+          description: Data de criação
+          example: "2025-01-27T21:30:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Última atualização
+          example: "2025-01-27T21:32:00Z"
+      required:
+        - trace_id
+        - status
+        - progress
+        - message
+
+    WebhookRequest:
+      type: object
+      properties:
+        trace_id:
+          type: string
+          description: ID de rastreamento
+          example: "gen_20250127_001"
+        status:
+          type: string
+          enum: [completed, failed]
+          description: Status final
+          example: "completed"
+        data:
+          type: object
+          description: Dados adicionais
+          example:
+            file_url: "https://api.omniwriter.com/files/article_001.md"
+            word_count: 1500
+      required:
+        - trace_id
+        - status
+
+    WebhookResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Sucesso do processamento
+          example: true
+        message:
+          type: string
+          description: Mensagem de resposta
+          example: "Webhook processado com sucesso"
+      required:
+        - success
+        - message
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, unhealthy]
+          description: Status da API
+          example: "healthy"
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp da verificação
+          example: "2025-01-27T21:30:00Z"
+        version:
+          type: string
+          description: Versão da API
+          example: "2.0.0"
+        uptime:
+          type: number
+          description: Tempo de atividade em segundos
+          example: 86400
+      required:
+        - status
+        - timestamp
+        - version
+
+    ApiVersionsResponse:
+      type: object
+      properties:
+        versions:
+          type: object
+          properties:
+            v1:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [stable, beta, deprecated]
+                  example: "stable"
+                deprecated:
+                  type: boolean
+                  example: false
+                sunset_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  example: null
+            v2:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [stable, beta, deprecated]
+                  example: "beta"
+                deprecated:
+                  type: boolean
+                  example: false
+                sunset_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  example: null
+          description: Informações das versões
+        current_version:
+          type: string
+          description: Versão atual recomendada
+          example: "v2"
+      required:
+        - versions
+        - current_version
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Código do erro
+          example: "VALIDATION_ERROR"
+        message:
+          type: string
+          description: Mensagem de erro
+          example: "Dados inválidos fornecidos"
+        details:
+          type: object
+          nullable: true
+          description: Detalhes do erro
+          example:
+            field: "nome"
+            constraint: "max_length"
+        trace_id:
+          type: string
+          description: ID de rastreamento
+          example: "err_20250127_001"
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp do erro
+          example: "2025-01-27T21:30:00Z"
+      required:
+        - error
+        - message
+        - timestamp
+
+    FeatureFlagsResponse:
+      type: object
+      properties:
+        feature_flags:
+          type: object
+          additionalProperties:
+            type: boolean
+          description: Flags de recursos disponíveis
+          example:
+            ai_generation: true
+            prompt_export: false
+            article_export: true
+        current_version:
+          type: string
+          description: Versão atual do sistema
+          example: "v2"
+      required:
+        - feature_flags
+        - current_version
+
+    GenerationStatus:
+      type: object
+      properties:
+        trace_id:
+          type: string
+          description: ID de rastreamento
+          example: "gen_20250127_001"
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+          description: Status atual
+          example: "processing"
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Progresso em porcentagem
+          example: 75
+        message:
+          type: string
+          description: Mensagem de status
+          example: "Gerando conteúdo..."
+        created_at:
+          type: string
+          format: date-time
+          description: Data de criação
+          example: "2025-01-27T21:30:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Última atualização
+          example: "2025-01-27T21:32:00Z"
+      required:
+        - trace_id
+        - status
+        - progress
+        - message
+
+tags:
+  - name: System
+    description: Endpoints do sistema
+  - name: Blogs
+    description: Gerenciamento de blogs
+  - name: Prompts
+    description: Gerenciamento de prompts
+  - name: Generation
+    description: Geração de artigos
+  - name: Download
+    description: Download de arquivos
+  - name: Webhook
+    description: Webhooks e notificações 

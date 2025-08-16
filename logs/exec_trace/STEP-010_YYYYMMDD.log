@@ -1,0 +1,11 @@
+[STEP-010] - YYYY-MM-DDTHH:mm:ssZ
+Ação: Criação de hooks/contextos para integração incremental com backend, SSE, autenticação
+Arquivos criados/modificados:
+- ui/hooks/use_api.ts
+- ui/hooks/use_sse.ts
+- ui/context/AuthContext.tsx
+- ui/context/ThemeContext.tsx
+- docs/explanation.md
+Status: OK
+Executor: IA-Cursor
+Usuário: omni_writer 

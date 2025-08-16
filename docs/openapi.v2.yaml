@@ -1,0 +1,518 @@
+openapi: 3.0.3
+info:
+  title: OmniWriter API
+  version: '2.0.0'
+  description: >-
+    API REST para gerenciamento de blogs, prompts, geração de artigos e feedbacks.
+    Todos os erros seguem o padrão `{ "error": "mensagem" }`.
+    Versão 2.0.0: inclui endpoints de download/exportação/SSE, enums explícitos e marcação de deprecated.
+servers:
+  - url: / # Relative to deployment
+paths:
+  /api/blogs:
+    get:
+      summary: Lista todos os blogs
+      responses:
+        '200':
+          description: Lista de blogs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blog'
+    post:
+      summary: Cria um novo blog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogCreate'
+      responses:
+        '201':
+          description: Blog criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Nome do blog é obrigatório
+  /api/blogs/{id}:
+    delete:
+      summary: Exclui um blog
+      deprecated: true
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Blog excluído
+        '404':
+          description: Blog não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Blog não encontrado
+        '409':
+          description: Não é possível excluir: existem prompts vinculados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Não é possível excluir: existem prompts vinculados.
+    put:
+      summary: Atualiza um blog
+      deprecated: true
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogCreate'
+      responses:
+        '200':
+          description: Blog atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Nome do blog é obrigatório
+        '404':
+          description: Blog não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Blog não encontrado
+  /api/blogs/{id}/prompts:
+    get:
+      summary: Lista prompts de um blog
+      responses:
+        '200':
+          description: Lista de prompts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prompt'
+    post:
+      summary: Adiciona prompt a um blog
+      responses:
+        '201':
+          description: Prompt criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Texto do prompt é obrigatório
+        '404':
+          description: Blog não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Blog não encontrado
+  /api/blogs/{id}/prompts/{prompt_id}:
+    delete:
+      summary: Exclui prompt de um blog
+      responses:
+        '204':
+          description: Prompt excluído
+        '404':
+          description: Prompt não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Prompt não encontrado
+  /generate:
+    post:
+      summary: Gera artigos a partir de instâncias e prompts
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                instancias_json:
+                  type: string
+                prompts:
+                  type: string
+                api_key:
+                  type: string
+                model_type:
+                  type: string
+      responses:
+        '200':
+          description: HTML com link para download
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: dados invalidos
+  /download:
+    get:
+      summary: Download do arquivo ZIP principal de artigos gerados
+      description: Retorna o arquivo ZIP gerado. (v2)
+      responses:
+        '200':
+          description: Arquivo ZIP
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Arquivo não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /download_multi:
+    get:
+      summary: Download do arquivo ZIP multi-instância
+      description: Retorna o arquivo ZIP multi-instância gerado. (v2)
+      responses:
+        '200':
+          description: Arquivo ZIP
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Arquivo não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /export_prompts:
+    get:
+      summary: Exportação dos prompts utilizados em formato CSV
+      description: Retorna prompts em CSV. (v2)
+      responses:
+        '200':
+          description: CSV de prompts
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Arquivo não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /export_artigos_csv:
+    get:
+      summary: Exportação dos artigos gerados em formato CSV
+      description: Retorna artigos em CSV. (v2)
+      responses:
+        '200':
+          description: CSV de artigos
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Arquivo não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /status/{trace_id}:
+    get:
+      summary: Consulta status de geração
+      parameters:
+        - in: path
+          name: trace_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Status não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Status não encontrado
+  /events/{trace_id}:
+    get:
+      summary: SSE de acompanhamento de geração
+      description: Server-Sent Events para progresso em tempo real. (v2)
+      responses:
+        '200':
+          description: Stream SSE
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        '404':
+          description: Status não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/generate-articles:
+    post:
+      summary: Geração em lote de artigos para todos os blogs/categorias
+      description: Dispara geração em lote e retorna status. (v2)
+      deprecated: true
+      responses:
+        '200':
+          description: Geração iniciada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/entrega-zip:
+    post:
+      summary: Gera estrutura de entrega e retorna ZIP
+      description: Gera estrutura nicho/categoria/artigos e retorna ZIP. (v2)
+      deprecated: true
+      responses:
+        '200':
+          description: ZIP gerado
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /feedback:
+    post:
+      summary: Envia feedback de artigo
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '200':
+          description: Feedback recebido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Dados inválidos
+  /api/protegido:
+    get:
+      summary: Endpoint protegido por token
+      responses:
+        '200':
+          description: Autorizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '401':
+          description: Token inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: Acesso negado: token inválido. Unauthorized.
+  /webhook:
+    post:
+      summary: Registra webhook
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+      responses:
+        '200':
+          description: Webhook registrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: URL obrigatória
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: URL obrigatória
+  /token/rotate:
+    post:
+      summary: Rotaciona/renova token de API para um usuário
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+      responses:
+        '200':
+          description: Novo token gerado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '400':
+          description: user_id obrigatório
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: user_id obrigatório
+components:
+  schemas:
+    Blog:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        desc:
+          type: string
+    BlogCreate:
+      type: object
+      properties:
+        nome:
+          type: string
+        desc:
+          type: string
+    Prompt:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+    PromptCreate:
+      type: object
+      properties:
+        text:
+          type: string
+    Feedback:
+      type: object
+      properties:
+        user_id:
+          type: string
+        artigo_id:
+          type: string
+        tipo:
+          type: string
+          enum: [positivo, negativo, neutro]
+        comentario:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 

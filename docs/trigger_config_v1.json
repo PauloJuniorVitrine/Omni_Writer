@@ -1,0 +1,22 @@
+{
+  "watch": [
+    "app/pipeline.py",
+    "app/controller.py",
+    "infraestructure/openai_gateway.py",
+    "infraestructure/deepseek_gateway.py",
+    "infraestructure/storage.py",
+    "domain/models.py",
+    "shared/logger.py",
+    "shared/status_repository.py",
+    "shared/config.py",
+    "tests/unit/",
+    "tests/integration/",
+    "tests/e2e/",
+    "tests/load/",
+    "requirements.txt",
+    "pyproject.toml"
+  ],
+  "action": "reexecute_pipeline",
+  "strategy": "on_change",
+  "log": "logs/trigger_events.log"
+} 

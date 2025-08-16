@@ -1,0 +1,35 @@
+{
+  "generator": "typescript-fetch",
+  "output_dir": "ui/generated",
+  "additional_properties": {
+    "supportsES6": "true",
+    "withInterfaces": "true",
+    "typescriptThreePlus": "true",
+    "nullSafe": "true",
+    "stringEnums": "true",
+    "enumPropertyNaming": "UPPERCASE",
+    "modelPropertyNaming": "camelCase",
+    "apiPackage": "apis",
+    "modelPackage": "models",
+    "packageName": "omni-writer-sdk",
+    "packageVersion": "1.0.0",
+    "npmName": "@omni-writer/sdk",
+    "npmVersion": "1.0.0",
+    "npmRepository": "https://github.com/omni-writer/omni-writer-sdk"
+  },
+  "template_dir": null,
+  "git_user_id": "omni-writer",
+  "git_repo_id": "omni-writer-sdk",
+  "release_note": "Auto-generated SDK for Omni Writer API",
+  "validation": {
+    "enabled": true,
+    "strict": true,
+    "warn_on_missing": true
+  },
+  "ci_cd": {
+    "auto_generate": true,
+    "commit_changes": true,
+    "create_pr": false,
+    "branch_name": "feature/auto-generated-sdk"
+  }
+} 

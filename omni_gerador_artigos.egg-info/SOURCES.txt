@@ -1,0 +1,8 @@
+README.md
+setup.py
+omni_gerador_artigos.egg-info/PKG-INFO
+omni_gerador_artigos.egg-info/SOURCES.txt
+omni_gerador_artigos.egg-info/dependency_links.txt
+omni_gerador_artigos.egg-info/entry_points.txt
+omni_gerador_artigos.egg-info/requires.txt
+omni_gerador_artigos.egg-info/top_level.txt

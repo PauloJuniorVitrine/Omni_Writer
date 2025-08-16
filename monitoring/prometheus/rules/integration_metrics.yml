@@ -1,0 +1,163 @@
+groups:
+  - name: omni_writer_integration_metrics
+    rules:
+      # Métricas de Cobertura de Testes
+      - record: integration_test_coverage_percentage
+        expr: |
+          (
+            sum(integration_test_results_total{status="passed"}) 
+            / 
+            sum(integration_test_results_total)
+          ) * 100
+      
+      # Testes por Nível de Risco
+      - record: integration_tests_by_risk_level
+        expr: |
+          sum by (risk_level) (integration_test_results_total)
+      
+      # Tempo de Execução dos Testes
+      - record: integration_test_execution_time_ms
+        expr: |
+          integration_test_duration_seconds * 1000
+      
+      # Novos Fluxos Detectados
+      - record: new_flows_detected_total
+        expr: |
+          sum(flow_detection_new_flows_total)
+      
+      # Fluxos de Alto Risco
+      - record: high_risk_flows_total
+        expr: |
+          sum(flow_detection_high_risk_flows_total)
+      
+      # Taxa de Sucesso dos Testes
+      - record: integration_test_success_rate
+        expr: |
+          rate(integration_test_results_total{status="passed"}[5m])
+      
+      # Taxa de Falha dos Testes
+      - record: integration_test_failure_rate
+        expr: |
+          rate(integration_test_results_total{status="failed"}[5m])
+      
+      # Métricas de Telemetria
+      - record: integration_telemetry_metrics
+        expr: |
+          sum by (test_name, risk_score) (
+            integration_telemetry_execution_time_ms
+          )
+      
+      # Resultados de Mutation Testing
+      - record: mutation_test_passed_total
+        expr: |
+          sum(mutation_test_results_total{test_passed="true"})
+      
+      - record: mutation_test_failed_total
+        expr: |
+          sum(mutation_test_results_total{test_passed="false"})
+      
+      # Sugestões de Teste Geradas
+      - record: test_suggestions_generated_total
+        expr: |
+          sum(flow_detection_test_suggestions_total)
+      
+      # Performance dos Testes (Heatmap)
+      - record: integration_test_duration_seconds
+        expr: |
+          integration_telemetry_execution_time_ms / 1000
+      
+      # Alertas
+      - alert: IntegrationTestCoverageLow
+        expr: integration_test_coverage_percentage < 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Cobertura de testes de integração baixa"
+          description: "Cobertura de testes de integração está em {{ $value }}%, abaixo do threshold de 85%"
+      
+      - alert: HighRiskFlowsDetected
+        expr: high_risk_flows_total > 5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Muitos fluxos de alto risco detectados"
+          description: "{{ $value }} fluxos de alto risco foram detectados e precisam de testes"
+      
+      - alert: NewFlowsNotTested
+        expr: new_flows_detected_total > 10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Novos fluxos não testados"
+          description: "{{ $value }} novos fluxos foram detectados e não possuem testes"
+      
+      - alert: MutationTestFailureRate
+        expr: rate(mutation_test_results_total{test_passed="false"}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Taxa de falha de mutation testing alta"
+          description: "Taxa de falha de mutation testing está em {{ $value | humanizePercentage }}"
+      
+      - alert: IntegrationTestExecutionSlow
+        expr: avg(integration_test_execution_time_ms) > 30000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Testes de integração executando lentamente"
+          description: "Tempo médio de execução dos testes está em {{ $value }}ms"
+      
+      - alert: TelemetryDataMissing
+        expr: absent(integration_telemetry_execution_time_ms)
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Dados de telemetria ausentes"
+          description: "Não há dados de telemetria de testes de integração nos últimos 10 minutos"
+      
+      - alert: FlowDetectionNotWorking
+        expr: absent(flow_detection_new_flows_total)
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Detecção de fluxos não está funcionando"
+          description: "Sistema de detecção de fluxos não está gerando métricas"
+      
+      - alert: TestSuggestionsOverflow
+        expr: test_suggestions_generated_total > 50
+        for: 5m
+        labels:
+          severity: info
+        annotations:
+          summary: "Muitas sugestões de teste geradas"
+          description: "{{ $value }} sugestões de teste foram geradas - considere revisar e implementar"
+      
+      - alert: RiskScoreDistribution
+        expr: |
+          (
+            sum(integration_test_results_total{risk_level="high"}) +
+            sum(integration_test_results_total{risk_level="critical"})
+          ) / sum(integration_test_results_total) > 0.3
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Alta proporção de testes de alto risco"
+          description: "{{ $value | humanizePercentage }} dos testes são de alto risco ou críticos"
+      
+      - alert: IntegrationTestRegressions
+        expr: |
+          increase(integration_test_results_total{status="failed"}[1h]) > 5
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Regressões detectadas nos testes de integração"
+          description: "{{ $value }} falhas de teste foram detectadas na última hora" 

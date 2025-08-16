@@ -1,0 +1,4 @@
+{
+  "prompt_path": { "type": "string" },
+  "ia_provider": { "type": "string" }
+} 

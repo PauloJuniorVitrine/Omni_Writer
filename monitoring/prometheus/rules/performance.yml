@@ -1,0 +1,182 @@
+groups:
+  - name: omni_writer_performance
+    rules:
+      # Alerta: CPU alto
+      - alert: HighCPUUsage
+        expr: omni_writer_system_metrics{metric_name="cpu_usage_percent"} > 80
+        for: 2m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "CPU usage is high"
+          description: "CPU usage is {{ $value }}% for more than 2 minutes"
+
+      # Alerta: CPU crítico
+      - alert: CriticalCPUUsage
+        expr: omni_writer_system_metrics{metric_name="cpu_usage_percent"} > 95
+        for: 1m
+        labels:
+          severity: critical
+          component: performance
+        annotations:
+          summary: "CPU usage is critical"
+          description: "CPU usage is {{ $value }}% for more than 1 minute"
+
+      # Alerta: Memória alta
+      - alert: HighMemoryUsage
+        expr: omni_writer_system_metrics{metric_name="memory_usage_percent"} > 85
+        for: 2m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "Memory usage is high"
+          description: "Memory usage is {{ $value }}% for more than 2 minutes"
+
+      # Alerta: Disco cheio
+      - alert: LowDiskSpace
+        expr: omni_writer_system_metrics{metric_name="disk_usage_percent"} > 90
+        for: 1m
+        labels:
+          severity: critical
+          component: performance
+        annotations:
+          summary: "Disk space is low"
+          description: "Disk usage is {{ $value }}% for more than 1 minute"
+
+      # Alerta: Health score baixo
+      - alert: LowHealthScore
+        expr: omni_writer_system_metrics{metric_name="health_score"} < 50
+        for: 2m
+        labels:
+          severity: critical
+          component: performance
+        annotations:
+          summary: "System health score is low"
+          description: "Health score is {{ $value }} for more than 2 minutes"
+
+      # Alerta: Workers inativos
+      - alert: NoActiveWorkers
+        expr: omni_writer_active_workers == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: performance
+        annotations:
+          summary: "No active workers"
+          description: "No active workers detected for more than 1 minute"
+
+      # Alerta: Fila muito grande
+      - alert: LargeQueueSize
+        expr: omni_writer_queue_size > 100
+        for: 2m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "Queue size is large"
+          description: "Queue size is {{ $value }} items for more than 2 minutes"
+
+      # Alerta: Latência alta
+      - alert: HighLatency
+        expr: rate(omni_writer_request_duration_seconds_sum[5m]) / rate(omni_writer_request_duration_seconds_count[5m]) > 5
+        for: 2m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "Request latency is high"
+          description: "Average request latency is {{ $value }}s for more than 2 minutes"
+
+      # Alerta: Taxa de erro alta
+      - alert: HighErrorRate
+        expr: rate(omni_writer_errors_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "Error rate is high"
+          description: "Error rate is {{ $value }} errors/sec for more than 2 minutes"
+
+      # Alerta: Cache miss rate alto
+      - alert: HighCacheMissRate
+        expr: rate(omni_writer_cache_misses_total[5m]) / (rate(omni_writer_cache_hits_total[5m]) + rate(omni_writer_cache_misses_total[5m])) > 0.3
+        for: 5m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "Cache miss rate is high"
+          description: "Cache miss rate is {{ $value | humanizePercentage }} for more than 5 minutes"
+
+  - name: omni_writer_business
+    rules:
+      # Alerta: Taxa de geração baixa
+      - alert: LowGenerationRate
+        expr: rate(omni_writer_generations_total[5m]) < 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: business
+        annotations:
+          summary: "Generation rate is low"
+          description: "Generation rate is {{ $value }} generations/sec for more than 5 minutes"
+
+      # Alerta: Falhas de geração
+      - alert: GenerationFailures
+        expr: rate(omni_writer_generations_total{status="failed"}[5m]) > 0
+        for: 2m
+        labels:
+          severity: warning
+          component: business
+        annotations:
+          summary: "Generation failures detected"
+          description: "{{ $value }} generation failures per second for more than 2 minutes"
+
+  - name: omni_writer_availability
+    rules:
+      # Alerta: Aplicação não responde
+      - alert: ApplicationDown
+        expr: up{job="omni-writer-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: availability
+        annotations:
+          summary: "Application is down"
+          description: "Omni Writer application is not responding"
+
+      # Alerta: Workers não respondem
+      - alert: WorkersDown
+        expr: up{job="celery-workers"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: availability
+        annotations:
+          summary: "Workers are down"
+          description: "Celery workers are not responding"
+
+      # Alerta: Redis não responde
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: availability
+        annotations:
+          summary: "Redis is down"
+          description: "Redis cache is not responding"
+
+      # Alerta: PostgreSQL não responde
+      - alert: PostgresDown
+        expr: up{job="postgres"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: availability
+        annotations:
+          summary: "PostgreSQL is down"
+          description: "PostgreSQL database is not responding" 

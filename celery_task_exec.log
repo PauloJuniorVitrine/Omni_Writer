@@ -1,0 +1,97 @@
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[PromptInput(text='prompt celery', index=0)], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=celery-integration-test, type=<class 'domain.models.GenerationConfig'>
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [{'text': 'prompt celery', 'index': 0}]}, trace_id=celery-integration-test
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[PromptInput(text='prompt celery', index=0)], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=celery-integration-test, type=<class 'domain.models.GenerationConfig'>
+[pipeline] Início: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[PromptInput(text='prompt celery', index=0)], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), type=<class 'domain.models.GenerationConfig'>, trace_id=celery-integration-test
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config={}, trace_id=123
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001FDEB199BD0>, trace_id=123
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001FDEB3652D0>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000016130127E10>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000017F49AE01D0>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001D686A202D0>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001201892A210>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000014E02830650>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000018426C7C950>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001405184F590>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001A5FCEDF590>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001EEE02E7590>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000013436587590>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000001F1F3207590>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x00000214472EC610>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x00000234A730AB50>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000023084F3F590>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x000002C0F61C79D0>, trace_id=123
+Task chamada: config={'api_key': 'sk-teste', 'model_type': 'openai', 'prompts': [], 'temperature': 0.7, 'max_tokens': 4096, 'language': 'pt-BR', 'extra': None}, trace_id=123
+Antes de rodar pipeline: config=GenerationConfig(api_key='sk-teste', model_type='openai', prompts=[], temperature=0.7, max_tokens=4096, language='pt-BR', extra=None), trace_id=123, type=<class 'domain.models.GenerationConfig'>
+Resultado da pipeline: ok, type=<class 'str'>
+Task chamada: config=<test_celery_worker.DummyConfig object at 0x0000018A29882A90>, trace_id=123

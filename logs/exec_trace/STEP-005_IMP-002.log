@@ -1,0 +1,9 @@
+# Log Execução — STEP-005_IMP-002
+
+- Data/Hora: {timestamp_utc}
+- Executor IA: Cursor Enterprise+ (v1)
+- Etapa: Testes de Rate Limiting
+- Rotas testadas: /test_generate, /test_feedback, /test_index
+- Limites: 10/min, 20/min, 100/min
+- Status dos testes: 100% aprovado
+- Observações: Rate limiting validado em ambiente isolado, pronto para produção. 

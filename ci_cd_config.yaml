@@ -1,0 +1,118 @@
+# Configuração CI/CD - Omni Writer
+# Tracing ID: CI_CD_CONFIG_20250127_001
+
+# Configurações de API
+openapi_path: "docs/openapi.yaml"
+api_base_url: "http://localhost:5000"
+
+# Diretórios de saída
+output_dir: "generated_sdks"
+reports_dir: "ci_cd_reports"
+
+# Etapas do pipeline (ordem de execução)
+steps:
+  - validate_contracts
+  - generate_sdks
+  - run_tests
+  - generate_docs
+
+# Configurações de validação de contratos
+contract_validation:
+  enabled: true
+  strict_mode: true
+  validate_schemas: true
+  validate_security: true
+  validate_documentation: true
+  timeout_seconds: 30
+
+# Configurações de geração de SDKs
+sdk_generation:
+  enabled: true
+  languages:
+    - typescript
+    - python
+    - javascript
+    - typescript-custom
+  publish_to_registry: false  # Só publica em main branch
+  registry_config:
+    npm_token: "${NPM_TOKEN}"
+    pypi_username: "${PYPI_USERNAME}"
+    pypi_password: "${PYPI_PASSWORD}"
+
+# Configurações de testes
+testing:
+  enabled: true
+  test_types:
+    - unit
+    - integration
+    - contract
+  coverage_threshold: 85
+  parallel_execution: true
+
+# Configurações de documentação
+documentation:
+  enabled: true
+  generate_openapi: true
+  generate_markdown: true
+  include_examples: true
+
+# Notificações
+notifications:
+  slack_webhook: "${SLACK_WEBHOOK_URL}"
+  email: "${TEAM_EMAIL}"
+  on_success: true
+  on_failure: true
+  on_warning: false
+
+# Configurações de segurança
+security:
+  scan_dependencies: true
+  scan_secrets: true
+  validate_permissions: true
+
+# Configurações de performance
+performance:
+  timeout_minutes: 30
+  max_retries: 3
+  parallel_jobs: 4
+
+# Configurações de ambiente
+environments:
+  development:
+    api_base_url: "http://localhost:5000"
+    strict_mode: false
+  staging:
+    api_base_url: "https://staging-api.omni-writer.com"
+    strict_mode: true
+  production:
+    api_base_url: "https://api.omni-writer.com"
+    strict_mode: true
+    publish_to_registry: true
+
+# Configurações de rollback
+rollback:
+  enabled: true
+  max_attempts: 3
+  automatic_on_failure: true
+
+# Configurações de métricas
+metrics:
+  enabled: true
+  collect_timing: true
+  collect_coverage: true
+  collect_performance: true
+  export_to_prometheus: true
+
+# Configurações de cache
+cache:
+  enabled: true
+  cache_sdks: true
+  cache_reports: true
+  cache_duration_hours: 24
+
+# Configurações de limpeza
+cleanup:
+  enabled: true
+  clean_old_reports: true
+  clean_old_sdks: true
+  retention_days: 30 

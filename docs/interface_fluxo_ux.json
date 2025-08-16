@@ -1,0 +1,195 @@
+[
+  {
+    "origem": "/",
+    "acao": "Clicar em card de Blog",
+    "destino": "/blog/<id>",
+    "observacao": "Acessa detalhes do blog e suas categorias"
+  },
+  {
+    "origem": "/blog/<id>",
+    "acao": "Clicar em Categoria",
+    "destino": "/blog/<id>/categoria/<id>",
+    "observacao": "Visualiza categorias e clusters"
+  },
+  {
+    "origem": "/blog/<id>/categoria/<id>",
+    "acao": "Clicar em Cluster",
+    "destino": "/blog/<id>/categoria/<id>/cluster/<id>",
+    "observacao": "Visualiza prompts do cluster"
+  },
+  {
+    "origem": "/",
+    "acao": "Clicar em 'Novo Blog'",
+    "destino": "/blog/novo",
+    "observacao": "Abre modal/formulário para novo blog"
+  },
+  {
+    "origem": "/gerar",
+    "acao": "Submeter geração",
+    "destino": "/status/<trace_id>",
+    "observacao": "Acompanha status em tempo real"
+  },
+  {
+    "origem": "/status/<trace_id>",
+    "acao": "Download ZIP",
+    "destino": "/download?trace_id=<id>",
+    "observacao": "Baixa artigos gerados"
+  },
+  {
+    "origem": "/",
+    "acao": "Clicar em 'Exportar CSV'",
+    "destino": "/export_artigos_csv",
+    "observacao": "Exporta artigos em CSV"
+  },
+  {
+    "origem": "/",
+    "acao": "Clicar em 'Feedback'",
+    "destino": "/feedback",
+    "observacao": "Acessa formulário de feedback"
+  },
+  {
+    "origem": "/tokens",
+    "acao": "Rotacionar token",
+    "destino": "/tokens",
+    "observacao": "Atualiza lista de tokens após rotação"
+  },
+  {
+    "origem": "/logs",
+    "acao": "Filtrar/Buscar",
+    "destino": "/logs?filtros",
+    "observacao": "Filtra logs por tipo/data"
+  },
+  {
+    "origem": "/feedback",
+    "acao": "Enviar feedback",
+    "destino": "/feedback/sucesso",
+    "observacao": "Formulário mock, status de envio, integração futura"
+  },
+  {
+    "origem": "/exportacao",
+    "acao": "Exportar artigos/prompts",
+    "destino": "/exportacao/status",
+    "observacao": "Painel de exportação, status mock, integração futura"
+  },
+  {
+    "origem": "/status-logs",
+    "acao": "Atualizar status/logs",
+    "destino": "/status-logs/atualizado",
+    "observacao": "Painel de status, SSE, filtros, integração futura"
+  },
+  {
+    "origem": "/tokens",
+    "acao": "Rotacionar/Revogar token",
+    "destino": "/tokens/atualizado",
+    "observacao": "Gestão de tokens, placeholders, integração futura"
+  },
+  {
+    "origem": "/onboarding",
+    "acao": "Navegar entre passos do tour",
+    "destino": "/onboarding/finalizado",
+    "observacao": "Tour guiado, instruções, integração futura"
+  }
+],
+"tests": [
+  {
+    "page": "Blogs",
+    "coverage": [
+      "Renderização da lista mock",
+      "Mensagem de lista vazia",
+      "Clique em criar/editar/excluir (placeholders)",
+      "Snapshot principal",
+      "Edge case: lista vazia"
+    ]
+  },
+  {
+    "page": "Categorias",
+    "coverage": [
+      "Renderização da lista mock",
+      "Mensagem de lista vazia",
+      "Clique em criar/editar/excluir (placeholders)",
+      "Snapshot principal",
+      "Edge case: lista vazia"
+    ]
+  },
+  {
+    "page": "Clusters",
+    "coverage": [
+      "Renderização da lista mock",
+      "Mensagem de lista vazia",
+      "Clique em criar/editar/excluir (placeholders)",
+      "Snapshot principal",
+      "Edge case: lista vazia"
+    ]
+  },
+  {
+    "page": "Feedback",
+    "coverage": [
+      "Renderização do formulário e lista",
+      "Mensagem de lista vazia",
+      "Simulação de envio de feedback",
+      "Snapshot principal",
+      "Edge case: lista vazia"
+    ]
+  },
+  {
+    "page": "Exportacao",
+    "coverage": [
+      "Renderização dos botões",
+      "Simulação de exportação de artigos",
+      "Simulação de exportação de prompts",
+      "Snapshot principal",
+      "Edge case: status mock"
+    ]
+  },
+  {
+    "page": "StatusLogs",
+    "coverage": [
+      "Renderização do painel de status/logs",
+      "Filtro de logs",
+      "Clique em atualizar (placeholder)",
+      "Mensagem de lista vazia",
+      "Snapshot principal"
+    ]
+  },
+  {
+    "page": "Tokens",
+    "coverage": [
+      "Renderização da lista de tokens",
+      "Clique em rotacionar/revogar (placeholders)",
+      "Mensagem de lista vazia",
+      "Snapshot principal"
+    ]
+  },
+  {
+    "page": "Onboarding",
+    "coverage": [
+      "Renderização do primeiro passo",
+      "Navegação entre passos",
+      "Desabilitar avançar no último passo",
+      "Snapshot principal"
+    ]
+  }
+]
+
+{
+  "pages": [
+    {
+      "name": "Blogs",
+      "description": "Gerenciamento de blogs e nichos. Lista mock, criação, edição e exclusão (placeholders). Usa Card e Button.",
+      "components": ["Card", "Button"],
+      "placeholders": ["criação de blog", "edição de blog", "exclusão de blog"]
+    },
+    {
+      "name": "Categorias",
+      "description": "Gerenciamento de categorias. Lista mock, criação, edição e exclusão (placeholders). Usa Card e Button.",
+      "components": ["Card", "Button"],
+      "placeholders": ["criação de categoria", "edição de categoria", "exclusão de categoria"]
+    },
+    {
+      "name": "Clusters",
+      "description": "Gerenciamento de clusters. Lista mock, criação, edição e exclusão (placeholders). Usa Card e Button.",
+      "components": ["Card", "Button"],
+      "placeholders": ["criação de cluster", "edição de cluster", "exclusão de cluster"]
+    }
+  ]
+} 

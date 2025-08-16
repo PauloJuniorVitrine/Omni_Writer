@@ -1,0 +1,17 @@
+[2025-05-05T20:34:00Z] MIGRATION | Caminho: tests/js/ | Tipo: alteração estrutural | Agente: IA-Cursor | Justificativa: Centralização dos testes unitários JS para garantir execução em CI/CD, rastreabilidade e padronização. Imports e configuração do Jest ajustados. Diretório antigo removido. Alternativas: manter em static/js/__tests__ (rejeitada por risco de omissão em pipelines). 
+
+2024-05-05T18:00:00Z | decisão: criação de artefatos obrigatórios (.env.example, .eslintrc.json, pyproject.toml, docs/explanation.md) | motivo: conformidade com regras de rastreabilidade, arquitetura e CI/CD | alternativa: aguardar input do usuário para customização, mas optado por gerar padrão mínimo seguro e rastreável. 
+
+2025-05-05T12:00:00Z | STEP-001 a STEP-007 | Decisão: Estrutura e artefatos de documentação enterprise gerados conforme prompt e ruleset. Justificativa: Maximizar contexto para agentes autônomos, rastreabilidade e auditoria. Alternativas: N/A 
+
+2025-05-05T21:00:00Z | RESTORE | Decisão: Restauração automática dos artefatos de documentação enterprise apagados. Justificativa: Garantir rastreabilidade, versionamento e integridade documental. Alternativas: Recriação manual (rejeitada por risco de inconsistência).
+
+2025-05-05T22:00:00Z | DOC-IMPROVEMENT | Decisão: Implementação de melhorias na documentação para suporte a upgrades. Ações: 1) Criação de contratos semânticos em semantic_contracts_v1.md, 2) Adição de procedimentos de upgrade no CONTRIBUTING_v1.md, 3) Atualização do CHANGELOG.md. Justificativa: Garantir rastreabilidade e segurança em processos de upgrade. Alternativas: Manter documentação mínima (rejeitada por risco de inconsistência em upgrades).
+
+2025-05-05T23:00:00Z | TEST-DOC-IMPROVEMENT | Decisão: Expansão da documentação de testes com cenários detalhados, métricas e SLAs. Ações: 1) Atualização de tests_coverage_map_v1.md com cenários por módulo, 2) Adição de métricas de performance e limites, 3) Detalhamento de testes de carga e E2E. Justificativa: Garantir qualidade, performance e rastreabilidade dos testes. Alternativas: Manter mapeamento básico (rejeitada por falta de detalhamento necessário para CI/CD). 
+
+[2025-05-05T23:59:00Z] DOC-ENTERPRISE | Etapa: Geração de documentação contextual enterprise | Artefatos: README.md, architecture.md, dependencies.md, module_context_map.md, tests_coverage_map.md, semantic_contracts.md, log_based_suggestions.md, CONTRIBUTING.md, trigger_config.json | Justificativa: Atender requisitos de rastreabilidade, auditoria e suporte a agentes autônomos. | Alternativas: Manter documentação mínima (rejeitada por risco de inconsistência e baixa auditabilidade).
+
+[2025-05-05T23:59:30Z] DOC-REFATORACAO | Decisão: Fusão de architecture.md em explanation.md e exclusão do arquivo redundante. Justificativa: Eliminar duplicidade, centralizar contexto arquitetural e facilitar revisão. Alternativas: Manter ambos (rejeitada por risco de inconsistência e sobrecarga de manutenção).
+
+[2025-05-05T23:59:50Z] DOC-COMPLEMENTAR | Decisão: Criação de runbook.md, security_policy.md, glossary.md, roadmap.md, raci_matrix.md, quickstart.md. Justificativa: Elevar padrão documental para operação, segurança, onboarding, governança e evolução em ambientes corporativos. Alternativas: Manter apenas documentação essencial (rejeitada por limitar governança e escalabilidade). 

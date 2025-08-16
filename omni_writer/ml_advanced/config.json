@@ -1,0 +1,103 @@
+{
+  "ml_system": {
+    "enabled": true,
+    "version": "1.0.0",
+    "model_name": "all-MiniLM-L6-v2",
+    "database_path": "content_ml.db"
+  },
+  "optimization": {
+    "enabled": true,
+    "min_quality_score": 0.8,
+    "max_iterations": 5,
+    "similarity_threshold": 0.85,
+    "min_uniqueness_score": 0.7,
+    "min_humanization_score": 0.8
+  },
+  "generation": {
+    "enabled": true,
+    "max_iterations": 5,
+    "min_quality_score": 0.8,
+    "learning_enabled": true,
+    "style_templates": {
+      "formal": {
+        "sentence_structure": "complex",
+        "vocabulary": "advanced",
+        "personal_pronouns": "minimal",
+        "contractions": "none",
+        "tone": "objective"
+      },
+      "casual": {
+        "sentence_structure": "simple",
+        "vocabulary": "everyday",
+        "personal_pronouns": "frequent",
+        "contractions": "common",
+        "tone": "friendly"
+      },
+      "technical": {
+        "sentence_structure": "precise",
+        "vocabulary": "technical",
+        "personal_pronouns": "minimal",
+        "contractions": "none",
+        "tone": "precise"
+      },
+      "storytelling": {
+        "sentence_structure": "varied",
+        "vocabulary": "descriptive",
+        "personal_pronouns": "moderate",
+        "contractions": "some",
+        "tone": "engaging"
+      }
+    }
+  },
+  "integration": {
+    "enabled": true,
+    "optimization_enabled": true,
+    "learning_enabled": true,
+    "min_quality_score": 0.8,
+    "max_iterations": 5,
+    "similarity_threshold": 0.85,
+    "style_mapping": {
+      "formal": "academic",
+      "casual": "conversational",
+      "technical": "technical",
+      "storytelling": "narrative"
+    }
+  },
+  "learning": {
+    "enabled": true,
+    "feedback_weight": 0.8,
+    "pattern_memory_size": 1000,
+    "success_threshold": 0.8,
+    "failure_threshold": 0.3,
+    "learning_rate": 0.1
+  },
+  "performance": {
+    "cache_enabled": true,
+    "cache_size": 1000,
+    "max_concurrent_requests": 10,
+    "timeout_seconds": 30,
+    "retry_attempts": 3
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file_enabled": true,
+    "file_path": "logs/ml_advanced.log",
+    "max_file_size": "10MB",
+    "backup_count": 5
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics_enabled": true,
+    "health_check_interval": 300,
+    "performance_tracking": true,
+    "error_tracking": true
+  },
+  "security": {
+    "content_validation": true,
+    "sensitive_data_filtering": true,
+    "rate_limiting": true,
+    "max_content_length": 10000,
+    "allowed_languages": ["en", "pt", "es", "fr"]
+  }
+} 

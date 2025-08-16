@@ -1,0 +1,105 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... [status_repository] Banco de status N├âO inicializado (ENABLE_STATUS_DB != 1).
+collected 357 items / 349 deselected / 8 selected
+
+tests\integration\test_celery_worker_integration.py::test_celery_worker_execucao_real FAILED [ 12%]
+tests\integration\test_export_artigos_csv.py::test_export_artigos_csv FAILED [ 25%]
+tests\integration\test_export_prompts_csv.py::test_export_prompts_csv FAILED [ 37%]
+
+================================== FAILURES ===================================
+______________________ test_celery_worker_execucao_real _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024DFD7EB650>
+
+    @pytest.mark.integration
+    @pytest.mark.usefixtures("limpar_ambiente")
+    def test_celery_worker_execucao_real(monkeypatch):
+        """
+        Teste de integra├º├úo real do Worker Celery:
+        - Envia tarefa para o worker
+        - Aguarda execu├º├úo ass├¡ncrona
+        - Valida gera├º├úo do arquivo ZIP
+        - Valida status de gera├º├úo
+        - Valida logs e efeitos colaterais
+        """
+        # Configura├º├úo m├¡nima para gera├º├úo
+        config = {
+            "api_key": "sk-teste",
+            "model_type": "openai",
+            "prompts": [{"text": "prompt celery", "index": 0}]
+        }
+        # Envia tarefa Celery
+        async_result = gerar_artigos_task.apply_async(args=[config], kwargs={"trace_id": "celery-integration-test"})
+        # Aguarda conclus├úo (timeout 90s)
+        timeout = 90
+        for _ in range(timeout):
+            if async_result.ready():
+                break
+            time.sleep(1)
+>       assert async_result.ready(), "Tarefa Celery n├úo finalizou em tempo h├íbil"
+E       AssertionError: Tarefa Celery n├úo finalizou em tempo h├íbil
+E       assert False
+E        +  where False = <bound method AsyncResult.ready of <AsyncResult: 5fa00269-43bd-4e4c-886f-44e929479d1b>>()
+E        +    where <bound method AsyncResult.ready of <AsyncResult: 5fa00269-43bd-4e4c-886f-44e929479d1b>> = <AsyncResult: 5fa00269-43bd-4e4c-886f-44e929479d1b>.ready
+
+tests\integration\test_celery_worker_integration.py:41: AssertionError
+___________________________ test_export_artigos_csv ___________________________
+
+client = <FlaskClient <Flask 'app.app_factory'>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024DFDBD0890>
+
+    @pytest.mark.integration
+    def test_export_artigos_csv(client, monkeypatch):
+        resp = client.get('/export_artigos_csv')
+        assert resp.status_code == 200
+        content = resp.data.decode('utf-8')
+        reader = csv.reader(io.StringIO(content))
+        rows = list(reader)
+>       assert rows[0] == ['instancia', 'prompt', 'arquivo', 'conteudo']
+E       AssertionError: assert ['Inst├óncia',...pt', 'Artigo'] == ['instancia',...', 'conteudo']
+E         At index 0 diff: 'Inst├óncia' != 'instancia'
+E         Right contains one more item: 'conteudo'
+E         Full diff:
+E         - ['instancia', 'prompt', 'arquivo', 'conteudo']
+E         + ['Inst├óncia', 'Prompt', 'Artigo']
+
+tests\integration\test_export_artigos_csv.py:20: AssertionError
+------------------------------ Captured log call ------------------------------
+INFO     omni_structured:routes.py:63 {"timestamp_utc": "2025-05-18T20:19:34.983890", "ip": "127.0.0.1", "rota": "/export_artigos_csv", "metodo": "GET", "status": 200, "user_agent": "Werkzeug/3.1.3", "trace_id": null, "operation_type": "export_artigos_csv", "user_id": null}
+___________________________ test_export_prompts_csv ___________________________
+
+client = <FlaskClient <Flask 'app.app_factory'>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024DFDC27C10>
+
+    @pytest.mark.integration
+    def test_export_prompts_csv(client, monkeypatch):
+        # Gera prompts para exporta├º├úo (simula gera├º├úo)
+        # Aqui, idealmente, seria feita uma gera├º├úo real, mas para o teste, simula arquivo
+        resp = client.get('/export_prompts')
+        assert resp.status_code == 200
+        content = resp.data.decode('utf-8')
+        reader = csv.reader(io.StringIO(content))
+        rows = list(reader)
+>       assert rows[0] == ['instancia', 'prompt']
+E       AssertionError: assert ['Prompt'] == ['instancia', 'prompt']
+E         At index 0 diff: 'Prompt' != 'instancia'
+E         Right contains one more item: 'prompt'
+E         Full diff:
+E         - ['instancia', 'prompt']
+E         + ['Prompt']
+
+tests\integration\test_export_prompts_csv.py:22: AssertionError
+------------------------------ Captured log call ------------------------------
+INFO     omni_structured:routes.py:63 {"timestamp_utc": "2025-05-18T20:19:35.530233", "ip": "127.0.0.1", "rota": "/export_prompts", "metodo": "GET", "status": 200, "user_agent": "Werkzeug/3.1.3", "trace_id": null, "operation_type": "export_prompts", "user_id": null}
+=========================== short test summary info ===========================
+FAILED tests\integration\test_celery_worker_integration.py::test_celery_worker_execucao_real
+FAILED tests\integration\test_export_artigos_csv.py::test_export_artigos_csv
+FAILED tests\integration\test_export_prompts_csv.py::test_export_prompts_csv
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 3 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+========= 3 failed, 349 deselected, 15 warnings in 100.10s (0:01:40) ==========

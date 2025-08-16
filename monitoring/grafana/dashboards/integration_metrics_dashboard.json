@@ -1,0 +1,280 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Omni Writer - Métricas de Integração",
+    "tags": ["omni-writer", "integration", "testing", "metrics"],
+    "style": "dark",
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Cobertura de Testes de Integração",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "integration_test_coverage_percentage",
+            "legendFormat": "Cobertura (%)"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": null},
+                {"color": "yellow", "value": 70},
+                {"color": "green", "value": 85}
+              ]
+            },
+            "unit": "percent"
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Testes por Nível de Risco",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "integration_tests_by_risk_level",
+            "legendFormat": "{{risk_level}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Tempo de Execução dos Testes",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "integration_test_execution_time_ms",
+            "legendFormat": "{{test_name}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "unit": "ms"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      },
+      {
+        "id": 4,
+        "title": "Novos Fluxos Detectados",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "new_flows_detected_total",
+            "legendFormat": "Novos Fluxos"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 5},
+                {"color": "red", "value": 10}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 0, "y": 8}
+      },
+      {
+        "id": 5,
+        "title": "Fluxos de Alto Risco",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "high_risk_flows_total",
+            "legendFormat": "Fluxos de Alto Risco"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 3},
+                {"color": "red", "value": 5}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 6, "y": 8}
+      },
+      {
+        "id": 6,
+        "title": "Taxa de Sucesso dos Testes",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(integration_test_results_total{status=\"passed\"}[5m])",
+            "legendFormat": "Testes Passando"
+          },
+          {
+            "expr": "rate(integration_test_results_total{status=\"failed\"}[5m])",
+            "legendFormat": "Testes Falhando"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "unit": "reqps"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+      },
+      {
+        "id": 7,
+        "title": "Métricas de Telemetria",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "integration_telemetry_metrics",
+            "format": "table"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16}
+      },
+      {
+        "id": 8,
+        "title": "Resultados de Mutation Testing",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "mutation_test_passed_total",
+            "legendFormat": "Mutation Tests Passando"
+          },
+          {
+            "expr": "mutation_test_failed_total",
+            "legendFormat": "Mutation Tests Falhando"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16}
+      },
+      {
+        "id": 9,
+        "title": "Sugestões de Teste Geradas",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "test_suggestions_generated_total",
+            "legendFormat": "Sugestões"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 10},
+                {"color": "red", "value": 20}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 0, "y": 24}
+      },
+      {
+        "id": 10,
+        "title": "Performance dos Testes",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "integration_test_duration_seconds",
+            "legendFormat": "{{test_name}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "scheme"
+            },
+            "unit": "s"
+          }
+        },
+        "gridPos": {"h": 8, "w": 18, "x": 6, "y": 24}
+      }
+    ],
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "refresh": "30s",
+    "schemaVersion": 27,
+    "version": 1,
+    "links": [],
+    "templating": {
+      "list": [
+        {
+          "name": "test_environment",
+          "type": "query",
+          "query": "label_values(integration_test_results_total, environment)",
+          "refresh": 2,
+          "includeAll": true,
+          "multi": false
+        },
+        {
+          "name": "risk_level",
+          "type": "query",
+          "query": "label_values(integration_test_results_total, risk_level)",
+          "refresh": 2,
+          "includeAll": true,
+          "multi": false
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": "Prometheus",
+          "expr": "changes(integration_test_coverage_percentage[5m]) > 0",
+          "titleFormat": "Cobertura Alterada",
+          "textFormat": "Cobertura de testes alterada em {{$value}}%"
+        }
+      ]
+    }
+  }
+} 

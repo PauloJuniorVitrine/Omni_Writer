@@ -1,0 +1,221 @@
+{
+  "flow_detection_framework": {
+    "version": "1.0",
+    "tracing_id": "FLOW_DETECTION_CONFIG_20250127_001",
+    "description": "Configuração do framework de detecção de fluxos baseado em código real do Omni Writer",
+    "created_at": "2025-01-27T18:30:00Z",
+    "updated_at": "2025-01-27T18:30:00Z"
+  },
+  "log_sources": {
+    "application_logs": {
+      "source_name": "application_logs",
+      "source_type": "file",
+      "source_path": "logs/structured_logs.json",
+      "log_format": "json",
+      "enabled": true,
+      "filters": {
+        "level": "INFO,ERROR,WARNING,CRITICAL",
+        "service": "omni_writer,monitoring,generation_service"
+      },
+      "priority": "high"
+    },
+    "pipeline_logs": {
+      "source_name": "pipeline_logs",
+      "source_type": "file",
+      "source_path": "logs/pipeline_multi_diag.log",
+      "log_format": "text",
+      "enabled": true,
+      "filters": {
+        "pattern": "\\[DIAG\\]",
+        "keywords": "generate_article,pipeline multi"
+      },
+      "priority": "high"
+    },
+    "decision_logs": {
+      "source_name": "decision_logs",
+      "source_type": "file",
+      "source_path": "logs/decisions_2025-01-27.log",
+      "log_format": "text",
+      "enabled": true,
+      "filters": {
+        "pattern": "\\[DECISION\\]",
+        "keywords": "test,coverage,risk"
+      },
+      "priority": "medium"
+    },
+    "error_logs": {
+      "source_name": "error_logs",
+      "source_type": "file",
+      "source_path": "logs/errors.log",
+      "log_format": "json",
+      "enabled": true,
+      "filters": {
+        "level": "ERROR,CRITICAL"
+      },
+      "priority": "critical"
+    }
+  },
+  "known_flows": {
+    "article_generation_flow": {
+      "pattern_id": "article_generation_flow",
+      "name": "Geração de Artigos",
+      "description": "Fluxo completo de geração de artigos via OpenAI/DeepSeek",
+      "endpoints": ["/generate", "/status", "/download"],
+      "services": ["openai_gateway", "deepseek_gateway", "generation_service"],
+      "frequency": 100,
+      "risk_score": 150,
+      "is_tested": true,
+      "test_suggestions": [
+        "Implementar teste de geração com diferentes prompts",
+        "Testar fallback para falhas de API",
+        "Validar rate limiting e circuit breaker"
+      ]
+    },
+    "blog_crud_flow": {
+      "pattern_id": "blog_crud_flow",
+      "name": "CRUD de Blogs",
+      "description": "Operações CRUD completas de blogs e categorias",
+      "endpoints": ["/blogs", "/blogs/create", "/blogs/update", "/blogs/delete"],
+      "services": ["blog_service", "postgresql"],
+      "frequency": 50,
+      "risk_score": 120,
+      "is_tested": true,
+      "test_suggestions": [
+        "Testar criação de blogs com diferentes categorias",
+        "Validar exclusão em cascata",
+        "Testar permissões de acesso"
+      ]
+    },
+    "authentication_flow": {
+      "pattern_id": "authentication_flow",
+      "name": "Autenticação",
+      "description": "Fluxo de login/logout e autenticação de usuários",
+      "endpoints": ["/login", "/logout", "/auth"],
+      "services": ["auth_service", "redis"],
+      "frequency": 200,
+      "risk_score": 100,
+      "is_tested": true,
+      "test_suggestions": [
+        "Testar autenticação com credenciais inválidas",
+        "Validar expiração de sessão",
+        "Testar rate limiting de login"
+      ]
+    },
+    "payment_flow": {
+      "pattern_id": "payment_flow",
+      "name": "Processamento de Pagamentos",
+      "description": "Fluxo de pagamentos via Stripe",
+      "endpoints": ["/payment", "/webhook"],
+      "services": ["stripe_gateway", "payment_service"],
+      "frequency": 30,
+      "risk_score": 140,
+      "is_tested": true,
+      "test_suggestions": [
+        "Testar processamento de pagamentos",
+        "Validar webhooks do Stripe",
+        "Testar cenários de falha de pagamento"
+      ]
+    },
+    "parallel_generation_flow": {
+      "pattern_id": "parallel_generation_flow",
+      "name": "Geração Paralela",
+      "description": "Fluxo de geração paralela de artigos",
+      "endpoints": ["/generate/parallel", "/status/parallel"],
+      "services": ["parallel_generator", "intelligent_cache"],
+      "frequency": 25,
+      "risk_score": 130,
+      "is_tested": false,
+      "test_suggestions": [
+        "Testar geração paralela com múltiplos prompts",
+        "Validar cache inteligente",
+        "Testar limites de concorrência"
+      ]
+    },
+    "smart_retry_flow": {
+      "pattern_id": "smart_retry_flow",
+      "name": "Retry Inteligente",
+      "description": "Fluxo de retry automático após falhas",
+      "endpoints": ["/retry", "/status/retry"],
+      "services": ["smart_retry", "circuit_breaker"],
+      "frequency": 15,
+      "risk_score": 110,
+      "is_tested": false,
+      "test_suggestions": [
+        "Testar retry após falhas de API",
+        "Validar circuit breaker",
+        "Testar backoff exponencial"
+      ]
+    }
+  },
+  "risk_scoring": {
+    "critical_endpoints": {
+      "/generate": 30,
+      "/payment": 30,
+      "/webhook": 30,
+      "/download": 25,
+      "/login": 20,
+      "/auth": 20
+    },
+    "critical_services": {
+      "openai_gateway": 25,
+      "deepseek_gateway": 25,
+      "stripe_gateway": 25,
+      "postgresql": 20,
+      "redis": 15,
+      "parallel_generator": 20
+    },
+    "complexity_multiplier": 10,
+    "frequency_multiplier": 5
+  },
+  "test_suggestions": {
+    "endpoint_based": {
+      "/generate": [
+        "Implementar teste de geração com diferentes prompts",
+        "Testar variações de temperatura e max_tokens",
+        "Validar rate limiting e quotas"
+      ],
+      "/payment": [
+        "Testar processamento de pagamentos",
+        "Validar webhooks do Stripe",
+        "Testar cenários de falha de pagamento"
+      ],
+      "/download": [
+        "Testar download com diferentes tipos de arquivo",
+        "Validar compressão ZIP",
+        "Testar limites de tamanho"
+      ]
+    },
+    "service_based": {
+      "openai_gateway": [
+        "Testar falhas de API (429, 500, 503)",
+        "Validar circuit breaker",
+        "Testar timeout e retry"
+      ],
+      "stripe_gateway": [
+        "Testar webhooks do Stripe",
+        "Validar processamento de pagamentos",
+        "Testar cenários de chargeback"
+      ],
+      "postgresql": [
+        "Testar transações de banco de dados",
+        "Validar conexões pool",
+        "Testar cenários de falha de conexão"
+      ]
+    }
+  },
+  "analysis_settings": {
+    "min_flow_length": 2,
+    "max_flow_length": 10,
+    "time_window_hours": 24,
+    "similarity_threshold": 0.85,
+    "min_frequency": 1,
+    "max_patterns_per_analysis": 100
+  },
+  "reporting": {
+    "coverage_threshold": 85,
+    "high_risk_threshold": 100,
+    "max_untested_flows": 10,
+    "include_metadata": true,
+    "export_formats": ["json", "html", "csv"]
+  }
+} 

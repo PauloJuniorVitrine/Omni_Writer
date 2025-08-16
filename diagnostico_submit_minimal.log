@@ -1,0 +1,16 @@
+[request] GET http://localhost:5000/
+[response] 200 http://localhost:5000/
+[request] GET https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap
+[request] GET https://img.icons8.com/ios-filled/50/ffffff/document--v1.png
+[response] 200 https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap
+[request] GET https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2
+[response] 200 https://img.icons8.com/ios-filled/50/ffffff/document--v1.png
+[response] 200 https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2
+[request] POST http://localhost:5000/generate
+[response] 200 http://localhost:5000/generate
+[request] GET https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap
+[response] 200 https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap
+[request] GET https://img.icons8.com/ios-filled/50/ffffff/document--v1.png
+[response] 200 https://img.icons8.com/ios-filled/50/ffffff/document--v1.png
+[request] GET https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2
+[response] 200 https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2

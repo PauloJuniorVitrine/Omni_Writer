@@ -1,0 +1,12 @@
+{
+  "exec_id": "20250603T152124Z",
+  "fluxo": "geracao_artigos",
+  "timestamp_utc": "2025-06-03T15:21:24Z",
+  "status_code_main": null,
+  "status_code_canary": null,
+  "schema_diff": null,
+  "semantic_diff_score": null,
+  "divergence_detected": false,
+  "fields_with_diff": [],
+  "rollback_triggered": false
+} 

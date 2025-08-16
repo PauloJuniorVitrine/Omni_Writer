@@ -1,0 +1,50 @@
+﻿{
+    "Statistics":  {
+                       "TestedPatterns":  2,
+                       "AvgRiskScore":  0,
+                       "HighRiskPatterns":  4,
+                       "TotalPatterns":  3,
+                       "UntestedPatterns":  1,
+                       "CoverageRate":  66.7
+                   },
+    "AnalysisResults":  {
+                            "DecisionLogs":  {
+                                                 "TotalLines":  189,
+                                                 "CoverageDecisions":  0,
+                                                 "RiskDecisions":  0,
+                                                 "TestDecisions":  8
+                                             },
+                            "PipelineLogs":  {
+                                                 "TotalLines":  138,
+                                                 "PipelineStarts":  70,
+                                                 "GenerateCalls":  68,
+                                                 "TestingMentions":  70
+                                             }
+                        },
+    "DemoInfo":  {
+                     "Timestamp":  "2025-07-12T20:38:05Z",
+                     "Description":  "Demonstracao Simples do Framework de Detecao de Fluxos",
+                     "TracingId":  "SIMPLE_FLOW_DEMO_20250127_001",
+                     "BasedOnRealLogs":  true
+                 },
+    "FlowPatterns":  [
+                         {
+                             "RiskScore":  150,
+                             "Description":  "Detectado atravÃ©s de chamadas de geracao",
+                             "Name":  "Fluxo de Geracao de Artigos",
+                             "IsTested":  true
+                         },
+                         {
+                             "RiskScore":  90,
+                             "Description":  "Detectado atravÃ©s de decisoes sobre testes",
+                             "Name":  "Fluxo de Decisoes de Teste",
+                             "IsTested":  true
+                         },
+                         {
+                             "RiskScore":  80,
+                             "Description":  "Detectado atravÃ©s de mencoes de teste",
+                             "Name":  "Fluxo de Monitoramento",
+                             "IsTested":  false
+                         }
+                     ]
+}

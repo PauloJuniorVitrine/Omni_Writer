@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error",
+  "type": "object",
+  "properties": {
+    "error": { "type": "string" },
+    "blog_id": { "type": "integer" },
+    "categoria_id": { "type": "integer" },
+    "cluster_id": { "type": "integer" },
+    "artigo_id": { "type": "integer" }
+  },
+  "required": ["error"]
+} 

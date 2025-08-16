@@ -1,0 +1,11 @@
+# 📥 Bloco 1 – Variáveis de Entrada (Preenchimento Obrigatório)
+
+[NICHO]: Finanças
+[CATEGORIA]: Investimentos para Iniciantes
+[CLUSTER DE CONTEÚDO]: Como investir com segurança em 2025
+[PERFIL DO CLIENTE / PERSONA]: Jovem de 28 anos, busca independência financeira, perfil conservador
+[PRODUTO FINAL (opcional)]: E-book sobre investimentos seguros
+[PALAVRA-CHAVE PRINCIPAL DO CLUSTER]: como investir com segurança em 2025
+[PALAVRAS-CHAVE SECUNDÁRIAS (opcional)]: renda fixa, tesouro direto, CDB
+[ESTILO DE REDAÇÃO]: didático
+// ... demais blocos conforme estrutura do prompt_base_artigos.txt ... 

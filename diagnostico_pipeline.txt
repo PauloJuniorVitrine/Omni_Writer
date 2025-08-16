@@ -1,0 +1,508 @@
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+INICIO | TESTING=None | instancias=1 | prompts=3
+ERRO | [WinError 2] O sistema não pode encontrar o arquivo especificado: 'C:\\Users\\SEDUC\\Desktop\\PROJETOS\\omni_gerador_artigos\\output\\inst4'
+ERRO | [WinError 32] O arquivo já está sendo usado por outro processo: 'C:\\Users\\SEDUC\\Desktop\\PROJETOS\\omni_gerador_artigos\\output\\inst1\\prompt_1'
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-198\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-199\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-200\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-201\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-201\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-202\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-202\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-206\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-206\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-207\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-207\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-208\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-208\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-210\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-210\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-212\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-212\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-214\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-214\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-220\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-220\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-222\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-222\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-226\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-226\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-227\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-227\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-228\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-228\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-229\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-229\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-230\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-230\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-231\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-231\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-232\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-232\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-233\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-233\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-234\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-234\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-235\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-235\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-236\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-236\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-237\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-237\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-238\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-238\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-239\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-239\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-240\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-240\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-241\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-241\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-242\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-242\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-243\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-243\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-244\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-244\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-245\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-245\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-246\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-246\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-247\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-247\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-252\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-252\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-254\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-254\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-0\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-0\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-4\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-4\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-28\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-28\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=0 | instancias=1 | prompts=1
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-29\test_run_generation_multi_pipe0\omni_artigos.zip, current=6
+INICIO | TESTING=0 | instancias=0 | prompts=0
+FIM | ZIP=C:\Users\SEDUC\AppData\Local\Temp\pytest-of-SEDUC\pytest-29\test_run_generation_multi_pipe1\omni_artigos.zip, current=0
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | 'Mock' object is not subscriptable
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_multi
+INICIO | TESTING=0 | instancias=1 | prompts=1
+ERRO | erro_makedirs
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=50
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=15 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+INICIO | TESTING=None | instancias=1 | prompts=1
+ERRO | 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions

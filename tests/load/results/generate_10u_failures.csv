@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences
+POST,/generate,"CatchResponseError('Status: 200, Body: b\'<!DOCTYPE html>\\n<html lang=""pt-BR"">\\n<head>\\n    <meta charset=""UTF-8"">\\n    <title>Omni Gerador de Artigos</title>\\n    <meta name=""viewport"" content=""width=device-width, initial-scale=1"">\\n    <link href\'')",16
+POST,/generate,"CatchResponseError(""Status: 429, Body: b'<!doctype html>\\n<html lang=en>\\n<title>429 Too Many Requests</title>\\n<h1>Too Many Requests</h1>\\n<p>30 per 1 minute</p>\\n'"")",70
+POST,/generate,"CatchResponseError(""Payload inválido: 429, Body: b'<!doctype html>\\n<html lang=en>\\n<title>429 Too Many Requests</title>\\n<h1>Too Many Requests</h1>\\n<p>30 per 1 minute</p>\\n'"")",8
+POST,/generate,"CatchResponseError(""Limite prompts: 429, Body: b'<!doctype html>\\n<html lang=en>\\n<title>429 Too Many Requests</title>\\n<h1>Too Many Requests</h1>\\n<p>30 per 1 minute</p>\\n'"")",13

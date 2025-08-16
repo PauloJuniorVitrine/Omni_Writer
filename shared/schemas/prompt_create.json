@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PromptCreate",
+  "type": "object",
+  "properties": {
+    "text": { "type": "string" },
+    "blog_id": { "type": "integer" },
+    "categoria_id": { "type": "integer" },
+    "cluster_id": { "type": "integer" }
+  },
+  "required": ["text", "blog_id", "categoria_id", "cluster_id"]
+}
+
+/*
+Schema PromptCreate
+Campos:
+- text: conteúdo do prompt
+- blog_id: identificador do blog
+- categoria_id: identificador da categoria
+- cluster_id: identificador do cluster
+*/ 

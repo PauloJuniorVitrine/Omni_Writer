@@ -1,0 +1,136 @@
+{
+  "openai": {
+    "model": "code-davinci-002",
+    "max_tokens": 4000,
+    "temperature": 0.1,
+    "timeout": 30
+  },
+  "healing": {
+    "max_attempts": 8,
+    "patch_dir": "patches",
+    "logs_dir": "logs",
+    "branch_prefix": "auto-heal"
+  },
+  "security": {
+    "sensitive_files": [
+      ".env",
+      ".env.*",
+      "secrets.json",
+      "config.json",
+      "*.key",
+      "*.pem",
+      "*.p12",
+      "*.pfx",
+      "credentials.json",
+      "service-account.json"
+    ],
+    "protected_patterns": [
+      "password",
+      "secret",
+      "token",
+      "key",
+      "credential"
+    ]
+  },
+  "tests": {
+    "timeout": 300,
+    "coverage_threshold": 80,
+    "junit_xml": "test-results.xml",
+    "coverage_xml": "coverage.xml"
+  },
+  "notifications": {
+    "slack": {
+      "enabled": true,
+      "webhook_url_env": "SLACK_WEBHOOK_URL"
+    },
+    "discord": {
+      "enabled": true,
+      "webhook_url_env": "DISCORD_WEBHOOK_URL"
+    }
+  },
+  "artifacts": {
+    "build_dir": "dist",
+    "executable_name": "OmniWriter",
+    "plugin_name": "wordpress-plugin.zip",
+    "changelog_name": "CHANGELOG.md"
+  },
+  "quality_gates": {
+    "coverage": {
+      "minimum": 80,
+      "fail_on_below": true
+    },
+    "security": {
+      "bandit_enabled": true,
+      "gitleaks_enabled": true,
+      "dependency_review_enabled": true
+    },
+    "performance": {
+      "response_time_p95": 2000,
+      "error_rate_max": 0.1
+    }
+  },
+  "load_testing": {
+    "k6": {
+      "scenarios": {
+        "constant_load": {
+          "vus": 10,
+          "duration": "2m"
+        },
+        "spike_test": {
+          "stages": [
+            {"duration": "30s", "target": 50},
+            {"duration": "1m", "target": 50},
+            {"duration": "30s", "target": 0}
+          ]
+        },
+        "stress_test": {
+          "start_rate": 10,
+          "max_vus": 200,
+          "stages": [
+            {"duration": "2m", "target": 50},
+            {"duration": "5m", "target": 100},
+            {"duration": "2m", "target": 0}
+          ]
+        },
+        "endurance_test": {
+          "rate": 20,
+          "duration": "10m",
+          "max_vus": 100
+        }
+      }
+    }
+  },
+  "prompts": {
+    "healing_template": {
+      "context_sections": [
+        "test_output",
+        "stack_trace", 
+        "error_logs",
+        "affected_code"
+      ],
+      "instructions": [
+        "Analyze the error and identify the root cause",
+        "Fix the code with minimal changes",
+        "Preserve existing comments and documentation",
+        "Do NOT modify sensitive files",
+        "Only modify tests if there's a clear logical inconsistency",
+        "Provide a clear explanation"
+      ],
+      "response_format": {
+        "file_metadata": true,
+        "line_ranges": true,
+        "fix_explanation": true,
+        "code_block": true
+      }
+    }
+  },
+  "audit": {
+    "enabled": true,
+    "log_level": "INFO",
+    "save_prompts": true,
+    "save_responses": true,
+    "track_metrics": true
+  }
+}
+
+

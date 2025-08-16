@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 3 items
+
+tests\integration\test_security.py::test_generate_csrf_protection PASSED [ 33%]
+tests\integration\test_security.py::test_generate_invalid_input FAILED   [ 66%]
+tests\integration\test_security.py::test_security_headers PASSED         [100%]
+
+================================== FAILURES ===================================
+_________________________ test_generate_invalid_input _________________________
+
+client = <FlaskClient <Flask 'test_security'>>
+
+    def test_generate_invalid_input(client):
+        # POST com campos obrigatórios ausentes
+        resp = client.post('/generate', data={})
+        assert resp.status_code == 400
+>       assert b'Dados inv' in resp.data or b'invalid' in resp.data.lower()
+E       AssertionError: assert (b'Dados inv' in b'<!doctype html>\n<html lang=en>\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>The CSRF token is missing.</p>\n' or b'invalid' in b'<!doctype html>\n<html lang=en>\n<title>400 bad request</title>\n<h1>bad request</h1>\n<p>the csrf token is missing.</p>\n')
+E        +  where b'<!doctype html>\n<html lang=en>\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>The CSRF token is missing.</p>\n' = <WrapperTestResponse 117 bytes [400 BAD REQUEST]>.data
+E        +  and   b'<!doctype html>\n<html lang=en>\n<title>400 bad request</title>\n<h1>bad request</h1>\n<p>the csrf token is missing.</p>\n' = <built-in method lower of bytes object at 0x0000025189F93410>()
+E        +    where <built-in method lower of bytes object at 0x0000025189F93410> = b'<!doctype html>\n<html lang=en>\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>The CSRF token is missing.</p>\n'.lower
+E        +      where b'<!doctype html>\n<html lang=en>\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>The CSRF token is missing.</p>\n' = <WrapperTestResponse 117 bytes [400 BAD REQUEST]>.data
+
+tests\integration\test_security.py:30: AssertionError
+=========================== short test summary info ===========================
+FAILED tests\integration\test_security.py::test_generate_invalid_input - Asse...
+=================== 1 failed, 2 passed, 1 warning in 3.00s ====================

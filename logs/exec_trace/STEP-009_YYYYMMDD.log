@@ -1,0 +1,6 @@
+[STEP-009] - YYYY-MM-DDTHH:mm:ssZ
+Ação: Geração/atualização de snapshots e documentação visual incremental (exemplos de uso, instruções, screenshots mock)
+Arquivos revisados/gerados: explanation.md, interface_fluxo_ux.json, snapshots em __tests__
+Status: OK
+Executor: IA-Cursor
+Usuário: omni_writer 

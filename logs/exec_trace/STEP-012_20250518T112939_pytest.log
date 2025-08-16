@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 307 items
+
+tests\integration\test_api_blogs_prompts.py::test_crud_blog PASSED       [  0%]
+tests\integration\test_api_blogs_prompts.py::test_crud_prompts PASSED    [  0%]
+tests\integration\test_api_template_generate.py::test_index_template PASSED [  0%]
+tests\integration\test_api_template_generate.py::test_generate_sem_dados PASSED [  1%]
+tests\integration\test_autenticacao_permissao.py::test_endpoint_protegido_token_valido PASSED [  1%]
+tests\integration\test_autenticacao_permissao.py::test_endpoint_protegido_token_invalido PASSED [  1%]
+tests\integration\test_autenticacao_permissao.py::test_endpoint_protegido_sem_token PASSED [  2%]
+tests\integration\test_casos_negativos_seguranca.py::test_payload_invalido PASSED [  2%]
+tests\integration\test_casos_negativos_seguranca.py::test_autenticacao_incorreta PASSED [  2%]
+tests\integration\test_casos_negativos_seguranca.py::test_sem_permissao PASSED [  3%]
+tests\integration\test_casos_negativos_seguranca.py::test_timeout FAILED [  3%]
+tests\integration\test_casos_negativos_seguranca.py::test_acesso_nao_autorizado PASSED [  3%]
+tests\integration\test_celery_worker_integration.py::test_celery_worker_execucao_real FAILED [  4%]
+tests\integration\test_concorrencia_isolamento.py::test_geracao_concorrente FAILED [  4%]
+tests\integration\test_concorrencia_isolamento.py::test_feedback_concorrente PASSED [  4%]
+tests\integration\test_concorrencia_isolamento.py::test_rollback_falha_intermediaria FAILED [  5%]
+tests\integration\test_concorrencia_stress.py::test_concorrencia_generate_manual FAILED [  5%]
+tests\integration\test_concorrencia_stress.py::test_stress_grande_volume FAILED [  5%]
+tests\integration\test_crud_blogs.py::test_crud_blog_completo PASSED     [  6%]
+tests\integration\test_crud_blogs.py::test_criar_blog_dados_invalidos PASSED [  6%]
+tests\integration\test_crud_blogs.py::test_excluir_blog_com_prompts PASSED [  6%]
+tests\integration\test_deepseek_gateway_integration.py::test_deepseek_gateway_timeout PASSED [  7%]
+tests\integration\test_deepseek_gateway_integration.py::test_deepseek_gateway_api_key_invalida PASSED [  7%]
+tests\integration\test_deepseek_gateway_integration.py::test_deepseek_gateway_concorrencia PASSED [  7%]

@@ -1,0 +1,66 @@
+[2025-07-13 09:16:45,617] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Iniciando implementação da Fase 1 - Banco de Dados
+[2025-07-13 09:16:45,623] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:45,659] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Validação do Ambiente
+[2025-07-13 09:16:45,661] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:45,662] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 1: Validação do Ambiente
+[2025-07-13 09:16:48,059] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:48,060] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Backup dos Dados
+[2025-07-13 09:16:48,061] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:48,061] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 2: Backup dos Dados Existentes
+[2025-07-13 09:16:48,321] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:48,322] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Teste de Conexão PostgreSQL
+[2025-07-13 09:16:48,322] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:48,323] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 3: Teste de Conexão PostgreSQL
+[2025-07-13 09:16:52,524] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,524] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Execução das Migrações
+[2025-07-13 09:16:52,524] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,524] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 4: Execução das Migrações
+[2025-07-13 09:16:52,800] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,800] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Configuração do Pool
+[2025-07-13 09:16:52,800] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,800] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 5: Configuração do Pool de Conexões
+[2025-07-13 09:16:52,870] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,870] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Implementação de Retry
+[2025-07-13 09:16:52,871] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,871] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 6: Implementação de Retry Logic
+[2025-07-13 09:16:52,935] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,935] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Validação de Integridade
+[2025-07-13 09:16:52,935] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:52,935] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 7: Validação de Integridade dos Dados
+[2025-07-13 09:16:53,008] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:53,009] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Atualização de Configurações
+[2025-07-13 09:16:53,009] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:16:53,010] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 8: Atualização de Configurações
+[2025-07-13 09:20:53,126] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Iniciando implementação da Fase 1 - Banco de Dados
+[2025-07-13 09:20:53,132] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:53,132] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Validação do Ambiente
+[2025-07-13 09:20:53,132] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:53,133] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 1: Validação do Ambiente
+[2025-07-13 09:20:54,085] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:54,085] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Backup dos Dados
+[2025-07-13 09:20:54,086] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:54,086] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 2: Backup dos Dados Existentes
+[2025-07-13 09:20:55,284] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:55,285] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Teste de Conexão PostgreSQL
+[2025-07-13 09:20:55,285] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:55,285] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 3: Teste de Conexão PostgreSQL
+[2025-07-13 09:20:59,490] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:59,490] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Execução das Migrações
+[2025-07-13 09:20:59,491] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:59,491] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 4: Execução das Migrações
+[2025-07-13 09:20:59,675] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:59,675] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Configuração do Pool
+[2025-07-13 09:20:59,675] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:59,675] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 5: Configuração do Pool de Conexões
+[2025-07-13 09:20:59,843] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:59,843] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Implementação de Retry
+[2025-07-13 09:20:59,843] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:20:59,843] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 6: Implementação de Retry Logic
+[2025-07-13 09:21:00,059] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:21:00,059] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Validação de Integridade
+[2025-07-13 09:21:00,059] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:21:00,060] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 7: Validação de Integridade dos Dados
+[2025-07-13 09:21:00,272] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:21:00,273] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] EXECUTANDO: Atualização de Configurações
+[2025-07-13 09:21:00,273] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] ==================================================
+[2025-07-13 09:21:00,273] [INFO] [checklist_phase1] [CHECKLIST_PHASE1_20250127_001] Executando Passo 8: Atualização de Configurações

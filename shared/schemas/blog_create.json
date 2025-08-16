@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BlogCreate",
+  "type": "object",
+  "properties": {
+    "nome": { "type": "string" },
+    "desc": { "type": "string" },
+    "categorias": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["nome"]
+} 

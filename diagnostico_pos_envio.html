@@ -1,0 +1,942 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <title>Omni Gerador de Artigos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/1976d2/document--v1.png">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4338ca;
+            --accent: #06b6d4;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --bg: #f4f6fa;
+            --card-bg: #fff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --input-bg: #f1f5f9;
+            --shadow: 0 6px 32px rgba(99,102,241,0.10);
+            --gradient: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            --divider: #e5e7eb;
+        }
+        [data-theme="dark"] {
+            --primary: #a5b4fc;
+            --primary-dark: #6366f1;
+            --accent: #22d3ee;
+            --success: #4ade80;
+            --danger: #f87171;
+            --bg: #181825;
+            --card-bg: #232136;
+            --text: #f1f5f9;
+            --border: #334155;
+            --input-bg: #232136;
+            --shadow: 0 6px 32px rgba(99,102,241,0.18);
+            --gradient: linear-gradient(90deg, #232136 0%, #6366f1 100%);
+            --divider: #334155;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: 'Inter', 'Roboto', Arial, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            min-height: 100vh;
+            font-size: 1.08rem;
+            transition: background 0.3s, color 0.3s;
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--gradient);
+            color: #fff;
+            padding: 28px 0 20px 0;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 4px 18px rgba(99,102,241,0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        .header img {
+            vertical-align: middle;
+            width: 44px;
+            margin-right: 12px;
+            filter: drop-shadow(0 2px 8px rgba(99,102,241,0.12));
+        }
+        .header-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            vertical-align: middle;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .theme-toggle {
+            position: absolute;
+            right: 24px;
+            top: 28px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.7rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .theme-toggle:focus {
+            outline: 2px solid var(--accent);
+        }
+        .container {
+            max-width: 700px;
+            margin: 48px auto 0 auto;
+            padding: 0 18px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            padding: 44px 38px 32px 38px;
+            margin-bottom: 36px;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--border);
+            position: relative;
+        }
+        .card:not(:last-child) {
+            border-bottom: 4px solid var(--divider);
+        }
+        h2 {
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        label {
+            display: block;
+            margin-top: 22px;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.08rem;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1.08rem;
+            background: var(--input-bg);
+            color: var(--text);
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s, border 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+        textarea[disabled] {
+            background: #ececec;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+        button, .download-btn {
+            width: 100%;
+            margin-top: 34px;
+            padding: 16px 0;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.18rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(99,102,241,0.10);
+            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        button:disabled, .download-btn:disabled {
+            background: #b0bec5;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        button:hover:not(:disabled), .download-btn:hover:not(:disabled) {
+            background: linear-gradient(90deg, #06b6d4 0%, #6366f1 100%);
+            box-shadow: 0 8px 32px rgba(6,182,212,0.13);
+            transform: translateY(-2px) scale(1.04);
+        }
+        button:focus, .download-btn:focus {
+            outline: 2.5px solid var(--accent);
+            box-shadow: 0 0 0 4px var(--accent);
+        }
+        .alert, .success {
+            padding: 12px 18px;
+            margin: 22px 0 0 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.08rem;
+            animation: fadeIn 0.5s;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.08);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .alert {
+            color: var(--danger);
+            background: #fef2f2;
+            border-left: 6px solid var(--danger);
+        }
+        .success {
+            color: var(--success);
+            background: #f0fdf4;
+            border-left: 6px solid var(--success);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .file-label {
+            margin-top: 14px;
+            font-size: 1.05rem;
+            color: #64748b;
+        }
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--success);
+            color: #fff;
+            font-weight: 800;
+            border: none;
+            border-radius: 10px;
+            padding: 16px 0;
+            margin-top: 24px;
+            font-size: 1.18rem;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            box-shadow: 0 4px 18px rgba(34,197,94,0.10);
+        }
+        .download-btn:hover {
+            background: var(--accent);
+            box-shadow: 0 8px 32px rgba(6,182,212,0.13);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .tooltip {
+            border-bottom: 1px dotted #888;
+            cursor: help;
+            text-decoration: none;
+        }
+        .prompt-count {
+            margin-top: 12px;
+            color: var(--primary);
+            font-size: 1.08rem;
+            font-weight: 600;
+        }
+        .loader {
+            display: none;
+            margin: 28px auto 0 auto;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid var(--primary);
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.10);
+        }
+        .loader.active {
+            display: block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .dropzone {
+            border: 2.5px dashed var(--primary);
+            border-radius: 12px;
+            background: #e0e7ff;
+            color: var(--primary-dark);
+            padding: 28px;
+            text-align: center;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: background 0.2s, border 0.2s;
+            font-size: 1.08rem;
+        }
+        .dropzone.dragover {
+            background: #c7d2fe;
+            border-color: var(--accent);
+        }
+        .preview {
+            background: #f0fdfa;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-top: 16px;
+            font-size: 1.05rem;
+            color: #0f766e;
+            border-left: 6px solid #22d3ee;
+        }
+        .reset-btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 12px 0;
+            background: #cbd5e1;
+            color: #334155;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .reset-btn:hover {
+            background: #a5b4fc;
+        }
+        .dark-toggle {
+            position: absolute;
+            right: 24px;
+            top: 28px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+        /* Barra de progresso moderna */
+        #progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            width: 100vw;
+            background: #e2e8f0;
+            height: 12px;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+            overflow: hidden;
+        }
+        #progress-bar {
+            height: 12px;
+            border-radius: 0 6px 6px 0;
+            background: linear-gradient(270deg, #6366f1, #06b6d4, #6366f1);
+            background-size: 400% 400%;
+            animation: progressAnim 2s linear infinite;
+            transition: width 0.4s;
+        }
+        @keyframes progressAnim {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        @media (max-width: 700px) {
+            .container { padding: 8px; }
+            .card { padding: 18px 4px 12px 4px; }
+            .header-title { font-size: 1.2rem; }
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background-color: rgba(99,102,241,0.25);
+            pointer-events: none;
+            z-index: 2;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        #help_btn {
+            position: fixed;
+            bottom: 36px;
+            right: 36px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 24px rgba(99,102,241,0.13);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        #help_btn:hover {
+            background: linear-gradient(90deg, #06b6d4 0%, #6366f1 100%);
+            box-shadow: 0 12px 40px rgba(6,182,212,0.18);
+        }
+        #help_modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(30,41,59,0.25);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        #help_modal.active {
+            display: flex;
+        }
+        #help_content {
+            background: var(--card-bg);
+            color: var(--text);
+            border-radius: 22px;
+            box-shadow: 0 12px 40px rgba(99,102,241,0.18);
+            padding: 44px 38px 32px 38px;
+            max-width: 480px;
+            width: 94vw;
+            position: relative;
+            animation: fadeIn 0.4s;
+        }
+        #help_close {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+        #help_content h3 {
+            margin-top: 0;
+            font-size: 1.32rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        #help_content ul {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+        #help_content li {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+        #help_content code {
+            background: #e0e7ff;
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-size: 1em;
+        }
+        .feedback-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin: 0 2px;
+            transition: transform 0.1s;
+        }
+        .feedback-btn:hover {
+            transform: scale(1.2);
+        }
+        .feedback-form {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        let promptLines = [];
+        let promptLimit = 50;
+        let soundEnabled = false;
+        function handleFileInput(input) {
+            const textarea = document.getElementById('prompts');
+            const countSpan = document.getElementById('prompt_count');
+            const previewDiv = document.getElementById('prompt_preview');
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                if (!file.name.endsWith('.txt') && !file.name.endsWith('.csv')) {
+                    showAlert(msg('arquivo_invalido'));
+                    input.value = '';
+                    textarea.disabled = false;
+                    textarea.value = '';
+                    countSpan.textContent = '';
+                    previewDiv.innerHTML = '';
+                    return;
+                }
+                textarea.disabled = true;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    let content = e.target.result;
+                    if (file.name.endsWith('.csv')) {
+                        // Extrai primeira coluna de cada linha
+                        content = content.split(/\r?\n/).map(l => l.split(',')[0]).join('\n');
+                    }
+                    textarea.value = content;
+                    promptLines = content.split(/\r?\n/).filter(l => l.trim().length > 0);
+                    countSpan.textContent = promptLines.length + ' prompt(s) carregados.';
+                    previewDiv.innerHTML = '';
+                    if (promptLines.length > 0) {
+                        previewDiv.innerHTML = '<b>Prévia dos prompts:</b><br>' + promptLines.slice(0,3).map((l,i) => (i+1)+'. '+l).join('<br>');
+                    }
+                    if (promptLines.length > promptLimit) {
+                        showAlert(msg('max_prompts', {max: promptLimit}));
+                    }
+                };
+                reader.readAsText(file, 'utf-8');
+            } else {
+                textarea.disabled = false;
+                textarea.value = '';
+                countSpan.textContent = '';
+                previewDiv.innerHTML = '';
+            }
+        }
+        function handleDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const dropzone = document.getElementById('dropzone');
+            dropzone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('prompts_file').files = files;
+                handleFileInput(document.getElementById('prompts_file'));
+            }
+        }
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('dropzone').classList.add('dragover');
+        }
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('dropzone').classList.remove('dragover');
+        }
+        function showLoader() {
+            document.getElementById('loader').classList.add('active');
+            document.getElementById('submit_btn').disabled = true;
+            document.getElementById('reset_btn').disabled = true;
+            let total = promptLines.length || document.getElementById('prompts').value.split(/\r?\n/).filter(l => l.trim().length > 0).length;
+            if (total > 1) {
+                let progress = 0;
+                let interval = setInterval(() => {
+                    progress = Math.min(progress + 1, total);
+                    document.getElementById('loader').textContent = 'Gerando artigo ' + progress + ' de ' + total + '...';
+                    if (progress === total) clearInterval(interval);
+                }, 1200);
+            }
+        }
+        function downloadExample() {
+            const content = 'Exemplo de prompt 1\nExemplo de prompt 2\nExemplo de prompt 3';
+            const blob = new Blob([content], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'exemplo_prompts.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        function downloadExampleCSV() {
+            const content = 'Prompt 1,Extra\nPrompt 2,Extra\nPrompt 3,Extra';
+            const blob = new Blob([content], {type: 'text/csv'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'exemplo_prompts.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        function resetForm() {
+            document.getElementById('main_form').reset();
+            document.getElementById('prompts').disabled = false;
+            document.getElementById('prompts').value = '';
+            document.getElementById('prompts_file').value = '';
+            document.getElementById('prompt_count').textContent = '';
+            document.getElementById('prompt_preview').innerHTML = '';
+            document.getElementById('api_key').focus();
+        }
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('sound_btn').textContent = soundEnabled ? '🔊' : '🔈';
+        }
+        window.onload = function() {
+            document.getElementById('api_key').focus();
+            // Dark mode persistência
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        };
+    </script>
+</head>
+<body>
+    <div id="progress-bar-container" style="display: block; width: 100%; background: rgb(226, 232, 240); height: 8px;">
+        <div id="progress-bar" style="width: 30%; height: 8px; background: linear-gradient(90deg, rgb(99, 102, 241) 0%, rgb(6, 182, 212) 100%); transition: width 0.3s;"></div>
+    </div>
+    <header class="header">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/document--v1.png" alt="Artigos">
+        <h1 class="header-title" style="margin:0;font-size:2.2rem;">Omni Gerador de Artigos</h1>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar modo claro/escuro" title="Alternar modo claro/escuro">🌙</button>
+        <button class="theme-toggle" id="sound_btn" onclick="toggleSound()" aria-label="Ativar/desativar som" title="Ativar/desativar som" style="right:60px;">🔈</button>
+    </header>
+    <main role="main">
+        <h1>Omni Gerador de Artigos</h1>
+        <div class="container">
+            <div class="card" id="instancias_card">
+                <h2>Instâncias (máx. 15, até 7 prompts por instância)</h2>
+                <form id="instancia_form" onsubmit="addInstancia(event)">
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <label for="inst_nome">Nome da instância</label>
+                        <input type="text" id="inst_nome" data-testid="instance-name" placeholder="Nome" maxlength="24" required="" style="flex: 2 1 0%;">
+                        <label for="inst_modelo">Modelo da instância</label>
+                        <select id="inst_modelo" data-testid="model-type" required="" style="flex:1;">
+                            <option value="openai">OpenAI</option>
+                            <option value="deepseek">DeepSeek</option>
+                        </select>
+                        <label for="inst_apikey">Chave da instância</label>
+                        <input type="text" id="inst_apikey" data-testid="api-key" placeholder="Chave API" required="" style="flex: 2 1 0%;">
+                    </div>
+                    <label for="inst_prompts">Prompts desta instância (máx. 7, um por linha):</label>
+                    <textarea id="inst_prompts" data-testid="prompts" rows="4" maxlength="2048" placeholder="Digite até 7 prompts, um por linha" required="" style=""></textarea>
+                    <span class="file-label">Ou carregue um arquivo .txt ou .csv (máx. 7 prompts):</span>
+                    <label for="inst_prompts_file">Arquivo de prompts</label>
+                    <input type="file" id="inst_prompts_file" accept=".txt,.csv" onchange="handleInstPromptsFile(this)" style="">
+                    <button type="submit" style="margin-top:12px;">Adicionar Instância</button>
+                </form>
+                <ul id="instancias_lista" style="list-style:none; padding:0; margin-top:16px;"><li style="margin-bottom: 12px; background: rgb(241, 245, 249); border-radius: 8px; padding: 12px 14px; position: relative;"><b>Instância E2E</b> <span style="color:var(--primary);font-size:0.95em;">[openai]</span> <span style="font-size:0.9em;color:#64748b;">fake...-key</span><br><span style="font-size:0.98em;color:#334155;">1. Teste E2E fluxo real.</span><button onclick="editInstancia(0)" style="position:absolute;right:70px;top:12px;background:var(--accent);color:#fff;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;">Editar</button><button onclick="removeInstancia(0)" style="position:absolute;right:12px;top:12px;background:var(--danger);color:#fff;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;">Remover</button></li></ul>
+            </div>
+            <div class="card">
+                <h2>Configuração</h2>
+                
+                  
+                
+                <form id="main_form" method="post" action="/generate" enctype="multipart/form-data" onsubmit="console.log('submit acionado');">
+                    <button id="submit_btn" type="submit" style="display:none;">Gerar Artigos</button>
+                    <button type="button" class="reset-btn" id="reset_btn" onclick="resetForm()">Limpar Tudo</button>
+                    <div id="loader" class="loader"></div>
+                </form>
+            </div>
+            <div style="text-align:center; margin-top:18px;">
+                <button id="gerar_lote_btn" class="download-btn" style="width:auto;min-width:220px;font-size:1.18rem;padding:16px 32px;background:var(--primary-dark);margin:0 auto;" data-testid="submit-btn">🚀 Gerar em Lote<span class="ripple" style="height: 244px; width: 244px; left: 2.98907px; top: -91.0731px;"></span></button>
+            </div>
+            
+        </div>
+    </main>
+    <button id="help_btn" aria-label="Como usar?" title="Como usar?">❓</button>
+    <div id="help_modal" tabindex="-1" aria-modal="true" role="dialog">
+        <div id="help_content">
+            <button id="help_close" aria-label="Fechar ajuda">×</button>
+            <h3>Como usar o Omni Gerador de Artigos</h3>
+            <ul>
+                <li>Preencha sua <b>chave de API</b> e selecione o <b>modelo</b> desejado.</li>
+                <li>Insira seus <b>prompts</b> (um por linha) ou faça upload de um arquivo <code>.txt</code> ou <code>.csv</code>.</li>
+                <li>Adicione múltiplas instâncias para geração em paralelo, se desejar.</li>
+                <li>Clique em <b>Gerar Artigos</b> e acompanhe o progresso na barra animada.</li>
+                <li>Ao final, faça o <b>download do ZIP</b> com os artigos e exporte os prompts em CSV.</li>
+            </ul>
+            <div style="margin-top:18px;font-size:0.97em;color:#64748b;">
+                Dica: Use prompts detalhados para obter artigos mais completos.<br>
+                Exemplo: <code>Explique os impactos da inteligência artificial na educação básica.</code>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Acessibilidade: clique na dropzone abre o file input
+        document.getElementById('dropzone').addEventListener('click', function() {
+            document.getElementById('prompts_file').click();
+        });
+        document.getElementById('dropzone').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                document.getElementById('prompts_file').click();
+            }
+        });
+    </script>
+    <script>
+        let instancias = [];
+        function handleInstPromptsFile(input) {
+            const textarea = document.getElementById('inst_prompts');
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                if (!file.name.endsWith('.txt') && !file.name.endsWith('.csv')) {
+                    showAlert(msg('arquivo_invalido'));
+                    input.value = '';
+                    textarea.value = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    let content = e.target.result;
+                    if (file.name.endsWith('.csv')) {
+                        content = content.split(/\r?\n/).map(l => l.split(',')[0]).join('\n');
+                    }
+                    let prompts = content.split(/\r?\n/).filter(l => l.trim().length > 0).slice(0,7);
+                    textarea.value = prompts.join('\n');
+                };
+                reader.readAsText(file, 'utf-8');
+            } else {
+                textarea.value = '';
+            }
+        }
+        function addInstancia(e) {
+            e.preventDefault();
+            const nome = document.getElementById('inst_nome').value.trim();
+            const modelo = document.getElementById('inst_modelo').value;
+            const api_key = document.getElementById('inst_apikey').value.trim();
+            let prompts = document.getElementById('inst_prompts').value.split(/\r?\n/).map(l => l.trim()).filter(l => l).slice(0,7);
+            if (!nome || !modelo || !api_key || prompts.length === 0) return;
+            if (prompts.length > 7) {
+                showAlert(msg('max_prompts_instancia'));
+                return;
+            }
+            if (instancias.length >= 15) {
+                showAlert(msg('max_instancias'));
+                return;
+            }
+            instancias.push({nome, modelo, api_key, prompts});
+            renderInstancias();
+            document.getElementById('instancia_form').reset();
+            document.getElementById('inst_nome').focus();
+        }
+        function renderInstancias() {
+            const lista = document.getElementById('instancias_lista');
+            lista.innerHTML = '';
+            instancias.forEach((inst, idx) => {
+                const li = document.createElement('li');
+                li.style = 'margin-bottom:12px; background:#f1f5f9; border-radius:8px; padding:12px 14px; position:relative;';
+                li.innerHTML = `<b>${inst.nome}</b> <span style='color:var(--primary);font-size:0.95em;'>[${inst.modelo}]</span> <span style='font-size:0.9em;color:#64748b;'>${inst.api_key.slice(0,4)}...${inst.api_key.slice(-4)}</span><br>` +
+                    `<span style='font-size:0.98em;color:#334155;'>${inst.prompts.slice(0,3).map((l,i)=>`${i+1}. ${l}`).join('<br>')}${inst.prompts.length>3?'...':''}</span>` +
+                    `<button onclick='editInstancia(${idx})' style='position:absolute;right:70px;top:12px;background:var(--accent);color:#fff;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;'>Editar</button>` +
+                    `<button onclick='removeInstancia(${idx})' style='position:absolute;right:12px;top:12px;background:var(--danger);color:#fff;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;'>Remover</button>`;
+                lista.appendChild(li);
+            });
+        }
+        function removeInstancia(idx) {
+            instancias.splice(idx,1);
+            renderInstancias();
+        }
+        function editInstancia(idx) {
+            const inst = instancias[idx];
+            document.getElementById('inst_nome').value = inst.nome;
+            document.getElementById('inst_modelo').value = inst.modelo;
+            document.getElementById('inst_apikey').value = inst.api_key;
+            document.getElementById('inst_prompts').value = inst.prompts.join('\n');
+            removeInstancia(idx);
+        }
+        // Interceptar envio do formulário principal para enviar instancias
+        if (mainForm) {
+            mainForm.addEventListener('submit', function(e) {
+                if (instancias.length === 0) {
+                    showAlert(msg('obrigatorio_instancia'));
+                    e.preventDefault();
+                    return false;
+                }
+                const instInput = document.createElement('input');
+                instInput.type = 'hidden';
+                instInput.name = 'instancias_json';
+                instInput.value = JSON.stringify(instancias);
+                mainForm.appendChild(instInput);
+            });
+        }
+    </script>
+    <script>
+    // Integração da barra de progresso em tempo real
+    const mainForm = document.getElementById('main_form');
+    let currentTraceId = null;
+    function startProgress(traceId) {
+        currentTraceId = traceId;
+        const barContainer = document.getElementById('progress-bar-container');
+        if (barContainer) barContainer.style.display = 'block';
+        // SSE para progresso em tempo real
+        const evtSource = new EventSource(`/events/${traceId}`);
+        evtSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            let pct = data.total > 0 ? Math.round(100 * data.current / data.total) : 0;
+            const bar = document.getElementById('progress-bar');
+            if (bar) bar.style.width = pct + '%';
+            if (data.status === 'done') {
+                if (bar) bar.style.width = '100%';
+                setTimeout(() => {
+                    if (barContainer) barContainer.style.display = 'none';
+                }, 1200);
+                evtSource.close();
+            }
+        };
+    }
+    if (mainForm) {
+        mainForm.addEventListener('submit', function(e) {
+            // Gera trace_id local e envia para o backend
+            const traceId = self.crypto.randomUUID();
+            const traceInput = document.createElement('input');
+            traceInput.type = 'hidden';
+            traceInput.name = 'trace_id';
+            traceInput.value = traceId;
+            mainForm.appendChild(traceInput);
+            startProgress(traceId);
+        });
+    }
+    </script>
+    <script>
+        // Efeito ripple em botões
+        function addRippleEffect(e) {
+            const button = e.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const rect = button.getBoundingClientRect();
+            circle.classList.add('ripple');
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - diameter/2}px`;
+            circle.style.top = `${e.clientY - rect.top - diameter/2}px`;
+            button.appendChild(circle);
+            setTimeout(() => circle.remove(), 600);
+        }
+        document.querySelectorAll('button, .download-btn').forEach(btn => {
+            btn.addEventListener('click', addRippleEffect);
+        });
+        // Feedback sonoro aprimorado
+        function playSuccessSound() {
+            const audio = new Audio('https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae7e2.mp3');
+            audio.volume = 0.5;
+            audio.play();
+        }
+        function playErrorSound() {
+            const audio = new Audio('https://cdn.pixabay.com/audio/2022/07/26/audio_125bfae7e2.mp3');
+            audio.volume = 0.5;
+            audio.play();
+        }
+        // Suavizar transições de alertas
+        function showAlert(msg) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert';
+            alertDiv.setAttribute('data-testid', 'error-message');
+            alertDiv.innerHTML = '<span>⚠️</span> ' + msg;
+            document.querySelector('.card').insertBefore(alertDiv, document.querySelector('.card').firstChild.nextSibling);
+            playErrorSound();
+            setTimeout(() => {
+                alertDiv.style.opacity = 0;
+                setTimeout(() => alertDiv.remove(), 500);
+            }, 3500);
+        }
+        // Sucesso: tocar som ao exibir resultado
+        if (typeof download_link !== 'undefined' && download_link) {
+            playSuccessSound();
+        }
+    </script>
+    <script>
+    document.getElementById('help_btn').onclick = function() {
+        document.getElementById('help_modal').classList.add('active');
+        document.getElementById('help_content').focus();
+    };
+    document.getElementById('help_close').onclick = function() {
+        document.getElementById('help_modal').classList.remove('active');
+    };
+    document.getElementById('help_modal').onclick = function(e) {
+        if (e.target === this) this.classList.remove('active');
+    };
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') document.getElementById('help_modal').classList.remove('active');
+    });
+    </script>
+    <script>
+    // Validação de campos obrigatórios antes do envio
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const instanciasInput = document.querySelector('[name="instancias_json"]');
+            const promptsInput = document.querySelector('[name="prompts"]');
+            if (instanciasInput && !instanciasInput.value.trim()) {
+                alert(msg('obrigatorio_instancia'));
+                e.preventDefault();
+                return false;
+            }
+            if (promptsInput && !promptsInput.value.trim()) {
+                alert(msg('obrigatorio_prompt'));
+                e.preventDefault();
+                return false;
+            }
+            // Exibe barra de progresso
+            const barContainer = document.getElementById('progress-bar-container');
+            if (barContainer) barContainer.style.display = 'block';
+            const bar = document.getElementById('progress-bar');
+            if (bar) bar.style.width = '30%'; // Inicial
+        });
+    }
+    </script>
+    <script>
+    // Centralização de mensagens para i18n
+    const MESSAGES = {
+        'pt-BR': {
+            obrigatorio_instancia: 'É obrigatório cadastrar ao menos uma instância.',
+            obrigatorio_prompt: 'É obrigatório informar ao menos um prompt.',
+            max_prompts: 'Limite de {max} prompts por vez.',
+            max_instancias: 'Máximo de 15 instâncias.',
+            max_prompts_instancia: 'Máximo de 7 prompts por instância.',
+            arquivo_invalido: 'Apenas arquivos .txt ou .csv são aceitos.',
+            sucesso_geracao: 'Artigos gerados com sucesso!',
+            erro_geracao: 'Erro ao gerar artigos.',
+            erro_api: 'Erro de comunicação com a API.',
+            aguardando: 'Aguardando início do processamento...'
+        }
+    };
+    const LANG = 'pt-BR';
+    function msg(key, params = {}) {
+        let texto = (MESSAGES[LANG] && MESSAGES[LANG][key]) ? MESSAGES[LANG][key] : key;
+        Object.keys(params).forEach(k => {
+            texto = texto.replace(`{${k}}`, params[k]);
+        });
+        return texto;
+    }
+    </script>
+    <script>
+    function renderFeedbackForm(articleId, prompt) {
+        return `
+        <div class="feedback-form" style="margin-top:18px;">
+            <span style="font-weight:600;">Avalie este artigo:</span>
+            <button type="button" class="feedback-btn" onclick="submitFeedback('${articleId}','${prompt}',1)">👍</button>
+            <button type="button" class="feedback-btn" onclick="submitFeedback('${articleId}','${prompt}',0)">👎</button>
+            <input type="text" id="feedback_comment_${articleId}" placeholder="Comentário opcional" style="margin-left:8px; width:220px; border-radius:6px; border:1px solid #e2e8f0; padding:4px 8px;">
+            <span id="feedback_status_${articleId}" style="margin-left:10px;font-size:0.98em;color:var(--success);"></span>
+        </div>`;
+    }
+    function submitFeedback(articleId, prompt, avaliacao) {
+        const comment = document.getElementById(`feedback_comment_${articleId}`).value;
+        fetch('/feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_artigo: articleId, prompt: prompt, avaliacao: avaliacao, comentario: comment })
+        })
+        .then(r => r.json())
+        .then(data => {
+            const status = document.getElementById(`feedback_status_${articleId}`);
+            if (data.status === 'ok') {
+                status.textContent = 'Obrigado pelo feedback!';
+            } else if (data.status === 'duplicado') {
+                status.textContent = 'Feedback já registrado.';
+            } else if (data.error) {
+                status.textContent = 'Erro: ' + data.error;
+            }
+        })
+        .catch(() => {
+            const status = document.getElementById(`feedback_status_${articleId}`);
+            status.textContent = 'Erro ao enviar feedback.';
+        });
+    }
+    </script>
+
+ </body></html>

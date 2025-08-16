@@ -1,0 +1,6 @@
+[cosmic-ray]
+module-path = "app"
+test-command = "pytest {module}"
+timeout = 30
+baseline = 1
+exclude-modules = [] 

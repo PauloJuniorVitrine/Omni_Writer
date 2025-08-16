@@ -1,0 +1,16 @@
+{
+  "additionalProperties": {
+    "supportsES6": true,
+    "npmName": "@omni-writer/api-client",
+    "npmVersion": "1.0.0",
+    "withInterfaces": true,
+    "typescriptThreePlus": true
+  },
+  "apiPackage": "api",
+  "modelPackage": "models",
+  "packageName": "omni-writer-api-client",
+  "packageVersion": "1.0.0",
+  "sortParamsByRequiredFlag": true,
+  "usePromise": true,
+  "withInterfaces": true
+} 

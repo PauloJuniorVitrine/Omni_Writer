@@ -1,0 +1,79 @@
+[
+  {
+    "id_artigo": "artigo_1.txt",
+    "prompt": "prompt 1",
+    "avaliacao": 1,
+    "comentario": "Ótimo artigo!",
+    "timestamp": "2025-05-03T16:27:02.394167"
+  },
+  {
+    "id_artigo": "artigo_inexistente.txt",
+    "prompt": "prompt x",
+    "avaliacao": 1,
+    "comentario": "Teste artigo inexistente",
+    "timestamp": "2025-05-03T17:27:30.375623"
+  },
+  {
+    "id_artigo": "a1",
+    "prompt": "p1",
+    "avaliacao": 1,
+    "comentario": "bom",
+    "timestamp": "2025-05-04T12:12:57.723028"
+  },
+  {
+    "id_artigo": "a2",
+    "prompt": "p2",
+    "avaliacao": 1,
+    "comentario": null,
+    "timestamp": "2025-05-04T12:12:57.723028"
+  },
+  {
+    "id_artigo": "a4",
+    "prompt": "p4",
+    "avaliacao": 0,
+    "comentario": null,
+    "timestamp": "2025-05-04T12:12:57.754264"
+  },
+  {
+    "id_artigo": "artigo_3.txt",
+    "prompt": "prompt 3",
+    "avaliacao": 1,
+    "comentario": "Comentário 3",
+    "timestamp": "2025-05-05T00:59:00.809255"
+  },
+  {
+    "id_artigo": "artigo_inexistente.txt",
+    "prompt": "prompt 1",
+    "avaliacao": 1,
+    "comentario": "Teste",
+    "timestamp": "2025-05-05T00:59:32.175376"
+  },
+  {
+    "id_artigo": "dup1",
+    "prompt": "pdup",
+    "avaliacao": 1,
+    "comentario": null,
+    "timestamp": "2025-05-05T01:18:27.901096"
+  },
+  {
+    "id_artigo": "artigo_0.txt",
+    "prompt": "prompt 0",
+    "avaliacao": 1,
+    "comentario": "Comentário 0",
+    "timestamp": "2025-05-05T02:54:30.670001"
+  },
+  {
+    "id_artigo": "artigo_2.txt",
+    "prompt": "prompt 2",
+    "avaliacao": 1,
+    "comentario": "Comentário 2",
+    "timestamp": "2025-05-05T02:54:30.680642"
+  },
+  {
+    "id_artigo": "artigo_4.txt",
+    "prompt": "prompt 4",
+    "avaliacao": 1,
+    "comentario": "Comentário 4",
+    "timestamp": "2025-05-05T02:54:30.740532"
+  }
+]

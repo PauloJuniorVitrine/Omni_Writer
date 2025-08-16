@@ -1,0 +1,57 @@
+﻿{
+    "Config":  {
+                   "LogRetention":  7,
+                   "HealthCheck":  true,
+                   "AutoRestart":  true,
+                   "AlertThreshold":  80,
+                   "CheckInterval":  300
+               },
+    "Alerts":  null,
+    "FlowStatus":  {
+                       "Patterns":  [
+                                        {
+                                            "Frequency":  68,
+                                            "RiskScore":  150,
+                                            "Name":  "Fluxo de Geracao de Artigos",
+                                            "IsTested":  true
+                                        },
+                                        {
+                                            "Frequency":  70,
+                                            "RiskScore":  80,
+                                            "Name":  "Fluxo de Monitoramento",
+                                            "IsTested":  true
+                                        },
+                                        {
+                                            "Frequency":  8,
+                                            "RiskScore":  90,
+                                            "Name":  "Fluxo de Decisoes de Teste",
+                                            "IsTested":  true
+                                        }
+                                    ],
+                       "Status":  "OPTIMAL",
+                       "RiskScore":  106.66666666666667,
+                       "Coverage":  100
+                   },
+    "MonitoringInfo":  {
+                           "Timestamp":  "2025-07-13T08:19:13Z",
+                           "Description":  "Continuous Monitoring - Framework de Detecao de Fluxos",
+                           "TracingId":  "CONTINUOUS_MONITORING_20250127_001",
+                           "Cycle":  19
+                       },
+    "HealthStatus":  {
+                         "Status":  "HEALTHY",
+                         "Score":  100,
+                         "Checks":  [
+                                        {
+                                            "Status":  "PASSED",
+                                            "Name":  "Logs Disponiveis",
+                                            "Details":  "Todos os logs necessarios encontrados"
+                                        },
+                                        {
+                                            "Status":  "PASSED",
+                                            "Name":  "Scripts de Teste",
+                                            "Details":  "Todos os scripts de teste disponiveis"
+                                        }
+                                    ]
+                     }
+}

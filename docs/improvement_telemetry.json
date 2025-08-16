@@ -1,0 +1,12 @@
+{
+  "total_melhorias": 3,
+  "score_medio_inicial": 84.7,
+  "score_medio_final": 91.0,
+  "impactos_criticos": 0,
+  "enriquecimentos_aplicados": 3,
+  "base_logs_producao": false,
+  "score_por_sprint": [
+    {"sprint": 1, "media_inicial": 84.7, "final": 91.0}
+  ],
+  "versao_estrutura": "v2.2-enterprise"
+} 

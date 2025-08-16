@@ -1,0 +1,35 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 24 items
+
+tests\unit\domain\test_models.py::test_promptinput_valido[prompt v\xe1lido-0] PASSED [  4%]
+tests\unit\domain\test_models.py::test_promptinput_valido[outro prompt-5] PASSED [  8%]
+tests\unit\domain\test_models.py::test_promptinput_valido[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-999] PASSED [ 12%]
+tests\unit\domain\test_models.py::test_promptinput_invalido[-0] PASSED   [ 16%]
+tests\unit\domain\test_models.py::test_promptinput_invalido[None-1] PASSED [ 20%]
+tests\unit\domain\test_models.py::test_promptinput_invalido[   -2] PASSED [ 25%]
+tests\unit\domain\test_models.py::test_promptinput_invalido[ok--1] PASSED [ 29%]
+tests\unit\domain\test_models.py::test_promptinput_invalido[ok-None] PASSED [ 33%]
+tests\unit\domain\test_models.py::test_promptinput_to_dict PASSED        [ 37%]
+tests\unit\domain\test_models.py::test_articleoutput_to_dict PASSED      [ 41%]
+tests\unit\domain\test_models.py::test_articleoutput_metadata_none PASSED [ 45%]
+tests\unit\domain\test_models.py::test_articleoutput_to_dict_edge PASSED [ 50%]
+tests\unit\domain\test_models.py::test_generationconfig_valido[key-openai-prompts0-0.7-4096-pt-BR] PASSED [ 54%]
+tests\unit\domain\test_models.py::test_generationconfig_valido[key-deepseek-prompts1-1.0-8192-en] PASSED [ 58%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[-openai-prompts0-0.7-4096-pt-BR] PASSED [ 62%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[key-invalid-prompts1-0.7-4096-pt-BR] PASSED [ 66%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[key-openai-prompts2-0.7-4096-pt-BR] PASSED [ 70%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[key-openai-prompts3-0.7-4096-pt-BR] PASSED [ 75%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[key-openai-prompts4--0.1-4096-pt-BR] PASSED [ 79%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[key-openai-prompts5-0.7-100-pt-BR] PASSED [ 83%]
+tests\unit\domain\test_models.py::test_generationconfig_invalido[key-openai-prompts6-0.7-4096-] PASSED [ 87%]
+tests\unit\domain\test_models.py::test_generationconfig_to_dict_edge PASSED [ 91%]
+tests\unit\domain\test_models.py::test_blog_criacao_relacionamento PASSED [ 95%]
+tests\unit\domain\test_models.py::test_prompt_blog_constraint PASSED     [100%]
+
+======================= 24 passed, 2 warnings in 0.78s ========================

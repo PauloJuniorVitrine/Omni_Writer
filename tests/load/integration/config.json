@@ -1,0 +1,112 @@
+{
+  "monitoring_config": {
+    "grafana_url": "http://localhost:3000",
+    "grafana_api_key": "",
+    "prometheus_url": "http://localhost:9090",
+    "prometheus_pushgateway": "http://localhost:9091",
+    "elasticsearch_url": "http://localhost:9200",
+    "elasticsearch_index": "load-tests",
+    "influxdb_url": "http://localhost:8086",
+    "influxdb_database": "load_tests",
+    "influxdb_username": "",
+    "influxdb_password": ""
+  },
+  "dashboard_configs": {
+    "main_dashboard": {
+      "title": "Load Tests - Dashboard Unificado",
+      "description": "Dashboard unificado para monitoramento de load tests",
+      "tags": ["load-tests", "performance", "unified"],
+      "refresh_interval": "5s",
+      "time_range": {
+        "from": "now-1h",
+        "to": "now"
+      }
+    },
+    "alerts_dashboard": {
+      "title": "Load Tests - Alertas",
+      "description": "Dashboard de alertas de load tests",
+      "tags": ["load-tests", "alerts", "unified"],
+      "refresh_interval": "30s",
+      "time_range": {
+        "from": "now-24h",
+        "to": "now"
+      }
+    }
+  },
+  "custom_metrics": {
+    "load_test_requests": {
+      "type": "counter",
+      "description": "Total number of load test requests",
+      "labels": ["test_name", "endpoint", "status"]
+    },
+    "load_test_response_time": {
+      "type": "histogram",
+      "description": "Response time of load test requests",
+      "labels": ["test_name", "endpoint"]
+    },
+    "load_test_errors": {
+      "type": "counter",
+      "description": "Total number of load test errors",
+      "labels": ["test_name", "error_type"]
+    },
+    "load_test_active_users": {
+      "type": "gauge",
+      "description": "Number of active users in load test",
+      "labels": ["test_name"]
+    },
+    "load_test_throughput": {
+      "type": "gauge",
+      "description": "Current throughput in requests per second",
+      "labels": ["test_name"]
+    },
+    "system_cpu_usage": {
+      "type": "gauge",
+      "description": "CPU usage during load test",
+      "labels": ["test_name"]
+    },
+    "system_memory_usage": {
+      "type": "gauge",
+      "description": "Memory usage during load test in MB",
+      "labels": ["test_name"]
+    }
+  },
+  "unified_alerts": {
+    "high_error_rate": {
+      "source": "prometheus",
+      "severity": "warning",
+      "message": "Taxa de erro alta detectada",
+      "threshold": 0.05,
+      "query": "rate(load_test_errors_total[5m]) / rate(load_test_requests_total[5m])"
+    },
+    "high_response_time": {
+      "source": "prometheus",
+      "severity": "warning",
+      "message": "Tempo de resposta alto detectado",
+      "threshold": 1000.0,
+      "query": "histogram_quantile(0.95, rate(load_test_response_time_bucket[5m]))"
+    },
+    "low_throughput": {
+      "source": "prometheus",
+      "severity": "info",
+      "message": "Throughput baixo detectado",
+      "threshold": 10.0,
+      "query": "load_test_throughput_rps"
+    },
+    "high_cpu_usage": {
+      "source": "prometheus",
+      "severity": "warning",
+      "message": "Uso de CPU alto detectado",
+      "threshold": 90.0,
+      "query": "load_test_system_cpu_percent"
+    }
+  },
+  "integration_settings": {
+    "auto_deploy_dashboards": true,
+    "auto_create_metrics": true,
+    "auto_create_alerts": true,
+    "metrics_push_interval": 15,
+    "report_generation_interval": 3600,
+    "alert_check_interval": 30
+  },
+  "last_updated": "2025-01-27T16:40:00Z"
+} 

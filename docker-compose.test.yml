@@ -1,0 +1,206 @@
+# Docker Compose para Ambiente de Testes - Omni Writer
+# Configuração para execução dos testes de integração
+
+version: '3.8'
+
+services:
+  # Redis para cache e filas (Celery)
+  redis-test:
+    image: redis:7-alpine
+    container_name: omni_writer_redis_test
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=test_password_2025
+    volumes:
+      - redis_test_data:/data
+    command: redis-server --requirepass test_password_2025
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    networks:
+      - omni_writer_test_network
+    restart: unless-stopped
+
+  # PostgreSQL para banco de dados
+  postgres-test:
+    image: postgres:15-alpine
+    container_name: omni_writer_postgres_test
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: omniwriter_test
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password_2025
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+      - ./scripts/init_test_db.sql:/docker-entrypoint-initdb.d/init_test_db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test_user -d omniwriter_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - omni_writer_test_network
+    restart: unless-stopped
+
+  # Elasticsearch para busca
+  elasticsearch-test:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: omni_writer_elasticsearch_test
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.name=omni_writer_test_cluster
+      - node.name=omni_writer_test_node
+    volumes:
+      - elasticsearch_test_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - omni_writer_test_network
+    restart: unless-stopped
+
+  # Prometheus para métricas
+  prometheus-test:
+    image: prom/prometheus:v2.45.0
+    container_name: omni_writer_prometheus_test
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_test_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - omni_writer_test_network
+    restart: unless-stopped
+
+  # Grafana para visualização
+  grafana-test:
+    image: grafana/grafana:10.0.0
+    container_name: omni_writer_grafana_test
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin_test_2025
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    volumes:
+      - grafana_test_data:/var/lib/grafana
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - omni_writer_test_network
+    restart: unless-stopped
+    depends_on:
+      - prometheus-test
+
+  # Jaeger para tracing distribuído
+  jaeger-test:
+    image: jaegertracing/all-in-one:1.48
+    container_name: omni_writer_jaeger_test
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+      - "14250:14250"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:16686/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - omni_writer_test_network
+    restart: unless-stopped
+
+  # Test Runner (serviço principal para execução de testes)
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: omni_writer_test_runner
+    environment:
+      - REDIS_URL=redis://:test_password_2025@redis-test:6379/0
+      - POSTGRES_URL=postgresql://test_user:test_password_2025@postgres-test:5432/omniwriter_test
+      - ELASTICSEARCH_URL=http://elasticsearch-test:9200
+      - PROMETHEUS_URL=http://prometheus-test:9090
+      - GRAFANA_URL=http://grafana-test:3000
+      - JAEGER_URL=http://jaeger-test:16686
+      - TEST_ENV=integration
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
+      - ./test-results:/app/test-results
+      - ./coverage:/app/coverage
+    depends_on:
+      redis-test:
+        condition: service_healthy
+      postgres-test:
+        condition: service_healthy
+      elasticsearch-test:
+        condition: service_healthy
+    networks:
+      - omni_writer_test_network
+    command: >
+      sh -c "
+        echo 'Aguardando serviços ficarem prontos...' &&
+        sleep 30 &&
+        echo 'Executando testes de integração...' &&
+        python -m pytest tests/integration/ -v --tb=short --cov=app --cov-report=html --cov-report=json &&
+        echo 'Testes concluídos!'
+      "
+
+# Volumes para persistência de dados
+volumes:
+  redis_test_data:
+    driver: local
+  postgres_test_data:
+    driver: local
+  elasticsearch_test_data:
+    driver: local
+  prometheus_test_data:
+    driver: local
+  grafana_test_data:
+    driver: local
+
+# Rede para comunicação entre serviços
+networks:
+  omni_writer_test_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 

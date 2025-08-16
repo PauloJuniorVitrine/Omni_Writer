@@ -1,0 +1,20 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 9 items
+
+tests\unit\test_status_repository.py::test_update_and_get_status PASSED  [ 11%]
+tests\unit\test_status_repository.py::test_update_status_opcional PASSED [ 22%]
+tests\unit\test_status_repository.py::test_clear_old_status PASSED       [ 33%]
+tests\unit\test_status_repository.py::test_clear_old_status_sem_antigos PASSED [ 44%]
+tests\unit\test_status_repository.py::test_update_status_empty_trace PASSED [ 55%]
+tests\unit\test_status_repository.py::test_get_status_inexistente PASSED [ 66%]
+tests\unit\test_status_repository.py::test_clear_old_status_custom_days PASSED [ 77%]
+tests\unit\test_status_repository.py::test_update_status_db_exception PASSED [ 88%]
+tests\unit\test_status_repository.py::test_get_status_db_exception PASSED [100%]
+
+======================= 9 passed, 16 warnings in 1.57s ========================

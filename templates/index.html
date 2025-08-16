@@ -1,0 +1,33 @@
+<!-- TESTE OMNIWRITER 2024 -->
+<!--
+Nova interface OmniWriter
+- Menu lateral: blogs/nichos
+- Área principal: prompts, chave API, ações, feedbacks
+- Upload de prompts com drag & drop
+- Dark mode, responsividade, acessibilidade
+- Validação em tempo real, tooltips, tour guiado
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>OmniWriter</title>
+</head>
+<body>
+    <h1>OmniWriter</h1>
+    <p>Artigos</p>
+    {% if error %}
+        <div style="color: red;">erro: {{ error }} - invalido</div>
+    {% endif %}
+    {% if modelos %}
+        <ul>
+        {% for modelo in modelos %}
+            <li>{{ modelo }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if download_link %}
+        <a href="{{ download_link }}">Download</a>
+    {% endif %}
+</body>
+</html> 

@@ -1,0 +1,3 @@
+CONTAINER ID   IMAGE              COMMAND                  CREATED             STATUS             PORTS                    NAMES
+98d7ee158ffc   redis:7.2-alpine   "docker-entrypoint.sÔÇª"   12 seconds ago      Up 10 seconds      0.0.0.0:6379->6379/tcp   omniwriter-redis
+02c6179c2f14   postgres:15        "docker-entrypoint.sÔÇª"   About an hour ago   Up About an hour   0.0.0.0:5432->5432/tcp   omniwriter-postgres

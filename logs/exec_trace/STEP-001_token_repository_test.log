@@ -1,0 +1,275 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 11 items
+
+tests\unit\test_token_repository.py::test_is_blocked_false PASSED        [  9%]
+tests\unit\test_token_repository.py::test_is_blocked_true_and_expired PASSED [ 18%]
+tests\unit\test_token_repository.py::test_register_failed_attempt_blocks PASSED [ 27%]
+tests\unit\test_token_repository.py::test_log_auth_attempt_success_and_fail FAILED [ 36%]
+tests\unit\test_token_repository.py::test_init_db FAILED                 [ 45%]
+tests\unit\test_token_repository.py::test_create_token_and_validate PASSED [ 54%]
+tests\unit\test_token_repository.py::test_validate_token_blocked PASSED  [ 63%]
+tests\unit\test_token_repository.py::test_validate_token_valid PASSED    [ 72%]
+tests\unit\test_token_repository.py::test_validate_token_invalid PASSED  [ 81%]
+tests\unit\test_token_repository.py::test_rotate_token PASSED            [ 90%]
+tests\unit\test_token_repository.py::test_revoke_token PASSED            [100%]
+
+================================== FAILURES ===================================
+___________________ test_log_auth_attempt_success_and_fail ____________________
+
+    def test_log_auth_attempt_success_and_fail():
+>       with patch('shared.token_repository.request', create=True) as mock_req:
+
+tests\unit\test_token_repository.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Program Files\Python311\Lib\unittest\mock.py:1450: in __enter__
+    if spec is None and _is_async_obj(original):
+C:\Program Files\Python311\Lib\unittest\mock.py:55: in _is_async_obj
+    if hasattr(obj, '__func__'):
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\werkzeug\local.py:318: in __get__
+    obj = instance._get_current_object()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def _get_current_object() -> T:
+        try:
+            obj = local.get()
+        except LookupError:
+>           raise RuntimeError(unbound_message) from None
+E           RuntimeError: Working outside of request context.
+E           
+E           This typically means that you attempted to use functionality that needed
+E           an active HTTP request. Consult the documentation on testing for
+E           information about how to avoid this problem.
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\werkzeug\local.py:519: RuntimeError
+________________________________ test_init_db _________________________________
+
+self = <sqlalchemy.engine.base.Connection object at 0x00000210FD134F10>
+engine = Engine(postgresql://user:***@localhost:5432/omniwriter)
+connection = None, _has_events = None, _allow_revalidate = True
+_allow_autobegin = True
+
+    def __init__(
+        self,
+        engine: Engine,
+        connection: Optional[PoolProxiedConnection] = None,
+        _has_events: Optional[bool] = None,
+        _allow_revalidate: bool = True,
+        _allow_autobegin: bool = True,
+    ):
+        """Construct a new Connection."""
+        self.engine = engine
+        self.dialect = dialect = engine.dialect
+    
+        if connection is None:
+            try:
+>               self._dbapi_connection = engine.raw_connection()
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:146: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:3298: in raw_connection
+    return self.pool.connect()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:449: in connect
+    return _ConnectionFairy._checkout(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:713: in checkout
+    rec = pool._do_get()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\impl.py:179: in _do_get
+    with util.safe_reraise():
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:146: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    return self._create_connection()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:390: in _create_connection
+    return _ConnectionRecord(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:675: in __init__
+    self.__connect()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:901: in __connect
+    with util.safe_reraise():
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:146: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:897: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\create.py:646: in connect
+    return dialect.connect(*cargs, **cparams)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\default.py:625: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+dsn = 'host=localhost dbname=omniwriter user=user password=password port=5432'
+connection_factory = None, cursor_factory = None
+kwargs = {'dbname': 'omniwriter', 'host': 'localhost', 'password': 'password', 'port': 5432, ...}
+kwasync = {}
+
+    def connect(dsn=None, connection_factory=None, cursor_factory=None, **kwargs):
+        """
+        Create a new database connection.
+    
+        The connection parameters can be specified as a string:
+    
+            conn = psycopg2.connect("dbname=test user=postgres password=secret")
+    
+        or using a set of keyword arguments:
+    
+            conn = psycopg2.connect(database="test", user="postgres", password="secret")
+    
+        Or as a mix of both. The basic connection parameters are:
+    
+        - *dbname*: the database name
+        - *database*: the database name (only as keyword argument)
+        - *user*: user name used to authenticate
+        - *password*: password used to authenticate
+        - *host*: database host address (defaults to UNIX socket if not provided)
+        - *port*: connection port number (defaults to 5432 if not provided)
+    
+        Using the *connection_factory* parameter a different class or connections
+        factory can be specified. It should be a callable object taking a dsn
+        argument.
+    
+        Using the *cursor_factory* parameter, a new default cursor factory will be
+        used by cursor().
+    
+        Using *async*=True an asynchronous connection will be created. *async_* is
+        a valid alias (for Python versions where ``async`` is a keyword).
+    
+        Any other keyword parameter will be passed to the underlying client
+        library: the list of supported parameters depends on the library version.
+    
+        """
+        kwasync = {}
+        if 'async' in kwargs:
+            kwasync['async'] = kwargs.pop('async')
+        if 'async_' in kwargs:
+            kwasync['async_'] = kwargs.pop('async_')
+    
+        dsn = _ext.make_dsn(dsn, **kwargs)
+>       conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+E       psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+E       	Is the server running on that host and accepting TCP/IP connections?
+E       connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+E       	Is the server running on that host and accepting TCP/IP connections?
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\psycopg2\__init__.py:122: OperationalError
+
+The above exception was the direct cause of the following exception:
+
+    def test_init_db():
+        # Apenas cobre o método, sem side effects
+>       tr.init_db()
+
+tests\unit\test_token_repository.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+shared\token_repository.py:74: in init_db
+    Base.metadata.create_all(engine)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\sql\schema.py:5925: in create_all
+    bind._run_ddl_visitor(
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:3248: in _run_ddl_visitor
+    with self.begin() as conn:
+C:\Program Files\Python311\Lib\contextlib.py:137: in __enter__
+    return next(self.gen)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:3238: in begin
+    with self.connect() as conn:
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:3274: in connect
+    return self._connection_cls(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:148: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:2439: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:146: in __init__
+    self._dbapi_connection = engine.raw_connection()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\base.py:3298: in raw_connection
+    return self.pool.connect()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:449: in connect
+    return _ConnectionFairy._checkout(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:713: in checkout
+    rec = pool._do_get()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\impl.py:179: in _do_get
+    with util.safe_reraise():
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:146: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    return self._create_connection()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:390: in _create_connection
+    return _ConnectionRecord(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:675: in __init__
+    self.__connect()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:901: in __connect
+    with util.safe_reraise():
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:146: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\pool\base.py:897: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\create.py:646: in connect
+    return dialect.connect(*cargs, **cparams)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\sqlalchemy\engine\default.py:625: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+dsn = 'host=localhost dbname=omniwriter user=user password=password port=5432'
+connection_factory = None, cursor_factory = None
+kwargs = {'dbname': 'omniwriter', 'host': 'localhost', 'password': 'password', 'port': 5432, ...}
+kwasync = {}
+
+    def connect(dsn=None, connection_factory=None, cursor_factory=None, **kwargs):
+        """
+        Create a new database connection.
+    
+        The connection parameters can be specified as a string:
+    
+            conn = psycopg2.connect("dbname=test user=postgres password=secret")
+    
+        or using a set of keyword arguments:
+    
+            conn = psycopg2.connect(database="test", user="postgres", password="secret")
+    
+        Or as a mix of both. The basic connection parameters are:
+    
+        - *dbname*: the database name
+        - *database*: the database name (only as keyword argument)
+        - *user*: user name used to authenticate
+        - *password*: password used to authenticate
+        - *host*: database host address (defaults to UNIX socket if not provided)
+        - *port*: connection port number (defaults to 5432 if not provided)
+    
+        Using the *connection_factory* parameter a different class or connections
+        factory can be specified. It should be a callable object taking a dsn
+        argument.
+    
+        Using the *cursor_factory* parameter, a new default cursor factory will be
+        used by cursor().
+    
+        Using *async*=True an asynchronous connection will be created. *async_* is
+        a valid alias (for Python versions where ``async`` is a keyword).
+    
+        Any other keyword parameter will be passed to the underlying client
+        library: the list of supported parameters depends on the library version.
+    
+        """
+        kwasync = {}
+        if 'async' in kwargs:
+            kwasync['async'] = kwargs.pop('async')
+        if 'async_' in kwargs:
+            kwasync['async_'] = kwargs.pop('async_')
+    
+        dsn = _ext.make_dsn(dsn, **kwargs)
+>       conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+E       sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+E       	Is the server running on that host and accepting TCP/IP connections?
+E       connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+E       	Is the server running on that host and accepting TCP/IP connections?
+E       
+E       (Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\psycopg2\__init__.py:122: OperationalError
+=========================== short test summary info ===========================
+FAILED tests\unit\test_token_repository.py::test_log_auth_attempt_success_and_fail
+FAILED tests\unit\test_token_repository.py::test_init_db - sqlalchemy.exc.Ope...
+=================== 2 failed, 9 passed, 1 warning in 6.51s ====================

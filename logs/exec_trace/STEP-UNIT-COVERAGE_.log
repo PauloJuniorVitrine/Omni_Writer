@@ -1,0 +1,7 @@
+Name                            Stmts   Miss  Cover   Missing
+-------------------------------------------------------------
+domain\__init__.py                  0      0   100%
+tests\conftest.py                   3      0   100%
+tests\integration\conftest.py      57     50    12%   8-66
+-------------------------------------------------------------
+TOTAL                              60     50    17%

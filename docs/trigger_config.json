@@ -1,0 +1,29 @@
+{
+  "watch": [
+    "app/routes.py",
+    "app/blog_routes.py",
+    "app/controller.py",
+    "app/celery_worker.py",
+    "infraestructure/openai_gateway.py",
+    "infraestructure/deepseek_gateway.py",
+    "infraestructure/storage.py",
+    "domain/models.py",
+    "shared/logger.py",
+    "shared/status_repository.py",
+    "shared/messages.py",
+    "shared/config.py",
+    "requirements.txt",
+    "pyproject.toml"
+  ],
+  "actions": [
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/dependencies.md",
+    "docs/module_context_map.md",
+    "docs/tests_coverage_map.md",
+    "docs/semantic_contracts.md",
+    "docs/log_based_suggestions.md",
+    "docs/CONTRIBUTING.md"
+  ],
+  "strategy": "on_change_run_full_pipeline"
+} 

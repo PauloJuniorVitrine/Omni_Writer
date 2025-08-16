@@ -1,0 +1,339 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-7.4.0, pluggy-1.5.0 -- C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\PROJETOS\SISTEMAS
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.21.1, cov-4.1.0, mock-3.11.1
+asyncio: mode=Mode.STRICT
+collecting ... [status_repository] Banco de status NÃO inicializado (ENABLE_STATUS_DB != 1).
+collected 357 items / 349 deselected / 8 selected
+
+tests\integration\test_celery_worker_integration.py::test_celery_worker_execucao_real FAILED [ 12%]
+tests\integration\test_export_artigos_csv.py::test_export_artigos_csv FAILED [ 25%]
+tests\integration\test_export_prompts_csv.py::test_export_prompts_csv FAILED [ 37%]
+
+================================== FAILURES ===================================
+______________________ test_celery_worker_execucao_real _______________________
+
+self = <redis.connection.Connection(host=localhost,port=6379,db=0)>
+check_health = True
+
+    def connect_check_health(self, check_health: bool = True):
+        if self._sock:
+            return
+        try:
+>           sock = self.retry.call_with_retry(
+                lambda: self._connect(), lambda error: self.disconnect(error)
+            )
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:385: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\retry.py:74: in call_with_retry
+    return do()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:386: in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:797: in _connect
+    raise err
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <redis.connection.Connection(host=localhost,port=6379,db=0)>
+
+    def _connect(self):
+        "Create a TCP socket connection"
+        # we want to mimic what socket.create_connection does to support
+        # ipv4/ipv6, but we want to set options prior to calling
+        # socket.connect()
+        err = None
+        for res in socket.getaddrinfo(
+            self.host, self.port, self.socket_type, socket.SOCK_STREAM
+        ):
+            family, socktype, proto, canonname, socket_address = res
+            sock = None
+            try:
+                sock = socket.socket(family, socktype, proto)
+                # TCP_NODELAY
+                sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+    
+                # TCP_KEEPALIVE
+                if self.socket_keepalive:
+                    sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+                    for k, v in self.socket_keepalive_options.items():
+                        sock.setsockopt(socket.IPPROTO_TCP, k, v)
+    
+                # set the socket_connect_timeout before we connect
+                sock.settimeout(self.socket_connect_timeout)
+    
+                # connect
+>               sock.connect(socket_address)
+E               ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:781: ConnectionRefusedError
+
+During handling of the above exception, another exception occurred:
+
+self = <celery.backends.redis.ResultConsumer object at 0x0000029BBFBA49D0>
+
+    @contextmanager
+    def reconnect_on_error(self):
+        try:
+>           yield
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:177: in _consume_from
+    self._pubsub.subscribe(key)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\client.py:1029: in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\client.py:859: in execute_command
+    self.connection = self.connection_pool.get_connection()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\utils.py:188: in wrapper
+    return func(*args, **kwargs)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:1520: in get_connection
+    connection.connect()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:379: in connect
+    self.connect_check_health(check_health=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <redis.connection.Connection(host=localhost,port=6379,db=0)>
+check_health = True
+
+    def connect_check_health(self, check_health: bool = True):
+        if self._sock:
+            return
+        try:
+            sock = self.retry.call_with_retry(
+                lambda: self._connect(), lambda error: self.disconnect(error)
+            )
+        except socket.timeout:
+            raise TimeoutError("Timeout connecting to server")
+        except OSError as e:
+>           raise ConnectionError(self._error_message(e))
+E           redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:391: ConnectionError
+
+During handling of the above exception, another exception occurred:
+
+self = <redis.connection.Connection(host=localhost,port=6379,db=0)>
+check_health = True
+
+    def connect_check_health(self, check_health: bool = True):
+        if self._sock:
+            return
+        try:
+>           sock = self.retry.call_with_retry(
+                lambda: self._connect(), lambda error: self.disconnect(error)
+            )
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:385: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\retry.py:74: in call_with_retry
+    return do()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:386: in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:797: in _connect
+    raise err
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <redis.connection.Connection(host=localhost,port=6379,db=0)>
+
+    def _connect(self):
+        "Create a TCP socket connection"
+        # we want to mimic what socket.create_connection does to support
+        # ipv4/ipv6, but we want to set options prior to calling
+        # socket.connect()
+        err = None
+        for res in socket.getaddrinfo(
+            self.host, self.port, self.socket_type, socket.SOCK_STREAM
+        ):
+            family, socktype, proto, canonname, socket_address = res
+            sock = None
+            try:
+                sock = socket.socket(family, socktype, proto)
+                # TCP_NODELAY
+                sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+    
+                # TCP_KEEPALIVE
+                if self.socket_keepalive:
+                    sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+                    for k, v in self.socket_keepalive_options.items():
+                        sock.setsockopt(socket.IPPROTO_TCP, k, v)
+    
+                # set the socket_connect_timeout before we connect
+                sock.settimeout(self.socket_connect_timeout)
+    
+                # connect
+>               sock.connect(socket_address)
+E               ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:781: ConnectionRefusedError
+
+During handling of the above exception, another exception occurred:
+
+self = <Connection: redis://localhost:6379/0 at 0x29bbfb96350>
+ConnectionError = <class 'kombu.exceptions.OperationalError'>
+ChannelError = <class 'kombu.exceptions.OperationalError'>
+
+    @contextmanager
+    def _reraise_as_library_errors(
+            self,
+            ConnectionError=exceptions.OperationalError,
+            ChannelError=exceptions.OperationalError):
+        try:
+>           yield
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\kombu\connection.py:472: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\app\base.py:921: in send_task
+    self.backend.on_task_call(P, task_id)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:378: in on_task_call
+    self.result_consumer.consume_from(task_id)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:169: in consume_from
+    return self.start(task_id)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:147: in start
+    self._consume_from(initial_task_id)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:176: in _consume_from
+    with self.reconnect_on_error():
+C:\Program Files\Python311\Lib\contextlib.py:155: in __exit__
+    self.gen.throw(typ, value, traceback)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:130: in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:389: in ensure
+    return retry_over_time(
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\kombu\utils\functional.py:318: in retry_over_time
+    return fun(*args, **kwargs)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\backends\redis.py:106: in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\commands\core.py:1994: in mget
+    return self.execute_command("MGET", *args, **options)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\client.py:621: in execute_command
+    return self._execute_command(*args, **options)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\client.py:627: in _execute_command
+    conn = self.connection or pool.get_connection()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\utils.py:188: in wrapper
+    return func(*args, **kwargs)
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:1520: in get_connection
+    connection.connect()
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:379: in connect
+    self.connect_check_health(check_health=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <redis.connection.Connection(host=localhost,port=6379,db=0)>
+check_health = True
+
+    def connect_check_health(self, check_health: bool = True):
+        if self._sock:
+            return
+        try:
+            sock = self.retry.call_with_retry(
+                lambda: self._connect(), lambda error: self.disconnect(error)
+            )
+        except socket.timeout:
+            raise TimeoutError("Timeout connecting to server")
+        except OSError as e:
+>           raise ConnectionError(self._error_message(e))
+E           redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\redis\connection.py:391: ConnectionError
+
+The above exception was the direct cause of the following exception:
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000029BBF911C50>
+
+    @pytest.mark.integration
+    @pytest.mark.usefixtures("limpar_ambiente")
+    def test_celery_worker_execucao_real(monkeypatch):
+        """
+        Teste de integração real do Worker Celery:
+        - Envia tarefa para o worker
+        - Aguarda execução assíncrona
+        - Valida geração do arquivo ZIP
+        - Valida status de geração
+        - Valida logs e efeitos colaterais
+        """
+        # Configuração mínima para geração
+        config = {
+            "api_key": "sk-teste",
+            "model_type": "openai",
+            "prompts": [{"text": "prompt celery", "index": 0}]
+        }
+        # Envia tarefa Celery
+>       async_result = gerar_artigos_task.apply_async(args=[config], kwargs={"trace_id": "celery-integration-test"})
+
+tests\integration\test_celery_worker_integration.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\app\task.py:601: in apply_async
+    return app.send_task(
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\celery\app\base.py:919: in send_task
+    with P.connection._reraise_as_library_errors():
+C:\Program Files\Python311\Lib\contextlib.py:155: in __exit__
+    self.gen.throw(typ, value, traceback)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Connection: redis://localhost:6379/0 at 0x29bbfb96350>
+ConnectionError = <class 'kombu.exceptions.OperationalError'>
+ChannelError = <class 'kombu.exceptions.OperationalError'>
+
+    @contextmanager
+    def _reraise_as_library_errors(
+            self,
+            ConnectionError=exceptions.OperationalError,
+            ChannelError=exceptions.OperationalError):
+        try:
+            yield
+        except (ConnectionError, ChannelError):
+            raise
+        except self.recoverable_connection_errors as exc:
+>           raise ConnectionError(str(exc)) from exc
+E           kombu.exceptions.OperationalError: Error 10061 connecting to localhost:6379. Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+
+C:\Users\SEDUC\Desktop\PROJETOS\omni_gerador_artigos\venv\Lib\site-packages\kombu\connection.py:476: OperationalError
+------------------------------ Captured log call ------------------------------
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (0/20) now.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (1/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (2/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (3/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (4/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (5/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (6/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (7/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (8/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (9/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (10/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (11/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (12/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (13/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (14/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (15/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (16/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (17/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (18/20) in 1.00 second.
+ERROR    celery.backends.redis:redis.py:396 Connection to Redis lost: Retry (19/20) in 1.00 second.
+CRITICAL celery.backends.redis:redis.py:132 
+Retry limit exceeded while trying to reconnect to the Celery redis result store backend. The Celery application must be restarted.
+___________________________ test_export_artigos_csv ___________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000029BC1B12E90>
+
+    @pytest.mark.integration
+    def test_export_artigos_csv(monkeypatch):
+>       with app.test_client() as client:
+E       NameError: name 'app' is not defined
+
+tests\integration\test_export_artigos_csv.py:15: NameError
+___________________________ test_export_prompts_csv ___________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000029BBFB952D0>
+
+    @pytest.mark.integration
+    def test_export_prompts_csv(monkeypatch):
+>       with app.test_client() as client:
+E       NameError: name 'app' is not defined
+
+tests\integration\test_export_prompts_csv.py:15: NameError
+=========================== short test summary info ===========================
+FAILED tests\integration\test_celery_worker_integration.py::test_celery_worker_execucao_real
+FAILED tests\integration\test_export_artigos_csv.py::test_export_artigos_csv
+FAILED tests\integration\test_export_prompts_csv.py::test_export_prompts_csv
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 3 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+========= 3 failed, 349 deselected, 13 warnings in 119.38s (0:01:59) ==========
