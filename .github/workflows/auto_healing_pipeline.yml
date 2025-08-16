@@ -35,6 +35,13 @@ on:
           - packaging
 
 # =============================================================================
+# 🔧 PERMISSÕES
+# =============================================================================
+permissions:
+  contents: write
+  pull-requests: write
+
+# =============================================================================
 # 🔧 VARIÁVEIS DE AMBIENTE
 # =============================================================================
 env:
@@ -58,11 +65,12 @@ jobs:
   build:
     name: 🏗️ Build Environment
     runs-on: ubuntu-latest
+    if: github.event.inputs.stage == 'all' || github.event.inputs.stage == null
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     outputs:
-      build-status: ${{ job.status }}
-      cache-key: ${{ steps.cache-key.outputs.value }}
+      build_status: ${{ job.status }}
+      cache_key: ${{ steps.cache_key.outputs.value }}
     
     steps:
       - name: 📥 Checkout Code
@@ -77,7 +85,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: 🐍 Setup Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
@@ -146,19 +154,19 @@ jobs:
           redis-version: '7-alpine'
       
       - name: 🔑 Generate Cache Key
-        id: cache-key
+        id: cache_key
         run: |
           echo "value=$(date +%s)" >> $GITHUB_OUTPUT
       
       - name: 💾 Cache Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             venv/
             node_modules/
             ~/.cache/pip
             ~/.npm
-          key: ${{ runner.os }}-deps-${{ steps.cache-key.outputs.value }}
+          key: ${{ runner.os }}-deps-${{ steps.cache_key.outputs.value }}
           restore-keys: |
             ${{ runner.os }}-deps-
 
@@ -168,14 +176,14 @@ jobs:
   unit_tests:
     name: 🧪 Unit Tests + Auto-Healing
     runs-on: ubuntu-latest
+    if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'unit_tests' || github.event.inputs.stage == null) && needs.build.result == 'success'
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     needs: build
-    if: needs.build.result == 'success'
     outputs:
-      unit-status: ${{ job.status }}
-      healing-attempts: ${{ steps.healing.outputs.attempts }}
-      patches-created: ${{ steps.healing.outputs.patches }}
+      unit_status: ${{ job.status }}
+      healing_attempts: ${{ steps.healing.outputs.attempts }}
+      patches_created: ${{ steps.healing.outputs.patches }}
     
     steps:
       - name: 📥 Checkout Code
@@ -190,20 +198,20 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
       
       - name: 💾 Restore Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             venv/
             node_modules/
             ~/.cache/pip
             ~/.npm
-          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache-key }}
+          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache_key }}
           restore-keys: |
             ${{ runner.os }}-deps-
       
@@ -232,7 +240,7 @@ jobs:
             --openai-model ${{ env.OPENAI_MODEL }}
       
       - name: 📊 Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: unit-test-results
@@ -256,14 +264,14 @@ jobs:
   integration_tests:
     name: 🔗 Integration Tests + Auto-Healing
     runs-on: ubuntu-latest
+    if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'integration_tests' || github.event.inputs.stage == null) && needs.unit_tests.result == 'success'
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     needs: unit_tests
-    if: needs.unit_tests.result == 'success'
     outputs:
-      integration-status: ${{ job.status }}
-      healing-attempts: ${{ steps.healing.outputs.attempts }}
-      patches-created: ${{ steps.healing.outputs.patches }}
+      integration_status: ${{ job.status }}
+      healing_attempts: ${{ steps.healing.outputs.attempts }}
+      patches_created: ${{ steps.healing.outputs.patches }}
     
     steps:
       - name: 📥 Checkout Code
@@ -278,20 +286,20 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
       
       - name: 💾 Restore Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             venv/
             node_modules/
             ~/.cache/pip
             ~/.npm
-          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache-key }}
+          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache_key }}
           restore-keys: |
             ${{ runner.os }}-deps-
       
@@ -320,7 +328,7 @@ jobs:
             --openai-model ${{ env.OPENAI_MODEL }}
       
       - name: 📊 Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: integration-test-results
@@ -344,14 +352,14 @@ jobs:
   e2e_tests:
     name: 🌐 E2E Tests + Auto-Healing
     runs-on: ubuntu-latest
+    if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'e2e_tests' || github.event.inputs.stage == null) && needs.integration_tests.result == 'success'
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     needs: integration_tests
-    if: needs.integration_tests.result == 'success'
     outputs:
-      e2e-status: ${{ job.status }}
-      healing-attempts: ${{ steps.healing.outputs.attempts }}
-      patches-created: ${{ steps.healing.outputs.patches }}
+      e2e_status: ${{ job.status }}
+      healing_attempts: ${{ steps.healing.outputs.attempts }}
+      patches_created: ${{ steps.healing.outputs.patches }}
     
     steps:
       - name: 📥 Checkout Code
@@ -366,20 +374,20 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
       
       - name: 💾 Restore Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             venv/
             node_modules/
             ~/.cache/pip
             ~/.npm
-          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache-key }}
+          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache_key }}
           restore-keys: |
             ${{ runner.os }}-deps-
       
@@ -408,7 +416,7 @@ jobs:
             --openai-model ${{ env.OPENAI_MODEL }}
       
       - name: 📊 Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: e2e-test-results
@@ -432,13 +440,13 @@ jobs:
   load_test:
     name: 📈 Load Tests
     runs-on: ubuntu-latest
+    if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'load_test' || github.event.inputs.stage == null) && needs.e2e_tests.result == 'success'
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     needs: e2e_tests
-    if: needs.e2e_tests.result == 'success'
     outputs:
-      load-status: ${{ job.status }}
-      performance-metrics: ${{ steps.k6.outputs.metrics }}
+      load_status: ${{ job.status }}
+      performance_metrics: ${{ steps.k6.outputs.metrics }}
     
     steps:
       - name: 📥 Checkout Code
@@ -459,7 +467,7 @@ jobs:
           echo "metrics=$(cat k6-results.json | jq -r '.metrics.http_req_duration.avg')" >> $GITHUB_OUTPUT
       
       - name: 📊 Upload Load Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: load-test-results
           path: k6-results.json
@@ -476,14 +484,14 @@ jobs:
   quality_security:
     name: 🔒 Quality & Security Gates
     runs-on: ubuntu-latest
+    if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'quality_security' || github.event.inputs.stage == null) && needs.load_test.result == 'success'
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     needs: load_test
-    if: needs.load_test.result == 'success'
     outputs:
-      quality-status: ${{ job.status }}
-      coverage-percentage: ${{ steps.coverage.outputs.percentage }}
-      security-score: ${{ steps.security.outputs.score }}
+      quality_status: ${{ job.status }}
+      coverage_percentage: ${{ steps.coverage.outputs.percentage }}
+      security_score: ${{ steps.security.outputs.score }}
     
     steps:
       - name: 📥 Checkout Code
@@ -492,20 +500,20 @@ jobs:
           fetch-depth: 0
       
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
       
       - name: 💾 Restore Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             venv/
             node_modules/
             ~/.cache/pip
             ~/.npm
-          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache-key }}
+          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache_key }}
           restore-keys: |
             ${{ runner.os }}-deps-
       
@@ -565,7 +573,7 @@ jobs:
           fi
       
       - name: 📊 Upload Quality Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: quality-security-results
           path: |
@@ -582,18 +590,56 @@ jobs:
           echo "- Security Score: ${{ steps.security.outputs.score }}/100" >> $GITHUB_STEP_SUMMARY
 
   # ========================================
+  # 📊 AGGREGATE - SOMA DE OUTPUTS
+  # ========================================
+  aggregate:
+    name: 📊 Aggregate Results
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [unit_tests, integration_tests, e2e_tests]
+    outputs:
+      total_attempts: ${{ steps.sum.outputs.total_attempts }}
+      total_patches: ${{ steps.sum.outputs.total_patches }}
+    
+    steps:
+      - name: 📊 Sum Healing Results
+        id: sum
+        run: |
+          # Ler outputs dos jobs de teste
+          UNIT_ATTEMPTS=${{ needs.unit_tests.outputs.healing_attempts }}
+          INT_ATTEMPTS=${{ needs.integration_tests.outputs.healing_attempts }}
+          E2E_ATTEMPTS=${{ needs.e2e_tests.outputs.healing_attempts }}
+          UNIT_PATCHES=${{ needs.unit_tests.outputs.patches_created }}
+          INT_PATCHES=${{ needs.integration_tests.outputs.patches_created }}
+          E2E_PATCHES=${{ needs.e2e_tests.outputs.patches_created }}
+          
+          # Somar com fallback para 0
+          total_attempts=$(( ${UNIT_ATTEMPTS:-0} + ${INT_ATTEMPTS:-0} + ${E2E_ATTEMPTS:-0} ))
+          total_patches=$(( ${UNIT_PATCHES:-0} + ${INT_PATCHES:-0} + ${E2E_PATCHES:-0} ))
+          
+          # Exportar como outputs
+          echo "total_attempts=$total_attempts" >> $GITHUB_OUTPUT
+          echo "total_patches=$total_patches" >> $GITHUB_OUTPUT
+      
+      - name: 📋 Generate Aggregate Summary
+        run: |
+          echo "## Aggregate Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Total Healing Attempts: ${{ steps.sum.outputs.total_attempts }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Total Patches Created: ${{ steps.sum.outputs.total_patches }}" >> $GITHUB_STEP_SUMMARY
+
+  # ========================================
   # 📦 PACKAGING & RELEASE
   # ========================================
   packaging:
     name: 📦 Packaging & Release
     runs-on: ubuntu-latest
+    if: (github.event.inputs.stage == 'all' || github.event.inputs.stage == 'packaging' || github.event.inputs.stage == null) && needs.quality_security.result == 'success'
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-    needs: quality_security
-    if: needs.quality_security.result == 'success'
+    needs: [quality_security, aggregate]
     outputs:
-      release-url: ${{ steps.release.outputs.url }}
-      artifacts-created: ${{ steps.package.outputs.artifacts }}
+      release_url: ${{ steps.release.outputs.url }}
+      artifacts_created: ${{ steps.package.outputs.artifacts }}
     
     steps:
       - name: 📥 Checkout Code
@@ -603,20 +649,20 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
       
       - name: 💾 Restore Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             venv/
             node_modules/
             ~/.cache/pip
             ~/.npm
-          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache-key }}
+          key: ${{ runner.os }}-deps-${{ needs.build.outputs.cache_key }}
           restore-keys: |
             ${{ runner.os }}-deps-
       
@@ -652,18 +698,18 @@ jobs:
             ## Auto-Healing Pipeline Release v${{ github.run_number }}
             
             ### 🧪 Test Results
-            - Unit Tests: ${{ needs.unit_tests.outputs.unit-status }}
-            - Integration Tests: ${{ needs.integration_tests.outputs.integration-status }}
-            - E2E Tests: ${{ needs.e2e_tests.outputs.e2e-status }}
-            - Load Tests: ${{ needs.load_test.outputs.load-status }}
+            - Unit Tests: ${{ needs.unit_tests.outputs.unit_status }}
+            - Integration Tests: ${{ needs.integration_tests.outputs.integration_status }}
+            - E2E Tests: ${{ needs.e2e_tests.outputs.e2e_status }}
+            - Load Tests: ${{ needs.load_test.outputs.load_status }}
             
             ### 🔒 Quality Gates
-            - Coverage: ${{ needs.quality_security.outputs.coverage-percentage }}%
-            - Security Score: ${{ needs.quality_security.outputs.security-score }}/100
+            - Coverage: ${{ needs.quality_security.outputs.coverage_percentage }}%
+            - Security Score: ${{ needs.quality_security.outputs.security_score }}/100
             
             ### 🚀 Auto-Healing Summary
-            - Total Healing Attempts: ${{ needs.unit_tests.outputs.healing-attempts + needs.integration_tests.outputs.healing-attempts + needs.e2e_tests.outputs.healing-attempts }}
-            - Patches Created: ${{ needs.unit_tests.outputs.patches-created + needs.integration_tests.outputs.patches-created + needs.e2e_tests.outputs.patches-created }}
+            - Total Healing Attempts: ${{ needs.aggregate.outputs.total_attempts }}
+            - Patches Created: ${{ needs.aggregate.outputs.total_patches }}
             
             ### 📦 Artifacts
             - Python Executable: OmniKeywordsFinder
@@ -673,7 +719,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: 📊 Upload Release Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: |
@@ -693,12 +739,17 @@ jobs:
   notify:
     name: 📢 Notify Team
     runs-on: ubuntu-latest
-    env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-    needs: [packaging, unit_tests, integration_tests, e2e_tests, load_test, quality_security]
     if: always()
+    needs: [packaging, unit_tests, integration_tests, e2e_tests, load_test, quality_security, aggregate]
     
     steps:
+      - name: 🎨 Set Discord Color
+        id: set_color
+        run: |
+          color=15158332
+          if [ "${{ needs.packaging.result }}" = "success" ]; then color=3066993; fi
+          echo "color=$color" >> "$GITHUB_OUTPUT"
+      
       - name: 📢 Send Slack Notification
         if: env.SLACK_WEBHOOK != ''
         uses: 8398a7/action-slack@v3
@@ -713,24 +764,24 @@ jobs:
             **Commit**: ${{ github.sha }}
             
             **🧪 Test Results**:
-            - Unit: ${{ needs.unit_tests.outputs.unit-status }}
-            - Integration: ${{ needs.integration_tests.outputs.integration-status }}
-            - E2E: ${{ needs.e2e_tests.outputs.e2e-status }}
-            - Load: ${{ needs.load_test.outputs.load-status }}
+            - Unit: ${{ needs.unit_tests.outputs.unit_status }}
+            - Integration: ${{ needs.integration_tests.outputs.integration_status }}
+            - E2E: ${{ needs.e2e_tests.outputs.e2e_status }}
+            - Load: ${{ needs.load_test.outputs.load_status }}
             
             **🔒 Quality Gates**:
-            - Coverage: ${{ needs.quality_security.outputs.coverage-percentage }}%
-            - Security: ${{ needs.quality_security.outputs.security-score }}/100
+            - Coverage: ${{ needs.quality_security.outputs.coverage_percentage }}%
+            - Security: ${{ needs.quality_security.outputs.security_score }}/100
             
             **🚀 Auto-Healing**:
-            - Total Attempts: ${{ needs.unit_tests.outputs.healing-attempts + needs.integration_tests.outputs.healing-attempts + needs.e2e_tests.outputs.healing-attempts }}
-            - Patches: ${{ needs.unit_tests.outputs.patches-created + needs.integration_tests.outputs.patches-created + needs.e2e_tests.outputs.patches-created }}
+            - Total Attempts: ${{ needs.aggregate.outputs.total_attempts }}
+            - Patches: ${{ needs.aggregate.outputs.total_patches }}
             
-            **📦 Release**: ${{ needs.packaging.outputs.release-url }}
+            **📦 Release**: ${{ needs.packaging.outputs.release_url }}
             
             **🔗 Links**:
             - Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            - Release: ${{ needs.packaging.outputs.release-url }}
+            - Release: ${{ needs.packaging.outputs.release_url }}
         env:
           SLACK_WEBHOOK_URL: ${{ env.SLACK_WEBHOOK }}
       
@@ -742,7 +793,7 @@ jobs:
                -d '{
                  "embeds": [{
                    "title": "🚀 Auto-Healing Pipeline Complete",
-                   "color": '${{ job.status == "success" && 3066993 || 15158332 }}',
+                   "color": '${{ steps.set_color.outputs.color }}',
                    "fields": [
                      {
                        "name": "Status",
@@ -756,17 +807,17 @@ jobs:
                      },
                      {
                        "name": "Tests",
-                       "value": "Unit: ${{ needs.unit_tests.outputs.unit-status }}\nIntegration: ${{ needs.integration_tests.outputs.integration-status }}\nE2E: ${{ needs.e2e_tests.outputs.e2e-status }}",
+                       "value": "Unit: ${{ needs.unit_tests.outputs.unit_status }}\nIntegration: ${{ needs.integration_tests.outputs.integration_status }}\nE2E: ${{ needs.e2e_tests.outputs.e2e_status }}",
                        "inline": false
                      },
                      {
                        "name": "Quality",
-                       "value": "Coverage: ${{ needs.quality_security.outputs.coverage-percentage }}%\nSecurity: ${{ needs.quality_security.outputs.security-score }}/100",
+                       "value": "Coverage: ${{ needs.quality_security.outputs.coverage_percentage }}%\nSecurity: ${{ needs.quality_security.outputs.security_score }}/100",
                        "inline": false
                      },
                      {
                        "name": "Auto-Healing",
-                       "value": "Attempts: ${{ needs.unit_tests.outputs.healing-attempts + needs.integration_tests.outputs.healing-attempts + needs.e2e_tests.outputs.healing-attempts }}\nPatches: ${{ needs.unit_tests.outputs.patches-created + needs.integration_tests.outputs.patches-created + needs.e2e_tests.outputs.patches-created }}",
+                       "value": "Attempts: ${{ needs.aggregate.outputs.total_attempts }}\nPatches: ${{ needs.aggregate.outputs.total_patches }}",
                        "inline": false
                      }
                    ],
@@ -785,22 +836,22 @@ jobs:
           echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🧪 Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "- Unit Tests: ${{ needs.unit_tests.outputs.unit-status }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Integration Tests: ${{ needs.integration_tests.outputs.integration-status }}" >> $GITHUB_STEP_SUMMARY
-          echo "- E2E Tests: ${{ needs.e2e_tests.outputs.e2e-status }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Load Tests: ${{ needs.load_test.outputs.load-status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit Tests: ${{ needs.unit_tests.outputs.unit_status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Integration Tests: ${{ needs.integration_tests.outputs.integration_status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- E2E Tests: ${{ needs.e2e_tests.outputs.e2e_status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Load Tests: ${{ needs.load_test.outputs.load_status }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔒 Quality Gates" >> $GITHUB_STEP_SUMMARY
-          echo "- Coverage: ${{ needs.quality_security.outputs.coverage-percentage }}%" >> $GITHUB_STEP_SUMMARY
-          echo "- Security Score: ${{ needs.quality_security.outputs.security-score }}/100" >> $GITHUB_STEP_SUMMARY
+          echo "- Coverage: ${{ needs.quality_security.outputs.coverage_percentage }}%" >> $GITHUB_STEP_SUMMARY
+          echo "- Security Score: ${{ needs.quality_security.outputs.security_score }}/100" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🚀 Auto-Healing Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Total Healing Attempts: ${{ needs.unit_tests.outputs.healing-attempts + needs.integration_tests.outputs.healing-attempts + needs.e2e_tests.outputs.healing-attempts }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Patches Created: ${{ needs.unit_tests.outputs.patches-created + needs.integration_tests.outputs.patches-created + needs.e2e_tests.outputs.patches-created }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Total Healing Attempts: ${{ needs.aggregate.outputs.total_attempts }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Patches Created: ${{ needs.aggregate.outputs.total_patches }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📦 Release" >> $GITHUB_STEP_SUMMARY
-          echo "- Release URL: ${{ needs.packaging.outputs.release-url }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Release URL: ${{ needs.packaging.outputs.release_url }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔗 Links" >> $GITHUB_STEP_SUMMARY
           echo "- [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
-          echo "- [Release](${{ needs.packaging.outputs.release-url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [Release](${{ needs.packaging.outputs.release_url }})" >> $GITHUB_STEP_SUMMARY
