@@ -7,11 +7,6 @@
   "sha": "",
   "branch": "",
   "jobs_completed": {},
-  "totals": {
-    "healing_attempts": 0,
-    "patches_created": 0,
-    "tests_passed": 0,
-    "tests_failed": 0
-  },
-  "timestamp": "2025-01-27T00:00:00Z"
+  "totals": { "healing_attempts": 0, "patches_created": 0, "tests_passed": 0, "tests_failed": 0 },
+  "timestamp": "1970-01-01T00:00:00Z"
 }

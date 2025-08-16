@@ -1,0 +1,57 @@
+# 🛟 CI Summary Fallback Workflow Example
+# 📅 Criado: 2025-01-27
+# 🔧 Tracing ID: CI_SUMMARY_FALLBACK_001_20250127
+# ⚡ Status: ✅ READY
+
+name: 🛟 CI Summary Fallback Example
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  example-job:
+    name: 📋 Example Job with Summary Fallback
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Download opcional do artifact (se existir de jobs anteriores)
+      - name: 📥 Download ci-summary (optional)
+        uses: actions/download-artifact@v4
+        with:
+          name: ci-summary
+          path: .ci/config
+        continue-on-error: true
+      
+      # Step 2: Garantir o arquivo (fallback)
+      - name: 🛟 Ensure .ci/config/summary.json
+        id: ensure_summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .ci/config
+          if [ ! -f ".ci/config/summary.json" ]; then
+            TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            REPO="${{ github.repository }}"
+            RUN_ID="${{ github.run_id }}"
+            SHA="${{ github.sha }}"
+            BRANCH="${{ github.ref_name }}"
+            echo '{"version":"3.0.0","environment":"production","tracing_id":"AUTO_HEALING_CONFIG_001_20250127","repository":"'$REPO'","run_id":"'$RUN_ID'","sha":"'$SHA'","branch":"'$BRANCH'","jobs_completed":{},"totals":{"healing_attempts":0,"patches_created":0,"tests_passed":0,"tests_failed":0},"timestamp":"'$TS'"}' > .ci/config/summary.json
+          fi
+          echo "path=.ci/config/summary.json" >> "$GITHUB_OUTPUT"
+      
+      # Step 3: Usar o arquivo summary.json
+      - name: 📖 Read Summary File
+        run: |
+          echo "Reading summary file from: ${{ steps.ensure_summary.outputs.path }}"
+          cat "${{ steps.ensure_summary.outputs.path }}"
+      
+      # Step 4: Upload do artifact para jobs subsequentes
+      - name: 📦 Upload summary.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-summary
+          path: .ci/config/summary.json
+          if-no-files-found: warn

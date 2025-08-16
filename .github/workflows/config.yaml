@@ -117,30 +117,42 @@ jobs:
       cache_key: ${{ steps.cache_key.outputs.value }}
     
     steps:
-      - name: 🛟 Ensure .ci/config/summary.json (fallback)
+      - name: 📥 Download ci-summary (optional)
+        uses: actions/download-artifact@v4
+        with:
+          name: ci-summary
+          path: .ci/config
+        continue-on-error: true
+      
+      - name: 🛟 Ensure .ci/config/summary.json
         id: ensure_summary
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p .ci/config
-          cat > .ci/config/summary.json << 'EOF'
-          {
-            "version": "3.0.0",
-            "environment": "production",
-            "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
-            "repository": "${{ github.repository }}",
-            "run_id": "${{ github.run_id }}",
-            "sha": "${{ github.sha }}",
-            "branch": "${{ github.ref_name }}",
-            "jobs_completed": {},
-            "totals": {
-              "healing_attempts": 0,
-              "patches_created": 0,
-              "tests_passed": 0,
-              "tests_failed": 0
-            },
-            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          }
-          EOF
-          echo "path=.ci/config/summary.json" >> $GITHUB_OUTPUT
+          if [ ! -f ".ci/config/summary.json" ]; then
+            TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            REPO="${{ github.repository }}"
+            RUN_ID="${{ github.run_id }}"
+            SHA="${{ github.sha }}"
+            BRANCH="${{ github.ref_name }}"
+            cat > .ci/config/summary.json << 'EOF'
+{
+  "version": "3.0.0",
+  "environment": "production",
+  "tracing_id": "AUTO_HEALING_CONFIG_001_20250127",
+  "repository": "$REPO",
+  "run_id": "$RUN_ID",
+  "sha": "$SHA",
+  "branch": "$BRANCH",
+  "jobs_completed": {},
+  "totals": { "healing_attempts": 0, "patches_created": 0, "tests_passed": 0, "tests_failed": 0 },
+  "timestamp": "$TS"
+}
+EOF
+          fi
+          echo "path=.ci/config/summary.json" >> "$GITHUB_OUTPUT"
+
       
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
@@ -183,6 +195,14 @@ jobs:
           echo "## Dependencies Setup Summary" >> $GITHUB_STEP_SUMMARY
           echo "- Cache Key: ${{ steps.cache_key.outputs.value }}" >> $GITHUB_STEP_SUMMARY
           echo "- Config saved to: .ci/config/dependencies.json" >> $GITHUB_STEP_SUMMARY
+      
+      - name: 📦 Upload summary.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-summary
+          path: .ci/config/summary.json
+          if-no-files-found: warn
 
   # ========================================
   # 🧪 TESTING - CONFIGURAÇÕES DE TESTES
